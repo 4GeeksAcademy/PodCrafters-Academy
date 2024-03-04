@@ -10,11 +10,21 @@ export const MiPerfil = () => {
 
         <div className="container">
             <div className="jumbotron rounded" style={{ backgroundColor: '#9AC0CD', display: 'flex', alignItems: 'center' }}>
-                <div className="ms-4">
+                <div className="ms-4 d-flex flex-column">
                     <p className="display-4">Mi Perfil</p>
-                    <p> <i className="fa-solid fa-user me-1"></i>Nombre de Usuario</p>
-                    <p> <i className="fa-solid fa-envelope me-1"></i>Email</p>
-                    <p> <i className="fa-solid fa-phone me-1"></i>Telefono</p>
+                    <div className="d-flex">
+                        <div className="me-4">
+                            <p> <i className="fa-solid fa-user me-1"></i>Nombre de Usuario</p>
+                            <p> <i className="fa-solid fa-envelope me-1"></i>Email</p>
+                            <p> <i className="fa-solid fa-phone me-1"></i>Telefono</p>
+                        </div>
+                        <div>
+                            <p>Contraseña</p>
+                            <div class="mb-3">
+                                <input type="password" class="form-control" id="exampleInputPassword1"/>
+                            </div>
+                        </div>
+                    </div>
                     <p>Name</p>
                     <p>LastName</p>
                     <div className="mt-3 mb-3">
@@ -26,6 +36,7 @@ export const MiPerfil = () => {
                         </button>
                     </div>
                 </div>
+
                 <div className="ms-auto mb-3 text-center d-flex flex-column align-items-center">
                     <p className="mb-0">Foto de perfil</p>
                     <img src="https://upload.wikimedia.org/wikipedia/commons/9/99/Sample_User_Icon.png" alt="User Icon" style={{ width: '150px', height: '150px', borderRadius: '50%' }} />
