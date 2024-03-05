@@ -1,23 +1,55 @@
-/*
-    home.css: This website contains selectors only used in home.css
-
-    All pages share the styles on index.css but you should create 
-    one more css for each page that will contain the selected used 
-    on that page only (the ones not reused in other pages).
-*/
-
-.jumbotron {
-  position: relative;
-  overflow: hidden;
+/* Hero style */
+.hero .container {
+  min-height: 70vh;
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-end;
 }
 
-.jumbotron video {
-  position: absolute;
-  top: 0;
-  left: 0;
-  min-width: 100%;
-  min-height: 100%;
-  width: auto;
-  height: auto;
-  z-index: -1;
+.heroText {
+  font-size: 2.5rem;
+  font-weight: 700;
+  color: #e2f4f4;
+  margin-right: auto;
 }
+
+.Pod {
+  color: #081f2e;
+  font-weight: 700;
+  background-color: #e2f4f4;
+  border: 2px solid #081f2e;
+  border-radius: 10px;
+  display: inline-block;
+  padding: 0 10px;
+}
+
+.heroOpiniones {
+  display: inline-block;
+  border-radius: 16px;
+  background-color: #e2f4f4;
+  color: #081f2e;
+  font-weight: 500;
+  font-size: 14px;
+  padding: 3px 8px;
+}
+
+.btnHero {
+  background-color: #e2f4f4;
+  color: #081f2e;
+  border: 2px solid #081f2e;
+}
+
+.btnHero:hover {
+  background-color: #081f2e;
+  color: #e2f4f4;
+  border-color: #081f2e;
+}
+/* Hero style */
+
+/* Cards style */
+
+.cursos {
+  margin-top: 200px;
+}
+
+/* Cards style */

@@ -1,16 +1,31 @@
 import React from "react";
 import { Link } from "react-router-dom";
+import logo from "../../../../public/images/Logo.png";
+import "../../styles/navbar.css";
 
 export const Navbar = () => {
 	return (
-		<nav className="navbar navbar-light bg-light">
+		<nav className="navbar mt-3">
 			<div className="container">
 				<Link to="/">
-					<span className="navbar-brand mb-0 h1">React Boilerplate</span>
+					<img className="imgLogo"
+						src={logo}
+						width="130"
+						height="130"
+						alt=""
+					/>
 				</Link>
-				<div className="ml-auto">
-					<Link to="/demo">
-						<button className="btn btn-primary">Check the Context in action</button>
+				<div className="navItems">
+					<Link to="/">
+						<button className="btn btnLogin">Login/Registrar</button>
+					</Link>
+					<Link to="/">
+						<button className="btn btnCursos">Cursos</button>
+					</Link>
+					<Link to="/carrito">
+						<button className="btn btnCart">
+							<i class="fa-solid fa-cart-shopping"></i>
+						</button>
 					</Link>
 				</div>
 			</div>
