@@ -1,7 +1,9 @@
 import React, { useContext } from "react";
 import { Context } from "../store/appContext";
 import { Link } from "react-router-dom";
-
+import mentor1 from "../../img/mentor1.jpg";
+import mentor2 from "../../img/mentor2.jpg";
+import mentor3 from "../../img/mentor3.jpg";
 export const MiCurso = () => {
 	const { store, actions } = useContext(Context);
 
@@ -18,9 +20,9 @@ export const MiCurso = () => {
 					<div className="text-right">
 						<p>Solicitar Mentorias</p>
 						<div>
-							<a href="https://calendly.com/"><img src="https://upload.wikimedia.org/wikipedia/commons/9/99/Sample_User_Icon.png" alt="User Icon" style={{ width: '50px', height: '50px', borderRadius: '50%', margin: '5px' }} /></a>
-							<a href="https://calendly.com/"><img src="https://upload.wikimedia.org/wikipedia/commons/9/99/Sample_User_Icon.png" alt="User Icon" style={{ width: '50px', height: '50px', borderRadius: '50%', margin: '5px' }} /></a>
-							<a href="https://calendly.com/"><img src="https://upload.wikimedia.org/wikipedia/commons/9/99/Sample_User_Icon.png" alt="User Icon" style={{ width: '50px', height: '50px', borderRadius: '50%', margin: '5px' }} /></a>
+							<a href="https://calendly.com/"><img src={mentor1} alt="User Icon" style={{ width: '50px', height: '50px', borderRadius: '50%', margin: '5px' }} /></a>
+							<a href="https://calendly.com/"><img src={mentor2} alt="User Icon" style={{ width: '50px', height: '50px', borderRadius: '50%', margin: '5px' }} /></a>
+							<a href="https://calendly.com/"><img src={mentor3} alt="User Icon" style={{ width: '50px', height: '50px', borderRadius: '50%', margin: '5px' }} /></a>
 						</div>
 					</div>
 				</div>
