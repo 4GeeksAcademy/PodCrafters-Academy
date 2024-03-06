@@ -32,7 +32,7 @@ const Cursos = () => {
                     ))}
                 </div>
             </div>
-            <div style={{ backgroundColor: "#E2F4F4", height: "50px" }}></div> {/* Espacio con el mismo color de fondo */}
+            <div style={{ backgroundColor: "#E2F4F4", height: "50px" }}></div> 
         </div>
     );
 };
