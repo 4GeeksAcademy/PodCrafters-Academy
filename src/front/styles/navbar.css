@@ -1,8 +1,6 @@
 .navbar {
   justify-content: space-between;
   background-color: transparent;
-  padding: 20px 40px;
-  margin-top: 0.2rem;
   align-items: center;
 }
 
@@ -14,7 +12,7 @@
   background-color: #e2f4f4;
   color: #081f2e;
   border: 2px solid #081f2e;
-  font-size: 2rem;
+  font-size: 1.5rem;
   margin-left: 2rem;
 }
 
@@ -52,8 +50,8 @@
 }
 
 .imgLogo {
-  width: 200px;
-  height: 200px;
+  width: 130px;
+  height: 130px;
 }
 
 .logoContainer {

@@ -8,6 +8,10 @@ import podcasterSobreNosotrosMain from "../../../../public/images/podcasterSobre
 import testim1 from "../../../../public/images/testim1.jpg";
 import testim2 from "../../../../public/images/testim2.jpg";
 import testim3 from "../../../../public/images/testim3.jpg";
+import PodCrafterIniciacion from "../../../../public/images/PodCrafterIniciacion.jpg";
+import PodCrafterIntermedio from "../../../../public/images/PodCrafterIntermedio.jpg";
+import PodCrafterExperimentado from "../../../../public/images/PodCrafterExperimentado.jpg";
+import PodCrafterMaster from "../../../../public/images/PodCrafterMaster.jpg";
 
 export const Home = () => {
 	const { store, actions } = useContext(Context);
@@ -42,6 +46,7 @@ export const Home = () => {
 				<video
 					autoPlay
 					muted
+					loop
 					style={{
 						position: "absolute",
 						width: "100%",
@@ -156,39 +161,39 @@ export const Home = () => {
 					<div className="cursosBody container">
 						<div className="row justify-content-around primeraFilaCurso">
 							<div className="card col-4 cardBody" >
-								<img src="https://placehold.co/600x400" className="card-img-top" alt="..." />
+								<img src={PodCrafterIniciacion} className="card-img-top" alt="..." />
 								<div className="cardText">
-									<h5 className="cardTitle">Card title</h5>
+									<h5 className="cardTitle">PodCrafter Iniciación</h5>
 									<p className="cardSubTitle">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
 								</div>
-								<a href="#" className="btn btnMainCurso">Go somewhere</a>
+								<a href="#" className="btn btnMainCurso">Saber más</a>
 							</div>
 							<div className="card col-4 cardBody" >
-								<img src="https://placehold.co/600x400" className="card-img-top" alt="..." />
+								<img src={PodCrafterIntermedio} className="card-img-top" alt="..." />
 								<div className="cardText">
-									<h5 className="cardTitle">Card title</h5>
+									<h5 className="cardTitle">PodCrafter Intermedio</h5>
 									<p className="cardSubTitle">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
 								</div>
-								<a href="#" className="btn btnMainCurso">Go somewhere</a>
+								<a href="#" className="btn btnMainCurso">Saber más</a>
 							</div>
 						</div>
 
 						<div className="row justify-content-around segundaFilaCurso">
 							<div className="card col-4 cardBody" >
-								<img src="https://placehold.co/600x400" className="card-img-top" alt="..." />
+								<img src={PodCrafterExperimentado} className="card-img-top" alt="..." />
 								<div className="cardText">
-									<h5 className="cardTitle">Card title</h5>
+									<h5 className="cardTitle">PodCrafter Experimentado</h5>
 									<p className="cardSubTitle">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
 								</div>
-								<a href="#" className="btn btnMainCurso">Go somewhere</a>
+								<a href="#" className="btn btnMainCurso">Saber más</a>
 							</div>
 							<div className="card col-4 cardBody" >
-								<img src="https://placehold.co/600x400" className="card-img-top" alt="..." />
+								<img src={PodCrafterMaster} className="card-img-top" alt="..." />
 								<div className="cardText">
-									<h5 className="cardTitle">Card title</h5>
+									<h5 className="cardTitle">PodCrafter Master</h5>
 									<p className="cardSubTitle">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
 								</div>
-								<a href="#" className="btn btnMainCurso">Go somewhere</a>
+								<a href="#" className="btn btnMainCurso">Saber más</a>
 							</div>
 						</div>
 					</div>

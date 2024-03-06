@@ -105,6 +105,7 @@ darkcolor: #081f2e */
   font-size: 2rem;
   margin-top: 30px;
 }
+
 .sobreNosotrosCard2sub {
   color: #e5ff00;
   font-size: 2rem;
@@ -157,6 +158,13 @@ darkcolor: #081f2e */
 .cardText {
   padding: 10px;
   background-color: #e2f4f4;
+}
+
+.cardTitle {
+  font-size: 1.8rem;
+  color: #081f2e;
+  text-align: center;
+  padding: 20px;
 }
 
 .btnMainCurso {
