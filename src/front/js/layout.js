@@ -6,7 +6,11 @@ import { BackendURL } from "./component/backendURL";
 import { Home } from "./pages/home";
 import { Demo } from "./pages/demo";
 import { Single } from "./pages/single";
+import { Cursos } from "./pages/cursos";
 import injectContext from "./store/appContext";
+import Cursos from "./pages/cursos";
+import Contacto from "./pages/contacto";
+import SobreNosotros from "./pages/sobreNosotros";
 
 import { Navbar } from "./component/navbar";
 import { Footer } from "./component/footer";
@@ -21,7 +25,7 @@ const Layout = () => {
     // you can set the basename on the .env file located at the root of this project, E.g: BASENAME=/react-hello-webapp/
     const basename = process.env.BASENAME || "";
 
-    if(!process.env.BACKEND_URL || process.env.BACKEND_URL == "") return <BackendURL/ >;
+    if (!process.env.BACKEND_URL || process.env.BACKEND_URL == "") return <BackendURL />;
 
     return (
         <div>
@@ -30,11 +34,15 @@ const Layout = () => {
                     <Navbar />
                     <Routes>
                         <Route element={<Home />} path="/" />
+                        <Route element={<Cursos />} path="/cursos" />
                         <Route element={<Demo />} path="/demo" />
                         <Route element={<Single />} path="/single/:theid" />
                         <Route element={<MiPerfil />} path="/miperfil" />
                         <Route element={<Privacidad />} path="/privacidad" />
                         <Route element={<Carrito />} path="/carrito" />
+                        <Route element={<Cursos />} path="/cursos" />
+                        <Route element={<Contacto />} path="/contacto" />
+                        <Route element={<SobreNosotros />} path="/sobreNosotros" />
                         <Route element={<MiCurso />} path="/micurso" />
                         <Route element={<Modulo />} path="/modulo" />
                         <Route element={<h1>Not found!</h1>} />
