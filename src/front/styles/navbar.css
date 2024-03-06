@@ -2,6 +2,8 @@
   justify-content: space-between;
   background-color: transparent;
   padding: 20px 40px;
+  margin-top: 0.2rem;
+  align-items: center;
 }
 
 .navItems {
@@ -13,7 +15,7 @@
   color: #081f2e;
   border: 2px solid #081f2e;
   font-size: 2rem;
-  margin-left: 4rem;
+  margin-left: 2rem;
 }
 
 .btnCart:hover {
@@ -52,6 +54,13 @@
 .imgLogo {
   width: 200px;
   height: 200px;
-  background-color: #e2f4f4;
+}
+
+.logoContainer {
+  display: flex;
+  align-items: center;
   border-radius: 50%;
+  background-color: #e2f4f4;
+  color: #081f2e;
+  border: 2px solid #081f2e;
 }

@@ -5,22 +5,25 @@ import "../../styles/navbar.css";
 
 export const Navbar = () => {
 	return (
-		<nav className="navbar mt-3">
+		<nav className="navbar">
 			<div className="container">
-				<Link to="/">
-					<img className="imgLogo"
-						src={logo}
-						width="130"
-						height="130"
-						alt=""
-					/>
-				</Link>
+				<div className="logoContainer">
+					< Link to="/" >
+						<img className="imgLogo" src={logo} alt="" />
+					</Link >
+				</div>
 				<div className="navItems">
 					<Link to="/">
-						<button className="btn btnLogin">Login/Registrar</button>
+						<button className="btn btnLogin">Iniciar sesión</button>
 					</Link>
 					<Link to="/">
 						<button className="btn btnCursos">Cursos</button>
+					</Link>
+					<Link to="/">
+						<button className="btn btnCursos">Sobre nosotros</button>
+					</Link>
+					<Link to="/">
+						<button className="btn btnCursos">FAQ</button>
 					</Link>
 					<Link to="/carrito">
 						<button className="btn btnCart">
@@ -28,7 +31,7 @@ export const Navbar = () => {
 						</button>
 					</Link>
 				</div>
-			</div>
-		</nav>
+			</div >
+		</nav >
 	);
 };

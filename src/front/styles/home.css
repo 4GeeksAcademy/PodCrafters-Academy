@@ -1,6 +1,9 @@
+/* lightcolor: #e2f4f4
+darkcolor: #081f2e */
+
 /* Hero style */
-.hero .container {
-  min-height: 70vh;
+.heroMain .container {
+  min-height: 73vh;
   display: flex;
   flex-direction: column;
   justify-content: flex-end;
@@ -11,6 +14,7 @@
   font-weight: 700;
   color: #e2f4f4;
   margin-right: auto;
+  margin-bottom: 100px;
 }
 
 .Pod {
@@ -46,10 +50,161 @@
 }
 /* Hero style */
 
-/* Cards style */
+/* Sobre nosotros style */
 
-.cursos {
-  margin-top: 200px;
+.sobreNosotrosMain {
+  margin-top: 100px;
+  margin-bottom: 150px;
+}
+
+.sobreNosotrosTitulo1 {
+  font-size: 3rem;
+  font-weight: 500;
+  color: #081f2e;
+}
+
+.sobreNosotrosInfo {
+  font-size: 1.5rem;
+  color: #081f2e;
+  margin-top: 20px;
+}
+
+.sobreNosotrosCards {
+  margin-top: 50px;
+  justify-content: center;
+  align-items: center;
+  display: flex;
+}
+
+.sobreNosotrosCardContainer {
+  width: 100%;
+  height: 100%;
+  border-radius: 20px;
+  background-color: #081f2e;
+  padding: 2rem;
+}
+
+.sobreNosotrosCard1 {
+  border-top: 2px solid #e2f4f4;
+  padding-top: 20px;
+  color: #e2f4f4;
+  font-weight: 700;
+  font-size: 18px;
+}
+
+.sobreNosotrosCard2 {
+  color: #e2f4f4;
+  padding-top: 20px;
+  font-weight: 500;
+  line-height: 1.5;
+  font-size: 70px;
+}
+
+.sobreNosotrosStars {
+  color: #e5ff00;
+  font-size: 2rem;
+  margin-top: 30px;
+}
+.sobreNosotrosCard2sub {
+  color: #e5ff00;
+  font-size: 2rem;
+  margin-top: 30px;
+}
+
+.sobreNosotrosImg {
+  width: 100%;
+  height: 100%;
+  border-radius: 20px;
+}
+
+/* Sobre nosotros style */
+
+/* Cards style */
+/* lightcolor: #e2f4f4
+darkcolor: #081f2e */
+
+.cursosMain {
+  background-color: #081f2e;
+}
+
+.cursosBody {
+  padding-bottom: 100px;
+}
+
+.cursosTitle {
+  font-size: 3rem;
+  font-weight: 700;
+  color: #e2f4f4;
+  margin-bottom: 50px;
+  text-align: center;
+  padding-top: 50px;
+}
+
+.primeraFilaCurso {
+  margin-bottom: 100px;
+  display: flex;
+}
+
+.segundaFilaCurso {
+  margin-bottom: 100px;
+  display: flex;
+}
+
+.cardBody {
+  padding: 0px;
+}
+
+.cardText {
+  padding: 10px;
+  background-color: #e2f4f4;
+}
+
+.btnMainCurso {
+  background-color: #081f2e;
+  color: #e2f4f4;
+  border: 2px solid #e2f4f4;
+}
+
+.btnMainCurso:hover {
+  background-color: #e2f4f4;
+  color: #081f2e;
+  border-color: #081f2e;
 }
 
 /* Cards style */
+
+/* testimonio style */
+/* lightcolor: #e2f4f4
+darkcolor: #081f2e */
+
+.testimoniosBody {
+  padding-bottom: 100px;
+  /* display: flex;
+  justify-content: center; */
+}
+
+.testimoniosTitle {
+  font-size: 3rem;
+  font-weight: 700;
+  color: #081f2e;
+  margin-bottom: 50px;
+  text-align: center;
+  padding-top: 50px;
+}
+
+.testimonioImg {
+  border-radius: 50%;
+  width: 300px;
+  height: 300px;
+  object-fit: cover;
+  margin-top: 40px;
+}
+
+.testimonioText {
+  font-size: 1.2rem;
+  color: #081f2e;
+  margin-top: 20px;
+  text-align: center;
+  font-style: italic;
+}
+/* testimonio style */
