@@ -1,0 +1,64 @@
+.navbar {
+  justify-content: space-between;
+  background-color: transparent;
+  align-items: center;
+}
+
+.navItems {
+  display: flex;
+}
+
+.btnCart {
+  background-color: #e2f4f4;
+  color: #081f2e;
+  border: 2px solid #081f2e;
+  font-size: 1.5rem;
+  margin-left: 2rem;
+}
+
+.btnCart:hover {
+  background-color: #081f2e;
+  color: #e2f4f4;
+  border-color: #081f2e;
+}
+
+.btnCursos {
+  background-color: #e2f4f4;
+  color: #081f2e;
+  border: 2px solid #081f2e;
+  font-size: 1.5rem;
+  margin-left: 1rem;
+}
+
+.btnCursos:hover {
+  background-color: #081f2e;
+  color: #e2f4f4;
+  border-color: #081f2e;
+}
+.btnLogin {
+  background-color: #e2f4f4;
+  color: #081f2e;
+  border: 2px solid #081f2e;
+  font-size: 1.5rem;
+  margin-left: 1rem;
+}
+
+.btnLogin:hover {
+  background-color: #081f2e;
+  color: #e2f4f4;
+  border-color: #081f2e;
+}
+
+.imgLogo {
+  width: 130px;
+  height: 130px;
+}
+
+.logoContainer {
+  display: flex;
+  align-items: center;
+  border-radius: 50%;
+  background-color: #e2f4f4;
+  color: #081f2e;
+  border: 2px solid #081f2e;
+}

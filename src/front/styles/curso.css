@@ -1,0 +1,89 @@
+.container {
+  margin-top: 1rem;
+}
+
+.cursoTop {
+  background-color: #081f2e;
+  border: 2px solid #081f2e;
+  border-radius: 30px;
+  padding: 0 30px;
+  margin-top: 7rem;
+}
+
+.cursoHeader {
+  padding-bottom: 2rem;
+  justify-content: center;
+  color: #e2f4f4;
+  margin-top: 1rem;
+}
+
+.cursoTitulo1 {
+  font-size: 3rem;
+  font-weight: 700;
+}
+
+.cursoTitulo2 {
+  font-size: 2rem;
+}
+
+.cursoTitulo3 {
+  margin-top: 1rem;
+  font-size: 1.3rem;
+}
+
+.cursoMiddle {
+  margin-top: 2rem;
+  justify-content: center;
+  padding: 30px 30px;
+  align-items: center;
+}
+
+.rowCurso {
+  margin-top: 3rem;
+}
+
+.rowCurso .card {
+  padding: 0px;
+  margin-left: 10px;
+  margin-right: 10px;
+  border: 2px solid #081f2e;
+  width: 18rem;
+  border-radius: 10px;
+}
+
+.cursoTitle {
+  font-size: 2rem;
+  color: #081f2e;
+  text-align: center;
+  border-bottom: 2px solid #081f2e;
+  padding: 20px;
+}
+
+.cursoBody {
+  background-color: #ffffff;
+  padding: 10px;
+  border-bottom-left-radius: 10px;
+  border-bottom-right-radius: 10px;
+}
+
+.cursoImg {
+  border-top-left-radius: 8px;
+  border-top-right-radius: 8px;
+}
+
+.btnCurso {
+  background-color: #e2f4f4;
+  color: #081f2e;
+  border: 2px solid #081f2e;
+  display: flex;
+  justify-content: center;
+}
+
+.btnCurso:hover {
+  background-color: #081f2e;
+  color: #e2f4f4;
+  border-color: #e2f4f4;
+}
+
+/* lightcolor: #e2f4f4
+darkcolor: #081f2e */
