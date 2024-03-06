@@ -1,40 +1,76 @@
-import React from "react";
+import React, { useContext, useEffect, useRef } from "react";
+import { Context } from "../store/appContext";
+import { Link } from "react-router-dom";
+import "../../styles/curso.css";
+import PodCrafterIniciacion from "../../../../public/images/PodCrafterIniciacion.jpg";
+import PodCrafterIntermedio from "../../../../public/images/PodCrafterIntermedio.jpg";
+import PodCrafterExperimentado from "../../../../public/images/PodCrafterExperimentado.jpg";
+import PodCrafterMaster from "../../../../public/images/PodCrafterMaster.jpg";
 
-const Cursos = () => {
+export const Cursos = () => {
+    const { store, actions } = useContext(Context);
+
     return (
-        <div style={{ backgroundColor: "#E2F4F4", paddingTop: "80px" }}>
-            <div className="container-fluid">
-                <div className="row">
-                    <div className="col text-center">
-                        <div className="placeholder" style={{ height: "1000px", backgroundColor: "#E2F4F4" }}>
-                            <img src="https://via.placeholder.com/900x900" alt="Imagen Grande" />
+        <div>
+            <div className="container">
+                <div className="cursoTop">
+                    <div className="row">
+
+                        <div className="col-6 cursoHeader">
+                            <div className="cursoTitulo1">Encuentra un curso</div>
+                            <div className="cursoTitulo2">que se adapte a ti</div>
+                        </div>
+
+                        <div className="col-6 cursoHeader">
+                            <div className="cursoTitulo3">
+                                Desarrolla tus habilidades en la especialización elegida. Descubra nuestra diversa oferta educativa y encuentre un curso que satisfaga sus expectativas y le abra nuevas puertas en su carrera.
+                            </div>
+
+
                         </div>
                     </div>
                 </div>
-            </div>
 
-            <div className="container mt-5">
-                <h2 className="mb-4">Cursos</h2>
-                <div className="row row-cols-1 row-cols-md-3 g-4">
-                    {[1, 2, 3, 4, 5, 6].map((curso) => (
-                        <div className="col" key={curso}>
-                            <div className="card h-100 border-0 shadow" style={{ backgroundColor: "#9AC0CD", borderRadius: "20px" }}>
-                                <div className="card-body d-flex flex-column justify-content-between">
-                                    <div>
-                                        <img src="https://via.placeholder.com/200x200" className="card-img-top rounded" alt={`Curso ${curso}`} />
-                                        <h5 className="card-title mt-3">Curso {curso}</h5>
-                                        <p className="card-text">Descripción del curso.</p>
+                <div className="cursoMiddle">
+                    <div className="row">
+                        <div className="cursosBody container">
+
+                            <div className="row rowCurso">
+                                <div className="card col-3">
+                                    <img src={PodCrafterIniciacion} className="cursoImg" alt="..."></img>
+                                    <div className="cursoBody">
+                                        <h5 className="cursoTitle">PodCrafter Iniciación</h5>
+                                        <a href="#" className="btn btnCurso">Saber más</a>
                                     </div>
-                                    <a href="#" className="btn btn-primary text-start" style={{ background: "transparent", border: "none", color: "#000" }}>Read {'>'}</a>
+                                </div>
+                                <div className="card col-3">
+                                    <img src={PodCrafterIntermedio} className="cursoImg" alt="..."></img>
+                                    <div className="cursoBody">
+                                        <h5 className="cursoTitle">PodCrafter Intermedio</h5>
+                                        <a href="#" className="btn btnCurso">Saber más</a>
+                                    </div>
+                                </div>
+                                <div className="card col-3">
+                                    <img src={PodCrafterExperimentado} className="cursoImg" alt="..."></img>
+                                    <div className="cursoBody">
+                                        <h5 className="cursoTitle">PodCrafter Experimentado</h5>
+                                        <a href="#" className="btn btnCurso">Saber más</a>
+                                    </div>
+                                </div>
+                                <div className="card col-3">
+                                    <img src={PodCrafterMaster} className="cursoImg" alt="..."></img>
+                                    <div className="cursoBody">
+                                        <h5 className="cursoTitle">PodCrafter Master</h5>
+                                        <a href="#" className="btn btnCurso">Saber más</a>
+                                    </div>
                                 </div>
                             </div>
+
                         </div>
-                    ))}
+                    </div>
                 </div>
+
             </div>
-            <div style={{ backgroundColor: "#E2F4F4", height: "50px" }}></div> 
-        </div>
+        </div >
     );
 };
-
-export default Cursos;
