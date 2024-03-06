@@ -1,6 +1,7 @@
 import React from "react";
 
 const Contacto = () => {
+
     return (
         <div className="container-fluid p-3" style={{ backgroundColor: "#E2F4F4", paddingBottom: "50px" }}>
             <h2 className="mt-5">Contacto</h2>
