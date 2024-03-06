@@ -1,8 +1,8 @@
 import React, { useContext, useEffect, useRef } from "react";
 import { Context } from "../store/appContext";
 import { Link } from "react-router-dom";
-import "../../styles/home.css";
-import VideoHomePage from "../../../../public/video/VideoHomePage.mp4";
+import "../../styles/home.css"; 
+import VideoHomePage from "../../../../public/video/videoHomePage.mp4"
 import VideoPodCrafters from "../../../../public/video/PodCrafters_Academy.mp4";
 import podcasterSobreNosotrosMain from "../../../../public/images/podcasterSobreNosotrosMain.jpg";
 import testim1 from "../../../../public/images/testim1.jpg";
