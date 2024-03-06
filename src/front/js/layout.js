@@ -17,6 +17,7 @@ import { Footer } from "./component/footer";
 import { MiPerfil } from "./pages/miperfil";
 import { Privacidad } from "./pages/privacidad";
 import { Carrito } from "./pages/carrito";
+import { Cursos } from "./pages/cursos";
 import { MiCurso } from "./pages/micurso";
 import { Modulo } from "./pages/modulo";
 import { Cursos } from "./pages/cursos";
@@ -41,7 +42,11 @@ const Layout = () => {
                         <Route element={<MiPerfil />} path="/miperfil" />
                         <Route element={<Privacidad />} path="/privacidad" />
                         <Route element={<Carrito />} path="/carrito" />
-                        
+<<<<<<<<< Temporary merge branch 1
+                        <Route element={<MiCurso />} path="/micurso" />
+                        <Route element={<Modulo />} path="/modulo" />
+=========
+                        <Route element={<Cursos />} path="/cursos" />
                         <Route element={<Contacto />} path="/contacto" />
                         <Route element={<SobreNosotros />} path="/sobreNosotros" />
                         <Route element={<MiCurso />} path="/micurso" />
