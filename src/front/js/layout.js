@@ -6,9 +6,9 @@ import { BackendURL } from "./component/backendURL";
 import { Home } from "./pages/home";
 import { Demo } from "./pages/demo";
 import { Single } from "./pages/single";
-import { Cursos } from "./pages/cursos";
+
 import injectContext from "./store/appContext";
-import Cursos from "./pages/cursos";
+
 import Contacto from "./pages/contacto";
 import SobreNosotros from "./pages/sobreNosotros";
 
@@ -17,6 +17,7 @@ import { Footer } from "./component/footer";
 import { MiPerfil } from "./pages/miperfil";
 import { Privacidad } from "./pages/privacidad";
 import { Carrito } from "./pages/carrito";
+import { Cursos } from "./pages/cursos";
 //create your first component
 const Layout = () => {
     //the basename is used when your project is published in a subdirectory and not in the root of the domain
@@ -38,7 +39,7 @@ const Layout = () => {
                         <Route element={<MiPerfil />} path="/miperfil" />
                         <Route element={<Privacidad />} path="/privacidad" />
                         <Route element={<Carrito />} path="/carrito" />
-                        <Route element={<Cursos />} path="/cursos" />
+                     
                         <Route element={<Contacto />} path="/contacto" />
                         <Route element={<SobreNosotros />} path="/sobreNosotros" />
                         <Route element={<h1>Not found!</h1>} />
