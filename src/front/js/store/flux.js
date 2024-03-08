@@ -45,6 +45,26 @@ const getState = ({ getStore, getActions, setStore }) => {
                     return elm;
                 });
 
+				//reset the global store
+				setStore({ demo: demo });
+			},
+			getCursos: async () => {
+				try {
+				  const resp = await fetch(process.env.BACKEND_URL + "/api/curso");
+				  const data = await resp.json();
+				  setStore({ cursos: data, cursosError: null });
+				  return data;
+				} catch (error) {
+				  console.log("Error loading cursos from backend", error);
+				  setStore({ cursos: [], cursosError: "Error al cargar cursos" });
+				}
+			  }
+			}
+		  };
+		
+		};
+	
+
                 //reset the global store
                 setStore({ demo: demo });
             },
