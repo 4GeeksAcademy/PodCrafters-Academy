@@ -17,66 +17,32 @@ const getState = ({ getStore, getActions, setStore }) => {
             carrito: [] // Agregamos un array para almacenar los elementos del carrito
         },
         actions: {
-            // Use getActions to call a function within a function
+            // Define tus acciones aquí
             exampleFunction: () => {
                 getActions().changeColor(0, "green");
             },
-
             getMessage: async () => {
                 try {
                     // fetching data from the backend
-                    const resp = await fetch(process.env.BACKEND_URL + "/api/hello")
-                    const data = await resp.json()
-                    setStore({ message: data.message })
+                    const resp = await fetch(process.env.BACKEND_URL + "/api/hello");
+                    const data = await resp.json();
+                    setStore({ message: data.message });
                     // don't forget to return something, that is how the async resolves
                     return data;
                 } catch (error) {
-                    console.log("Error loading message from backend", error)
+                    console.log("Error loading message from backend", error);
                 }
             },
             changeColor: (index, color) => {
-                //get the store
-                const store = getStore();
-
-                //we have to loop the entire demo array to look for the respective index
-                //and change its color
-                const demo = store.demo.map((elm, i) => {
-                    if (i === index) elm.background = color;
-                    return elm;
-                });
-
-				//reset the global store
-				setStore({ demo: demo });
-			},
-			getCursos: async () => {
-				try {
-				  const resp = await fetch(process.env.BACKEND_URL + "/api/curso");
-				  const data = await resp.json();
-				  setStore({ cursos: data, cursosError: null });
-				  return data;
-				} catch (error) {
-				  console.log("Error loading cursos from backend", error);
-				  setStore({ cursos: [], cursosError: "Error al cargar cursos" });
-				}
-			  }
-			}
-		  };
-		
-		};
-	
-
-                //reset the global store
+                // Implementación de changeColor
+            },
+            getCursos: async () => {
+                // Implementación de getCursos
+            },
+            resetDemo: () => {
+                const demo = getStore().demo;
+                // Modificar demo si es necesario
                 setStore({ demo: demo });
-            },
-
-            agregarAlCarrito: (curso, cantidad) => {
-                const store = getStore();
-                const nuevoCarrito = [...store.carrito, { curso, cantidad }];
-                setStore({ carrito: nuevoCarrito });
-            },
-
-            irACarrito: () => {
-                
             }
         }
     };
