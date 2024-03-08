@@ -45,7 +45,7 @@ export const MiPerfil = () => {
                     </button>
                 </div>
             </div>
-            <div className="jumbotron rounded mt-5" style={{ backgroundColor: '#9AC0CD', display: 'flex', flexDirection: 'column' }}>
+            <div className="jumbotron rounded mt-5 mb-5" style={{ backgroundColor: '#9AC0CD', display: 'flex', flexDirection: 'column' }}>
                 <p className="display-4 m-4 ">Mis Cursos</p>
 
                 <div className="card m-4" style={{ width: '25%', height: '100%', backgroundColor: '#081F2E', color: 'white' }}>
@@ -57,16 +57,7 @@ export const MiPerfil = () => {
                     </div>
                 </div>
             </div>
-            <div className="jumbotron rounded mt-5" style={{ backgroundColor: '#9AC0CD', display: 'flex', flexDirection: 'column' }}>
-                <p className="display-4 m-4">Mentorias</p>
-
-                <div style={{ display: 'flex', justifyContent: 'center' }}>
-                    <a href="https://calendly.com/"><img src="https://upload.wikimedia.org/wikipedia/commons/9/99/Sample_User_Icon.png" alt="User Icon" style={{ width: '150px', height: '150px', borderRadius: '50%', margin: '5px' }} /></a>
-                    <a href="https://calendly.com/"><img src="https://upload.wikimedia.org/wikipedia/commons/9/99/Sample_User_Icon.png" alt="User Icon" style={{ width: '150px', height: '150px', borderRadius: '50%', margin: '5px' }} /></a>
-                    <a href="https://calendly.com/"><img src="https://upload.wikimedia.org/wikipedia/commons/9/99/Sample_User_Icon.png" alt="User Icon" style={{ width: '150px', height: '150px', borderRadius: '50%', margin: '5px' }} /></a>
-
-                </div>
-            </div>
+           
         </div>
 
     );
