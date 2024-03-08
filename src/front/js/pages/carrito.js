@@ -37,6 +37,7 @@ export const Carrito = () => {
                         </div>
                     </div>
                 </div>
+                
             </div>
             <div className="row justify-content-end">
                 <div className="col-md-3">
