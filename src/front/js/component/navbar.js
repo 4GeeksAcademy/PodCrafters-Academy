@@ -13,7 +13,7 @@ export const Navbar = () => {
 					</Link >
 				</div>
 				<div className="navItems">
-					<Link to="/">
+					<Link to="/login">
 						<button className="btn btnLogin">Iniciar sesión</button>
 					</Link>
 					<Link to="/cursos">
