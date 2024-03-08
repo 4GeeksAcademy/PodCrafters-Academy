@@ -13,7 +13,9 @@ const getState = ({ getStore, getActions, setStore }) => {
 					background: "white",
 					initial: "white"
 				}
-			]
+			], 
+			cursos: [], 
+			cursosError: null,
 		},
 		actions: {
 			// Use getActions to call a function within a fuction
@@ -46,9 +48,23 @@ const getState = ({ getStore, getActions, setStore }) => {
 
 				//reset the global store
 				setStore({ demo: demo });
+			},
+			getCursos: async () => {
+				try {
+				  const resp = await fetch(process.env.BACKEND_URL + "/api/curso");
+				  const data = await resp.json();
+				  setStore({ cursos: data, cursosError: null });
+				  return data;
+				} catch (error) {
+				  console.log("Error loading cursos from backend", error);
+				  setStore({ cursos: [], cursosError: "Error al cargar cursos" });
+				}
+			  }
 			}
-		}
-	};
-};
+		  };
+		
+		};
+	
+
 
 export default getState;

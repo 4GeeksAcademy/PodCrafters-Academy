@@ -30,8 +30,8 @@ export const MiCurso = () => {
 			<div className="row ">
 				<div className="col-md-10 mb-2">
 					<p>Módulo 1: Introducción al Podcasting</p>
-					<div className="card rounded-pill mt-2 mb-2">
-						<div className="card-body row ">
+					<div className="card rounded-pill mt-2 mb-2" style={{"backgroundColor": "#9AC0CD"}}>
+						<div className="card-body row " >
 							<p className="bg-primary text-white rounded-circle p-3 col-md-1 d-flex align-items-center justify-content-center ms-2" style={{ width: '30px', height: '30px', margin: '0' }}>
 								1
 							</p>
@@ -39,7 +39,7 @@ export const MiCurso = () => {
 							<i className="fa-solid fa-circle-check col-md-2 fs-2 text-primary text-end"></i>
 						</div>
 					</div>
-					<div className="card rounded-pill mt-2">
+					<div className="card rounded-pill mt-2" style={{"backgroundColor": "#9AC0CD"}}>
 						<div className="card-body row">
 							<p className="bg-primary text-white rounded-circle p-3 col-md-1 d-flex align-items-center justify-content-center ms-2" style={{ width: '30px', height: '30px', margin: '0' }}>
 								2
@@ -48,7 +48,7 @@ export const MiCurso = () => {
 							<i className="fa-solid fa-circle-check col-md-2 fs-2 text-primary text-end"></i>
 						</div>
 					</div>
-					<div className="card rounded-pill mt-2">
+					<div className="card rounded-pill mt-2" style={{"backgroundColor": "#9AC0CD"}}>
 						<div className="card-body row">
 							<p className="bg-primary text-white rounded-circle p-3 col-md-1 d-flex align-items-center justify-content-center ms-2" style={{ width: '30px', height: '30px', margin: '0' }}>
 								3
@@ -63,7 +63,7 @@ export const MiCurso = () => {
 			<div className="row">
 				<div className="col-md-10">
 					<p>Módulo 2: Planificación y Conceptualización</p>
-					<div className="card rounded-pill mt-2">
+					<div className="card rounded-pill mt-2" style={{"backgroundColor": "#9AC0CD"}}>
 						<div className="card-body row ">
 							<p className="bg-primary text-white rounded-circle p-3 col-md-1 d-flex align-items-center justify-content-center ms-2" style={{ width: '30px', height: '30px', margin: '0' }}>
 								1
@@ -72,7 +72,7 @@ export const MiCurso = () => {
 							<i className="fa-solid fa-circle-check col-md-2 fs-2 text-primary text-end"></i>
 						</div>
 					</div>
-					<div className="card rounded-pill mt-2">
+					<div className="card rounded-pill mt-2" style={{"backgroundColor": "#9AC0CD"}}>
 						<div className="card-body row">
 							<p className="bg-primary text-white rounded-circle p-3 col-md-1 d-flex align-items-center justify-content-center ms-2" style={{ width: '30px', height: '30px', margin: '0' }}>
 								2
@@ -81,7 +81,7 @@ export const MiCurso = () => {
 							<i className="fa-solid fa-circle-check col-md-2 fs-2 text-primary text-end"></i>
 						</div>
 					</div>
-					<div className="card rounded-pill mt-2">
+					<div className="card rounded-pill mt-2" style={{"backgroundColor": "#9AC0CD"}}>
 						<div className="card-body row">
 							<p className="bg-primary text-white rounded-circle p-3 col-md-1 d-flex align-items-center justify-content-center ms-2" style={{ width: '30px', height: '30px', margin: '0' }}>
 								3
