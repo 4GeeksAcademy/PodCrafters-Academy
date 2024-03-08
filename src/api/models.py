@@ -114,7 +114,7 @@ class Modulo(db.Model):
     id = db.Column(db.Integer, primary_key=True)
     nombre_modulo = db.Column(db.String(40), nullable=False)
     id_curso = db.Column(db.Integer, db.ForeignKey("curso.id"), nullable=False)
-
+    contenido_modulo = db.Column(db.String(500), nullable=False)
     def __repr__(self):
         return f'<Modulo {self.id}>'
 
@@ -122,7 +122,8 @@ class Modulo(db.Model):
         return {
             "id": self.id,
             "nombre_modulo": self.nombre_modulo,
-            "id_curso": self.id_curso
+            "id_curso": self.id_curso,
+            "contenido-modulo": self.contenido_modulo
         }
     
 class Alumno_Modulo(db.Model):

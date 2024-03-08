@@ -1,6 +1,6 @@
 
 import click
-from api.models import db, User
+from api.models import db, User, Curso, Modulo
 
 """
 In this file, you can add as many commands as you want using the @app.cli.command decorator
@@ -29,6 +29,23 @@ def setup_commands(app):
 
         print("All test users created")
 
-    @app.cli.command("insert-test-data")
-    def insert_test_data():
-        pass
+    @app.cli.command("insert-modulos")  # Nombre de nuestro comando
+    def insert_test_modulos():
+        print("Crear modulos")
+        
+        modulos_info = [
+            {"nombre": "Modulo 1", "id_curso": 1, "contenido": "Contenido del módulo 1"},
+            {"nombre": "Modulo 2", "id_curso": 2, "contenido": "Contenido del módulo 2"},
+            {"nombre": "Modulo 3", "id_curso": 3, "contenido": "Contenido del módulo 3"}
+        ]
+
+        for info in modulos_info:
+            modulo = Modulo()
+            modulo.nombre_modulo = info["nombre"]
+            modulo.id_curso = info["id_curso"]
+            modulo.contenido_modulo = info["contenido"]
+            db.session.add(modulo)
+            db.session.commit()
+            print("Module: ", modulo.nombre_modulo, " created for curso_id:", modulo.id_curso)
+
+        print("Todos los modulos se han creado")
