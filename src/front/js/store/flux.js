@@ -13,9 +13,11 @@ const getState = ({ getStore, getActions, setStore }) => {
 					background: "white",
 					initial: "white"
 				}
-			], 
-			cursos: [], 
+			],
+			cursos: [],
 			cursosError: null,
+			token: null,
+			user: null,
 		},
 		actions: {
 			// Use getActions to call a function within a fuction
@@ -51,20 +53,79 @@ const getState = ({ getStore, getActions, setStore }) => {
 			},
 			getCursos: async () => {
 				try {
-				  const resp = await fetch(process.env.BACKEND_URL + "/api/curso");
-				  const data = await resp.json();
-				  setStore({ cursos: data, cursosError: null });
-				  return data;
+					const resp = await fetch(process.env.BACKEND_URL + "/api/curso");
+					const data = await resp.json();
+					setStore({ cursos: data, cursosError: null });
+					return data;
 				} catch (error) {
-				  console.log("Error loading cursos from backend", error);
-				  setStore({ cursos: [], cursosError: "Error al cargar cursos" });
+					console.log("Error loading cursos from backend", error);
+					setStore({ cursos: [], cursosError: "Error al cargar cursos" });
 				}
-			  }
+			},
+			signup: (email, password, navigate) => {
+				fetch(process.env.BACKEND_URL + '/api/signup', {
+					method: 'POST',
+					body: JSON.stringify({ email, password }),
+					headers: {
+						'Content-Type': 'application/json'
+					}
+				})
+					.then(response => response.json())
+					.then(data => {
+						if (data.error) alert(data.error)
+						else navigate('/login')
+					})
+					.catch(error => {
+						alert(error)
+					})
+			},
+			login: (email, password, navigate) => {
+				fetch(process.env.BACKEND_URL + '/api/login', {
+					method: 'POST',
+					body: JSON.stringify({ email, password }),
+					headers: {
+						'Content-Type': 'application/json'
+					}
+				})
+					.then(response => response.json())
+					.then(data => {
+						if (data.error) alert(data.error)
+						else {
+							localStorage.setItem('token', data.token)
+							setStore({ token: data.token })
+							getActions().verifyIdentity()
+							navigate('/private')
+						}
+					})
+					.catch(error => {
+						alert(error)
+					})
+			},
+			logout: () => {
+				setStore({ token: null })
+				localStorage.removeItem('token')
+			},
+			verifyIdentity: () => {
+				let token = localStorage.getItem('token')
+				if (token) {
+					fetch(process.env.BACKEND_URL + '/api/verify_identity', {
+						method: 'GET',
+						headers: {
+							'Content-Type': 'application/json',
+							'Authorization': 'Bearer ' + token
+						}
+					})
+						.then(response => response.json())
+						.then(data => {
+							if (data && data.user) {
+								setStore({ user: data.user, token: token })
+							}
+						})
+				}
 			}
-		  };
-		
-		};
-	
+		}
+	}
+};
 
 
 export default getState;

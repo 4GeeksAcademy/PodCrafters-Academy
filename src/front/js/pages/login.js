@@ -1,27 +1,57 @@
-import React, { useState } from "react";
-import "../../styles/login.css";
+import React, { useState, useContext } from "react";
+import { Context } from "../store/appContext";
+import { useNavigate } from "react-router-dom";
 
 export const Login = () => {
-    const [username, setUsername] = useState("");
-    const [password, setPassword] = useState("");
+    const { store, actions } = useContext(Context);
+    const navigate = useNavigate()
+    const [email, setEmail] = useState()
+    const [password, setPassword] = useState()
 
-    const handleSubmit = event => {
-        event.preventDefault();
-    };
+    function handleSubmit(e) {
+        e.preventDefault()
+        actions.login(email, password, navigate)
+        actions.signup(email, password, navigate)
+    }
 
     return (
-        <div className="login">
-            <div className="container">
-                <h2 className="login-title">Entra en tu cuenta</h2>
-                <form onSubmit={handleSubmit} className="login-form">
-                    <label htmlFor="username" className="login-label">Usuario:</label>
-                    <input type="text" id="username" name="username" value={username} onChange={e => setUsername(e.target.value)} className="login-input" />
-                    <label htmlFor="password" className="login-label">Contraseña</label>
-                    <input type="password" id="password" name="password" value={password} onChange={e => setPassword(e.target.value)} className="login-input" />
-                    <input type="submit" value="Entrar" className="login-submit" />
-                    <a href="#" className="forgot-password">¿Has olvidado tu contraseña?</a>
+        <div className="text-center mt-5">
+            <h1>Inicia Sesión</h1>
+            <form onSubmit={handleSubmit}>
+                <div className="mb-3">
+                    <label for="exampleInputEmail1" className="form-label">Email address</label>
+                    <input type="email" onChange={(e) => setEmail(e.target.value)} className="form-control" id="exampleInputEmail1" aria-describedby="emailHelp" />
+                    <div id="emailHelp" className="form-text">We'll never share your email with anyone else.</div>
+                </div>
+                <div className="mb-3">
+                    <label for="exampleInputPassword1" className="form-label">Password</label>
+                    <input type="password" onChange={(e) => setPassword(e.target.value)} className="form-control" id="exampleInputPassword1" />
+                </div>
+                <div className="mb-3 form-check">
+                    <input type="checkbox" className="form-check-input" id="exampleCheck1" />
+                    <label className="form-check-label" for="exampleCheck1">Check me out</label>
+                </div>
+                <button type="submit" className="btn btn-primary">Submit</button>
+            </form>
+            <div className="text-center mt-5">
+                <h1>Registro</h1>
+                <form onSubmit={handleSubmit}>
+                    <div className="mb-3">
+                        <label for="exampleInputEmail1" className="form-label">Email address</label>
+                        <input type="email" onChange={(e) => setEmail(e.target.value)} className="form-control" id="exampleInputEmail1" aria-describedby="emailHelp" />
+                        <div id="emailHelp" className="form-text">We'll never share your email with anyone else.</div>
+                    </div>
+                    <div className="mb-3">
+                        <label for="exampleInputPassword1" className="form-label">Password</label>
+                        <input type="password" onChange={(e) => setPassword(e.target.value)} className="form-control" id="exampleInputPassword1" />
+                    </div>
+                    <div className="mb-3 form-check">
+                        <input type="checkbox" className="form-check-input" id="exampleCheck1" />
+                        <label className="form-check-label" for="exampleCheck1">Check me out</label>
+                    </div>
+                    <button type="submit" className="btn btn-primary">Submit</button>
                 </form>
             </div>
-        </div >
+        </div>
     );
-}
+};
