@@ -1,34 +1,71 @@
-import React, { useContext } from "react";
+import React, { useContext, useEffect, useState } from "react";
 import { Context } from "../store/appContext";
-
-
 
 export const MiPerfil = () => {
     const { store, actions } = useContext(Context);
+    const [newPassword, setNewPassword] = useState('');
+    const [showChangePassword, setShowChangePassword] = useState(false);
+
+    const handleChangePassword = () => {
+        actions.changePassword(store.user.email, newPassword);
+        setShowChangePassword(false);
+        setNewPassword('');
+    };
+
+    useEffect(() => {
+        actions.verifyIdentity();
+    }, []);
+
+    if (!store.user) {
+        return <p>No hay usuario autenticado</p>;
+    }
+
+    const { email, telephone, firstName, lastName } = store.user;
 
     return (
-
         <div className="container">
             <div className="jumbotron rounded" style={{ backgroundColor: '#9AC0CD', display: 'flex', alignItems: 'center' }}>
                 <div className="ms-4 d-flex flex-column">
                     <p className="display-4">Mi Perfil</p>
                     <div className="d-flex">
                         <div className="me-4">
-                            <p> <i className="fa-solid fa-user me-1"></i>Nombre de Usuario</p>
-                            <p> <i className="fa-solid fa-envelope me-1"></i>Email</p>
-                            <p> <i className="fa-solid fa-phone me-1"></i>Telefono</p>
+                            <p><i className="fa-solid fa-user me-1"></i>UserName: {store.user.userName}</p>
+                            <p><i className="fa-solid fa-envelope me-1"></i>Email: {email}</p>
+                            <p><i className="fa-solid fa-phone me-1"></i>Telefono: {telephone}</p>
                         </div>
                         <div>
-                            <p>Contraseña</p>
-                            <div class="mb-3">
-                                <input type="password" class="form-control" id="exampleInputPassword1"/>
-                            </div>
+                            
+                            {showChangePassword && (
+                                <>
+                                    <div className="mb-3">
+                                        <label htmlFor="newPassword" className="form-label">Nueva Contraseña</label>
+                                        <input
+                                            type="password"
+                                            className="form-control"
+                                            id="newPassword"
+                                            value={newPassword}
+                                            onChange={(e) => setNewPassword(e.target.value)}
+                                        />
+                                    </div>
+                                    <button
+                                        className="btn btn-success"
+                                        style={{ backgroundColor: '#5CB85C', borderColor: '#4CAE4C' }}
+                                        onClick={handleChangePassword}
+                                    >
+                                        Confirmar cambio de contraseña
+                                    </button>
+                                </>
+                            )}
                         </div>
                     </div>
-                    <p>Name</p>
-                    <p>LastName</p>
+                    <p>FirstName: {firstName}</p>
+                    <p>LastName: {lastName}</p>
                     <div className="mt-3 mb-3">
-                        <button className="btn btn-primary" style={{ backgroundColor: '#FF6347', borderColor: '#FF6347' }}>
+                        <button
+                            className="btn btn-primary"
+                            style={{ backgroundColor: '#FF6347', borderColor: '#FF6347' }}
+                            onClick={() => setShowChangePassword(!showChangePassword)}
+                        >
                             <i className="fa-solid fa-lock me-1"></i>Cambiar contraseña
                         </button>
                         <button className="btn btn-secondary ms-2" style={{ backgroundColor: '#337AB7', borderColor: '#2E6DA4' }}>
@@ -47,7 +84,6 @@ export const MiPerfil = () => {
             </div>
             <div className="jumbotron rounded mt-5 mb-5" style={{ backgroundColor: '#9AC0CD', display: 'flex', flexDirection: 'column' }}>
                 <p className="display-4 m-4 ">Mis Cursos</p>
-
                 <div className="card m-4" style={{ width: '25%', height: '100%', backgroundColor: '#081F2E', color: 'white' }}>
                     <img src="https://picsum.photos/id/237/20/20" className="card-img-top p-2" alt="..." />
                     <div className="card-body">
@@ -57,10 +93,6 @@ export const MiPerfil = () => {
                     </div>
                 </div>
             </div>
-           
         </div>
-
-    );
-
-
-}
+    )
+                            }

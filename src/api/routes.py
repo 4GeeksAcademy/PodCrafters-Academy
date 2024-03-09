@@ -66,16 +66,16 @@ def test_modulos():
 def signup():
     email = request.json.get("email", None)
     password = request.json.get("password", None)
+    userName = request.json.get("userName", None)
     firstName = request.json.get("firstName", None)
     lastName = request.json.get("lastName", None)
-    userName = request.json.get("userName", None)
     telephone = request.json.get("telephone", None)
 
     existing_user = User.query.filter_by(email=email).first()
     if existing_user is not None:
         return jsonify({ "error": "User already exists" }), 400
     
-    new_user = User(email=email, password=password, firstName=firstName, lastName=lastName, userName=userName, telephone=telephone)
+    new_user = User(email=email, password=password, userName=userName,firstName=firstName, lastName=lastName, telephone=telephone)
     db.session.add(new_user)
     db.session.commit()
 
@@ -102,4 +102,19 @@ def verify():
     if user is None:
         return jsonify({ "error": "Este usuario no existe" }), 401
     
-    return jsonify({ "user": user.serialize() })
+    return jsonify({ "user": user.serialize(), "token": create_access_token(identity=user.email) })
+
+@api.route('/change_password', methods=['POST'])
+@jwt_required()
+def change_password():
+    email = get_jwt_identity()
+    user = User.query.filter_by(email=email).first()
+
+    if user is None:
+        return jsonify({ "error": "Usuario no encontrado" }), 404
+
+    new_password = request.json.get("newPassword", None)
+    user.password = new_password
+    db.session.commit()
+
+    return jsonify({ "message": "Contraseña cambiada con éxito" }), 200
