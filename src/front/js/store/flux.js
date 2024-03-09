@@ -18,6 +18,7 @@ const getState = ({ getStore, getActions, setStore }) => {
 			cursosError: null,
 			token: null,
 			user: null,
+			
 		},
 		actions: {
 			// Use getActions to call a function within a fuction
@@ -62,10 +63,10 @@ const getState = ({ getStore, getActions, setStore }) => {
 					setStore({ cursos: [], cursosError: "Error al cargar cursos" });
 				}
 			},
-			signup: (email, password, telefono, firstName, lastName, userName,/*navigate*/ ) => {
+			signup: (email, password, userName, firstName, lastName, telephone, navigate ) => {
 				fetch(process.env.BACKEND_URL + 'api/signup', {
 					method: 'POST',
-					body: JSON.stringify({ email, password, telefono, firstName, lastName, userName }),
+					body: JSON.stringify({ email, password, userName, firstName, lastName, telephone }),
 					mode: 'cors',
 					headers: {
 						'Content-Type': 'application/json'
@@ -74,7 +75,7 @@ const getState = ({ getStore, getActions, setStore }) => {
 					.then(response => response.json())
 					.then(data => {
 						if (data.error) alert(data.error)
-						//else navigate('/login')
+						else navigate('/login')
 					})
 					.catch(error => {
 						alert(error)
@@ -108,7 +109,7 @@ const getState = ({ getStore, getActions, setStore }) => {
 				localStorage.removeItem('token')
 			},
 			verifyIdentity: () => {
-				let token = localStorage.getItem('token')
+				let token = localStorage.getItem('token');
 				if (token) {
 					fetch(process.env.BACKEND_URL + '/api/verify_identity', {
 						method: 'GET',
@@ -120,14 +121,62 @@ const getState = ({ getStore, getActions, setStore }) => {
 						.then(response => response.json())
 						.then(data => {
 							if (data && data.user) {
-								setStore({ user: data.user, token: token })
+								setStore({ user: data.user, token: data.token });
 							}
-						})
+						});
 				}
-			}
-		}
-	}
-};
+			},
+			changePassword: (email, newPassword) => {
+				fetch(process.env.BACKEND_URL + '/api/change_password', {
+					method: 'POST',
+					body: JSON.stringify({ email, newPassword }),
+					mode: 'cors',
+					headers: {
+						'Content-Type': 'application/json',
+						'Authorization': 'Bearer ' + localStorage.getItem('token')
+					}
+				})
+					.then(response => response.json())
+					.then(data => {
+						if (data.error) {
+							alert(data.error);
+						} else {
+							alert('Contraseña cambiada con éxito');
+						}
+					})
+					.catch(error => {
+						alert(error);
+					});
+			},
+			updateProfile: (userName, firstName, lastName, telephone) => {
+				const token = localStorage.getItem('token');
+				fetch(process.env.BACKEND_URL + '/api/update_profile', {
+					method: 'PUT',
+					body: JSON.stringify({ userName, firstName, lastName, telephone }),
+					mode: 'cors',
+					headers: {
+						'Content-Type': 'application/json',
+						'Authorization': 'Bearer ' + token
+					}
+				})
+				.then(response => response.json())
+				.then(data => {
+					if (data.error) {
+						alert(data.error);
+					} else {
+						// Actualiza la información del usuario en el estado
+						setStore({ user: data.user });
+						alert('Perfil actualizado con éxito');
+					}
+				})
+				.catch(error => {
+					alert(error);
+				});
+			},
+			
+    }
+}
 
+}
 
-export default getState;
+export default getState
