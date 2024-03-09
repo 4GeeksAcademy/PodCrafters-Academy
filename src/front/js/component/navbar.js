@@ -19,10 +19,10 @@ export const Navbar = () => {
 					<Link to="/cursos">
 						<button className="btn btnCursos">Cursos</button>
 					</Link>
-					<Link to="/">
+					<Link to="/sobreNosotros">
 						<button className="btn btnCursos">Sobre nosotros</button>
 					</Link>
-					<Link to="/">
+					<Link to="/contacto">
 						<button className="btn btnCursos">FAQ</button>
 					</Link>
 					<Link to="/carrito">

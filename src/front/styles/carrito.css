@@ -1,4 +1,45 @@
 .scrollable-container {
+    max-height: 300px;
+}
+
+.btn-aplicar {
+    background-color: #e2f4f4;
+    color: #081f2e;
+    border: 2px solid #081f2e;
+    font-size: 1.5rem;
+    margin-left: 1rem;
+}
+
+.btn-aplicar:hover {
+    background-color: #081f2e;
+    color: #e2f4f4;
+    border-color: #081f2e;
+}
+
+.btn-pagar {
+    font-size: 1.5rem;
+    margin-left: 1rem;
+    display: block;
+    margin: 0 auto;
+    margin-top: 1rem;
+    padding: 0.5rem 1rem;
+    background-color: #e2f4f4;
+    color: #081f2e;
+    border: 2px solid #081f2e;
+}
+
+.btn-pagar:hover {
+    background-color: #081f2e;
+    color: #e2f4f4;
+    border-color: #081f2e;
+}
+
+
+.scrollable-container {
     max-height: 300px; /* ajusta esta altura según tus necesidades */
     overflow-y: auto; /* activa la barra de desplazamiento vertical cuando sea necesario */
+}
+
+.footer {
+    margin-top: 50px; /* ajusta el valor según sea necesario para separar el footer del botón "Pagar" */
 }

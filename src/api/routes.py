@@ -5,7 +5,7 @@ from flask import Flask, request, jsonify, url_for, Blueprint
 from api.models import db, User, Curso, Compra, Desestimiento, Contenido_Curso, Modulo, Alumno_Modulo, Mentorias, Disponibilidad_Mentor, Mas_Informacion
 from api.utils import generate_sitemap, APIException
 from flask_cors import CORS
-
+from flask_jwt_extended import create_access_token, jwt_required, get_jwt_identity
 api = Blueprint('api', __name__)
 
 # Allow CORS requests to this API
@@ -62,3 +62,81 @@ def test_modulos():
 
     return jsonify(response_body), 200
 
+@api.route('/signup', methods=['POST'])
+def signup():
+    email = request.json.get("email", None)
+    password = request.json.get("password", None)
+    userName = request.json.get("userName", None)
+    firstName = request.json.get("firstName", None)
+    lastName = request.json.get("lastName", None)
+    telephone = request.json.get("telephone", None)
+
+    existing_user = User.query.filter_by(email=email).first()
+    if existing_user is not None:
+        return jsonify({ "error": "User already exists" }), 400
+    
+    new_user = User(email=email, password=password, userName=userName,firstName=firstName, lastName=lastName, telephone=telephone)
+    db.session.add(new_user)
+    db.session.commit()
+
+    return jsonify({ "message": "success" }), 200
+
+@api.route('/login', methods=['POST'])
+def login():
+    email = request.json.get("email", None)
+    password = request.json.get("password", None)
+
+    user = User.query.filter_by(email=email, password=password).first()
+    if user is None:
+        return jsonify({ "error": "Inicio de sesion incorrecto" }), 401
+    
+    access_token = create_access_token(identity=user.email)
+    return jsonify({ "token": access_token })
+
+@api.route('/verify_identity', methods=['GET'])
+@jwt_required()
+def verify():
+    current_user_email = get_jwt_identity()
+    user = User.query.filter_by(email=current_user_email).first()
+
+    if user is None:
+        return jsonify({ "error": "Este usuario no existe" }), 401
+    
+    return jsonify({ "user": user.serialize(), "token": create_access_token(identity=user.email) })
+
+@api.route('/change_password', methods=['POST'])
+@jwt_required()
+def change_password():
+    email = get_jwt_identity()
+    user = User.query.filter_by(email=email).first()
+
+    if user is None:
+        return jsonify({ "error": "Usuario no encontrado" }), 404
+
+    new_password = request.json.get("newPassword", None)
+    user.password = new_password
+    db.session.commit()
+
+    return jsonify({ "message": "Contraseña cambiada con éxito" }), 200
+
+@api.route('/update_profile', methods=['PUT'])
+@jwt_required()
+def update_profile():
+    try:
+        current_user_email = get_jwt_identity()
+        user = User.query.filter_by(email=current_user_email).first()
+
+        if user is None:
+            return jsonify({ "error": "Usuario no encontrado" }), 404
+
+        data = request.json
+        user.userName = data.get("userName", user.userName)
+        user.firstName = data.get("firstName", user.firstName)
+        user.lastName = data.get("lastName", user.lastName)
+        user.telephone = data.get("telephone", user.telephone)
+        
+        db.session.commit()
+
+        return jsonify({ "user": user.serialize(), "message": "Perfil actualizado con éxito" }), 200
+    except Exception as e:
+        return jsonify({ "error": str(e) }), 500
