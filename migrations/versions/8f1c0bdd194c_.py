@@ -1,8 +1,8 @@
 """empty message
 
-Revision ID: 055f5683aa40
+Revision ID: 8f1c0bdd194c
 Revises: 
-Create Date: 2024-03-07 13:01:47.011492
+Create Date: 2024-03-09 12:57:39.300137
 
 """
 from alembic import op
@@ -10,7 +10,7 @@ import sqlalchemy as sa
 
 
 # revision identifiers, used by Alembic.
-revision = '055f5683aa40'
+revision = '8f1c0bdd194c'
 down_revision = None
 branch_labels = None
 depends_on = None
@@ -39,17 +39,17 @@ def upgrade():
     sa.Column('userName', sa.String(length=80), nullable=False),
     sa.Column('firstName', sa.String(length=80), nullable=False),
     sa.Column('lastName', sa.String(length=80), nullable=False),
-    sa.Column('birthDay', sa.String(length=80), nullable=False),
-    sa.Column('gender', sa.Enum('masculino', 'femenino', 'no_binario', name='gender_enum'), nullable=False),
+    sa.Column('birthDay', sa.String(length=80), nullable=True),
+    sa.Column('gender', sa.Enum('masculino', 'femenino', 'no_binario', name='gender_enum'), nullable=True),
     sa.Column('id_profile_picture', sa.Integer(), nullable=True),
-    sa.Column('profesor', sa.Boolean(), nullable=False),
-    sa.Column('fecha_registro', sa.String(length=80), nullable=False),
+    sa.Column('profesor', sa.Boolean(), nullable=True),
+    sa.Column('fecha_registro', sa.String(length=80), nullable=True),
     sa.Column('telephone', sa.String(length=20), nullable=False),
-    sa.Column('country', sa.String(length=40), nullable=False),
-    sa.Column('address', sa.String(length=80), nullable=False),
-    sa.Column('idioma_español', sa.Boolean(), nullable=False),
-    sa.Column('ultima_conexion', sa.String(length=40), nullable=False),
-    sa.Column('mentor', sa.Boolean(), nullable=False),
+    sa.Column('country', sa.String(length=40), nullable=True),
+    sa.Column('address', sa.String(length=80), nullable=True),
+    sa.Column('idioma_español', sa.Boolean(), nullable=True),
+    sa.Column('ultima_conexion', sa.String(length=40), nullable=True),
+    sa.Column('mentor', sa.Boolean(), nullable=True),
     sa.PrimaryKeyConstraint('id'),
     sa.UniqueConstraint('email'),
     sa.UniqueConstraint('id_profile_picture'),
@@ -102,8 +102,9 @@ def upgrade():
     )
     op.create_table('modulo',
     sa.Column('id', sa.Integer(), nullable=False),
-    sa.Column('nombre_modulo', sa.String(length=40), nullable=False),
+    sa.Column('nombre_modulo', sa.String(length=100), nullable=False),
     sa.Column('id_curso', sa.Integer(), nullable=False),
+    sa.Column('contenido_modulo', sa.String(length=1000), nullable=False),
     sa.ForeignKeyConstraint(['id_curso'], ['curso.id'], ),
     sa.PrimaryKeyConstraint('id')
     )
