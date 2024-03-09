@@ -62,10 +62,11 @@ const getState = ({ getStore, getActions, setStore }) => {
 					setStore({ cursos: [], cursosError: "Error al cargar cursos" });
 				}
 			},
-			signup: (email, password, navigate) => {
-				fetch(process.env.BACKEND_URL + '/api/signup', {
+			signup: (email, password, telefono, firstName, lastName, userName,/*navigate*/ ) => {
+				fetch(process.env.BACKEND_URL + 'api/signup', {
 					method: 'POST',
-					body: JSON.stringify({ email, password }),
+					body: JSON.stringify({ email, password, telefono, firstName, lastName, userName }),
+					mode: 'cors',
 					headers: {
 						'Content-Type': 'application/json'
 					}
@@ -73,16 +74,17 @@ const getState = ({ getStore, getActions, setStore }) => {
 					.then(response => response.json())
 					.then(data => {
 						if (data.error) alert(data.error)
-						else navigate('/login')
+						//else navigate('/login')
 					})
 					.catch(error => {
 						alert(error)
 					})
 			},
-			login: (email, password, navigate) => {
-				fetch(process.env.BACKEND_URL + '/api/login', {
+			login: (email, password,  navigate) => {
+				fetch(process.env.BACKEND_URL + 'api/login', {
 					method: 'POST',
 					body: JSON.stringify({ email, password }),
+					mode: 'cors',
 					headers: {
 						'Content-Type': 'application/json'
 					}
@@ -94,7 +96,7 @@ const getState = ({ getStore, getActions, setStore }) => {
 							localStorage.setItem('token', data.token)
 							setStore({ token: data.token })
 							getActions().verifyIdentity()
-							navigate('/private')
+							navigate('/miperfil')
 						}
 					})
 					.catch(error => {
