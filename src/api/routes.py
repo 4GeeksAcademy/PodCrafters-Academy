@@ -118,3 +118,25 @@ def change_password():
     db.session.commit()
 
     return jsonify({ "message": "Contraseña cambiada con éxito" }), 200
+
+@api.route('/update_profile', methods=['PUT'])
+@jwt_required()
+def update_profile():
+    try:
+        current_user_email = get_jwt_identity()
+        user = User.query.filter_by(email=current_user_email).first()
+
+        if user is None:
+            return jsonify({ "error": "Usuario no encontrado" }), 404
+
+        data = request.json
+        user.userName = data.get("userName", user.userName)
+        user.firstName = data.get("firstName", user.firstName)
+        user.lastName = data.get("lastName", user.lastName)
+        user.telephone = data.get("telephone", user.telephone)
+        
+        db.session.commit()
+
+        return jsonify({ "user": user.serialize(), "message": "Perfil actualizado con éxito" }), 200
+    except Exception as e:
+        return jsonify({ "error": str(e) }), 500

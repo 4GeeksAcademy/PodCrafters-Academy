@@ -6,6 +6,19 @@ export const MiPerfil = () => {
     const [newPassword, setNewPassword] = useState('');
     const [showChangePassword, setShowChangePassword] = useState(false);
 
+    // Estados para la edición del perfil
+    const [editProfile, setEditProfile] = useState(false);
+    const [editedUserName, setEditedUserName] = useState(store.user?.userName || '');
+    const [editedFirstName, setEditedFirstName] = useState(store.user?.firstName || '');
+    const [editedLastName, setEditedLastName] = useState(store.user?.lastName || '');
+    const [editedTelephone, setEditedTelephone] = useState(store.user?.telephone || '');
+
+    // Función para manejar la actualización del perfil
+    const handleUpdateProfile = () => {
+        actions.updateProfile(editedUserName, editedFirstName, editedLastName, editedTelephone);
+        setEditProfile(false);
+    };
+
     const handleChangePassword = () => {
         actions.changePassword(store.user.email, newPassword);
         setShowChangePassword(false);
@@ -27,49 +40,72 @@ export const MiPerfil = () => {
             <div className="jumbotron rounded" style={{ backgroundColor: '#9AC0CD', display: 'flex', alignItems: 'center' }}>
                 <div className="ms-4 d-flex flex-column">
                     <p className="display-4">Mi Perfil</p>
-                    <div className="d-flex">
-                        <div className="me-4">
+
+                    {/* Condición para mostrar campos editables o no */}
+                    {editProfile ? (
+                        <>
+                            <div className="mb-3">
+                                <label htmlFor="editedUserName" className="form-label">Username</label>
+                                <input type="text" id="editedUserName" value={editedUserName} onChange={(e) => setEditedUserName(e.target.value)} />
+                            </div>
+                            <div className="mb-3">
+                                <label htmlFor="editedFirstName" className="form-label">FirstName</label>
+                                <input type="text" id="editedFirstName" value={editedFirstName} onChange={(e) => setEditedFirstName(e.target.value)} />
+                            </div>
+                            <div className="mb-3">
+                                <label htmlFor="editedLastName" className="form-label">lastName</label>
+                                <input type="text" id="editedLastName" value={editedLastName} onChange={(e) => setEditedLastName(e.target.value)} />
+                            </div>
+                            <div className="mb-3">
+                                <label htmlFor="editedTelephone" className="form-label">Telephone</label>
+                                <input type="text" id="editedTelephone" value={editedTelephone} onChange={(e) => setEditedTelephone(e.target.value)} />
+                            </div>
+                            <button onClick={handleUpdateProfile}>Guardar cambios</button>
+                        </>
+                    ) : (
+                        <>
                             <p><i className="fa-solid fa-user me-1"></i>UserName: {store.user.userName}</p>
                             <p><i className="fa-solid fa-envelope me-1"></i>Email: {email}</p>
                             <p><i className="fa-solid fa-phone me-1"></i>Telefono: {telephone}</p>
-                        </div>
-                        <div>
-                            
-                            {showChangePassword && (
-                                <>
-                                    <div className="mb-3">
-                                        <label htmlFor="newPassword" className="form-label">Nueva Contraseña</label>
-                                        <input
-                                            type="password"
-                                            className="form-control"
-                                            id="newPassword"
-                                            value={newPassword}
-                                            onChange={(e) => setNewPassword(e.target.value)}
-                                        />
-                                    </div>
-                                    <button
-                                        className="btn btn-success"
-                                        style={{ backgroundColor: '#5CB85C', borderColor: '#4CAE4C' }}
-                                        onClick={handleChangePassword}
-                                    >
-                                        Confirmar cambio de contraseña
-                                    </button>
-                                </>
-                            )}
-                        </div>
-                    </div>
+                        </>
+                    )}
+                    {showChangePassword && (
+                        <>
+                            <div className="mb-3">
+                                <label htmlFor="newPassword" className="form-label">Nueva Contraseña</label>
+                                <input
+                                    type="password"
+                                    className="form-control"
+                                    id="newPassword"
+                                    value={newPassword}
+                                    onChange={(e) => setNewPassword(e.target.value)}
+                                />
+                            </div>
+                            <button
+                                className="btn btn-success"
+                                style={{ backgroundColor: '#5CB85C', borderColor: '#4CAE4C' }}
+                                onClick={handleChangePassword}
+                            >
+                                Confirmar cambio de contraseña
+                            </button>
+                        </>
+                    )}
                     <p>FirstName: {firstName}</p>
                     <p>LastName: {lastName}</p>
                     <div className="mt-3 mb-3">
                         <button
                             className="btn btn-primary"
                             style={{ backgroundColor: '#FF6347', borderColor: '#FF6347' }}
+                            onClick={() => setEditProfile(!editProfile)}
+                        >
+                            <i className="fa-solid fa-pen-to-square me-1"></i>Modificar Perfil
+                        </button>
+                        <button
+                            className="btn btn-secondary ms-2"
+                            style={{ backgroundColor: '#337AB7', borderColor: '#2E6DA4' }}
                             onClick={() => setShowChangePassword(!showChangePassword)}
                         >
                             <i className="fa-solid fa-lock me-1"></i>Cambiar contraseña
-                        </button>
-                        <button className="btn btn-secondary ms-2" style={{ backgroundColor: '#337AB7', borderColor: '#2E6DA4' }}>
-                            <i className="fa-solid fa-pen-to-square me-1"></i>Modificar Perfil
                         </button>
                     </div>
                 </div>
@@ -94,5 +130,5 @@ export const MiPerfil = () => {
                 </div>
             </div>
         </div>
-    )
-                            }
+    );
+};

@@ -18,6 +18,7 @@ const getState = ({ getStore, getActions, setStore }) => {
 			cursosError: null,
 			token: null,
 			user: null,
+			
 		},
 		actions: {
 			// Use getActions to call a function within a fuction
@@ -147,6 +148,32 @@ const getState = ({ getStore, getActions, setStore }) => {
 						alert(error);
 					});
 			},
+			updateProfile: (userName, firstName, lastName, telephone) => {
+				const token = localStorage.getItem('token');
+				fetch(process.env.BACKEND_URL + '/api/update_profile', {
+					method: 'PUT',
+					body: JSON.stringify({ userName, firstName, lastName, telephone }),
+					mode: 'cors',
+					headers: {
+						'Content-Type': 'application/json',
+						'Authorization': 'Bearer ' + token
+					}
+				})
+				.then(response => response.json())
+				.then(data => {
+					if (data.error) {
+						alert(data.error);
+					} else {
+						// Actualiza la información del usuario en el estado
+						setStore({ user: data.user });
+						alert('Perfil actualizado con éxito');
+					}
+				})
+				.catch(error => {
+					alert(error);
+				});
+			},
+			
     }
 }
 
