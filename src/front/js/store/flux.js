@@ -89,7 +89,7 @@ const getState = ({ getStore, getActions, setStore }) => {
 					})
 			},
 			login: (email, password,  navigate) => {
-				fetch(process.env.BACKEND_URL + '/admin/login', {
+				fetch(process.env.BACKEND_URL + '/api/login', {
 					method: 'POST',
 					body: JSON.stringify({ email, password }),
 					mode: 'cors',
