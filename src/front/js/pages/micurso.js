@@ -20,9 +20,9 @@ export const MiCurso = () => {
 					<div className="text-right">
 						<p>Solicitar Mentorias</p>
 						<div>
-							<a href="https://calendly.com/"><img src={mentor1} alt="User Icon" style={{ width: '50px', height: '50px', borderRadius: '50%', margin: '5px' }} /></a>
-							<a href="https://calendly.com/"><img src={mentor2} alt="User Icon" style={{ width: '50px', height: '50px', borderRadius: '50%', margin: '5px' }} /></a>
-							<a href="https://calendly.com/"><img src={mentor3} alt="User Icon" style={{ width: '50px', height: '50px', borderRadius: '50%', margin: '5px' }} /></a>
+							<a href="https://calendly.com/podcraftersacademy/"><img src={mentor1} alt="User Icon" style={{ width: '50px', height: '50px', borderRadius: '50%', margin: '5px' }} /></a>
+							<a href="https://calendly.com/podcraftersacademy/"><img src={mentor2} alt="User Icon" style={{ width: '50px', height: '50px', borderRadius: '50%', margin: '5px' }} /></a>
+							<a href="https://calendly.com/podcraftersacademy/"><img src={mentor3} alt="User Icon" style={{ width: '50px', height: '50px', borderRadius: '50%', margin: '5px' }} /></a>
 						</div>
 					</div>
 				</div>
