@@ -16,6 +16,9 @@ export const Navbar = () => {
 					<Link to="/login">
 						<button className="btn btnLogin">Iniciar sesión</button>
 					</Link>
+					<Link to="/signup">
+						<button className="btn btnLogin">Registrarse</button>
+					</Link>
 					<Link to="/cursos">
 						<button className="btn btnCursos">Cursos</button>
 					</Link>
