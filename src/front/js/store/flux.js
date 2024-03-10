@@ -71,10 +71,8 @@ const getState = ({ getStore, getActions, setStore }) => {
 					setStore({ cursos: [], cursosError: "Error al cargar cursos" });
 				}
 			},
-			signup: (email, password, userName, firstName, lastName, telephone, navigate  ) => {
-				fetch(process.env.BACKEND_URL + 'api/signup', {
 			signup: (email, password, userName, firstName, lastName, telephone, navigate ) => {
-				fetch(process.env.BACKEND_URL + '/api/signup', {
+				fetch(process.env.BACKEND_URL + 'api/signup', {
 					method: 'POST',
 					body: JSON.stringify({ email, password, userName, firstName, lastName, telephone }),
 					mode: 'cors',
@@ -91,8 +89,8 @@ const getState = ({ getStore, getActions, setStore }) => {
 						alert(error)
 					})
 			},
-			login: (email, password,  navigate) => {
-				fetch(process.env.BACKEND_URL + '/admin/login', {
+			login: (email, password, navigate) => {
+				fetch(process.env.BACKEND_URL + 'api/login', {
 					method: 'POST',
 					body: JSON.stringify({ email, password }),
 					mode: 'cors',
