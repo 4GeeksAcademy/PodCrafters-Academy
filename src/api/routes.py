@@ -119,6 +119,12 @@ def change_password():
 
     return jsonify({ "message": "Contraseña cambiada con éxito" }), 200
 
+@api.route('/curso', methods=['GET'])  
+def get_cursos():
+    curso = Curso.query.all() 
+    return jsonify([curso.serialize() for curso in curso])
+
+
 @api.route('/update_profile', methods=['PUT'])
 @jwt_required()
 def update_profile():
