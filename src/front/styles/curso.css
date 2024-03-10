@@ -85,5 +85,9 @@
   border-color: #e2f4f4;
 }
 
+.curso-card {
+  height: 100%; 
+}
+
 /* lightcolor: #e2f4f4
 darkcolor: #081f2e */
