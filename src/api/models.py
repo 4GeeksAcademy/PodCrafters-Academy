@@ -1,5 +1,5 @@
 from flask_sqlalchemy import SQLAlchemy
-
+from sqlalchemy import LargeBinary
 db = SQLAlchemy()
 
 class User(db.Model):
@@ -12,7 +12,7 @@ class User(db.Model):
     lastName = db.Column(db.String(80), nullable=False)
     birthDay = db.Column(db.String(80), nullable=True)
     gender = db.Column(db.Enum("masculino", "femenino", "no_binario", name="gender_enum"), nullable=True)
-    id_profile_picture = db.Column(db.Integer, unique=True, nullable=True)
+    profile_image = db.Column(LargeBinary)
     profesor = db.Column(db.Boolean, nullable=True)
     fecha_registro = db.Column(db.String(80), nullable=True)
     telephone = db.Column(db.String(20), nullable=True)
@@ -31,7 +31,8 @@ class User(db.Model):
             "email": self.email,
             "userName": self.userName,
             "firstName": self.firstName,
-            "lastName": self.lastName
+            "lastName": self.lastName,
+            "telephone": self.telephone
         }
 
 
