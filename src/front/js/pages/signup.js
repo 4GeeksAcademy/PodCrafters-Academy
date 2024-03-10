@@ -14,9 +14,8 @@ export const SignUp = () => {
 
     function handleSignupSubmit(e) {
         e.preventDefault();
-        actions.signup(email, password, firstName, lastName, telephone, userName, navigate);
+        actions.signup(email, password, userName, firstName, lastName, telephone, navigate);
     }
-
     return (
         <div className="text-center mt-5">
             <h1>Registro</h1>

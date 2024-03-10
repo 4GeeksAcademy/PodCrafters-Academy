@@ -1,3 +1,4 @@
+import FormData from 'form-data'
 const getState = ({ getStore, getActions, setStore }) => {
 	return {
 		store: {
@@ -63,7 +64,7 @@ const getState = ({ getStore, getActions, setStore }) => {
 					setStore({ cursos: [], cursosError: "Error al cargar cursos" });
 				}
 			},
-			signup: (email, password, userName, firstName, lastName, telephone, navigate ) => {
+			signup: (email, password, userName, firstName, lastName, telephone, navigate  ) => {
 				fetch(process.env.BACKEND_URL + 'api/signup', {
 					method: 'POST',
 					body: JSON.stringify({ email, password, userName, firstName, lastName, telephone }),
@@ -173,6 +174,8 @@ const getState = ({ getStore, getActions, setStore }) => {
 					alert(error);
 				});
 			},
+			
+			
 			
     }
 }

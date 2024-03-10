@@ -1,8 +1,8 @@
 """empty message
 
-Revision ID: c0b3c87955c1
+Revision ID: 4fd5777a12b0
 Revises: 
-Create Date: 2024-03-08 19:46:36.697171
+Create Date: 2024-03-10 11:15:58.552035
 
 """
 from alembic import op
@@ -10,7 +10,7 @@ import sqlalchemy as sa
 
 
 # revision identifiers, used by Alembic.
-revision = 'c0b3c87955c1'
+revision = '4fd5777a12b0'
 down_revision = None
 branch_labels = None
 depends_on = None
@@ -39,21 +39,20 @@ def upgrade():
     sa.Column('userName', sa.String(length=80), nullable=False),
     sa.Column('firstName', sa.String(length=80), nullable=False),
     sa.Column('lastName', sa.String(length=80), nullable=False),
-    sa.Column('birthDay', sa.String(length=80), nullable=False),
-    sa.Column('gender', sa.Enum('masculino', 'femenino', 'no_binario', name='gender_enum'), nullable=False),
+    sa.Column('birthDay', sa.String(length=80), nullable=True),
+    sa.Column('gender', sa.Enum('masculino', 'femenino', 'no_binario', name='gender_enum'), nullable=True),
     sa.Column('id_profile_picture', sa.Integer(), nullable=True),
-    sa.Column('profesor', sa.Boolean(), nullable=False),
-    sa.Column('fecha_registro', sa.String(length=80), nullable=False),
-    sa.Column('telephone', sa.String(length=20), nullable=False),
-    sa.Column('country', sa.String(length=40), nullable=False),
-    sa.Column('address', sa.String(length=80), nullable=False),
-    sa.Column('idioma_español', sa.Boolean(), nullable=False),
-    sa.Column('ultima_conexion', sa.String(length=40), nullable=False),
-    sa.Column('mentor', sa.Boolean(), nullable=False),
+    sa.Column('profesor', sa.Boolean(), nullable=True),
+    sa.Column('fecha_registro', sa.String(length=80), nullable=True),
+    sa.Column('telephone', sa.String(length=20), nullable=True),
+    sa.Column('country', sa.String(length=40), nullable=True),
+    sa.Column('address', sa.String(length=80), nullable=True),
+    sa.Column('idioma_español', sa.Boolean(), nullable=True),
+    sa.Column('ultima_conexion', sa.String(length=40), nullable=True),
+    sa.Column('mentor', sa.Boolean(), nullable=True),
     sa.PrimaryKeyConstraint('id'),
     sa.UniqueConstraint('email'),
     sa.UniqueConstraint('id_profile_picture'),
-    sa.UniqueConstraint('telephone'),
     sa.UniqueConstraint('userName')
     )
     op.create_table('compra',
