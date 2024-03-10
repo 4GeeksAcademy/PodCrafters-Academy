@@ -62,3 +62,17 @@
   color: #081f2e;
   border: 2px solid #081f2e;
 }
+
+.btnLogout {
+  background-color: #e2f4f4;
+  color: #081f2e;
+  border: 2px solid #081f2e;
+  font-size: 1.5rem;
+  margin-left: 1rem;
+}
+
+.btnLogout:hover {
+  background-color: #081f2e;
+  color: #e2f4f4;
+  border-color: #081f2e;
+}
