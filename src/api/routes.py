@@ -10,7 +10,6 @@ from flask_mail import Mail, Message
 
 api = Blueprint('api', __name__)
 app = Flask(__name__)
-app.register_blueprint(api)
 
 app.config['MAIL_SERVER'] = 'smtp.gmail.com'
 app.config['MAIL_PORT'] = 587
