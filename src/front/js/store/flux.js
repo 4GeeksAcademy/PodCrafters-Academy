@@ -113,7 +113,7 @@ const getState = ({ getStore, getActions, setStore }) => {
 					})
 			},
 			logout: () => {
-				setStore({ token: null })
+				setStore({ token: null, user: null })
 				localStorage.removeItem('token')
 			},
 			verifyIdentity: () => {
