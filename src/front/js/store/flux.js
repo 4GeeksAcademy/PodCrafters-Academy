@@ -15,6 +15,7 @@ const getState = ({ getStore, getActions, setStore }) => {
 				}
 			],
 			cursos: [],
+			carrito: [],
 			cursosError: null,
 			token: null,
 			user: null,
@@ -25,6 +26,12 @@ const getState = ({ getStore, getActions, setStore }) => {
 			exampleFunction: () => {
 				getActions().changeColor(0, "green");
 			},
+
+			agregarAlCarrito: (curso) => {
+                const store = getStore();
+                const updatedCart = [...store.carrito, curso]; 
+                setStore({ carrito: updatedCart });
+            },
 
 			getMessage: async () => {
 				try {
@@ -64,7 +71,7 @@ const getState = ({ getStore, getActions, setStore }) => {
 				}
 			},
 			signup: (email, password, userName, firstName, lastName, telephone, navigate ) => {
-				fetch(process.env.BACKEND_URL + 'api/signup', {
+				fetch(process.env.BACKEND_URL + '/api/signup', {
 					method: 'POST',
 					body: JSON.stringify({ email, password, userName, firstName, lastName, telephone }),
 					mode: 'cors',
@@ -82,7 +89,7 @@ const getState = ({ getStore, getActions, setStore }) => {
 					})
 			},
 			login: (email, password,  navigate) => {
-				fetch(process.env.BACKEND_URL + 'api/login', {
+				fetch(process.env.BACKEND_URL + '/admin/login', {
 					method: 'POST',
 					body: JSON.stringify({ email, password }),
 					mode: 'cors',
