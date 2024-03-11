@@ -1,3 +1,4 @@
+
 const getState = ({ getStore, getActions, setStore }) => {
 	return {
 		store: {
@@ -71,7 +72,7 @@ const getState = ({ getStore, getActions, setStore }) => {
 				}
 			},
 			signup: (email, password, userName, firstName, lastName, telephone, navigate ) => {
-				fetch(process.env.BACKEND_URL + '/api/signup', {
+				fetch(process.env.BACKEND_URL + 'api/signup', {
 					method: 'POST',
 					body: JSON.stringify({ email, password, userName, firstName, lastName, telephone }),
 					mode: 'cors',
@@ -88,8 +89,8 @@ const getState = ({ getStore, getActions, setStore }) => {
 						alert(error)
 					})
 			},
-			login: (email, password,  navigate) => {
-				fetch(process.env.BACKEND_URL + '/api/login', {
+			login: (email, password, navigate) => {
+				fetch(process.env.BACKEND_URL + 'api/login', {
 					method: 'POST',
 					body: JSON.stringify({ email, password }),
 					mode: 'cors',
@@ -112,7 +113,7 @@ const getState = ({ getStore, getActions, setStore }) => {
 					})
 			},
 			logout: () => {
-				setStore({ token: null })
+				setStore({ token: null, user: null })
 				localStorage.removeItem('token')
 			},
 			verifyIdentity: () => {
@@ -180,6 +181,8 @@ const getState = ({ getStore, getActions, setStore }) => {
 					alert(error);
 				});
 			},
+			
+			
 			
     }
 }

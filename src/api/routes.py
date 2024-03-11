@@ -11,11 +11,12 @@ from flask_mail import Mail, Message
 api = Blueprint('api', __name__)
 app = Flask(__name__)
 
+
 app.config['MAIL_SERVER'] = 'smtp.gmail.com'
 app.config['MAIL_PORT'] = 587
 app.config['MAIL_USE_TLS'] = True
-app.config['MAIL_USERNAME'] = 'podcraftersacademy@gmail.com'  
-app.config['MAIL_PASSWORD'] = 'Podcast12345'  
+app.config['MAIL_USERNAME'] = 'teest4geeks12@gmail.com'  
+app.config['MAIL_PASSWORD'] = 'ahyz rgmy igtb yclg'  
 
 mail = Mail(app)
 # Allow CORS requests to this API
@@ -144,7 +145,7 @@ def contact():
         return jsonify({ "error": "Por favor, complete todos los campos del formulario de contacto" }), 400
     
     try:
-        msg = Message('Nuevo mensaje de contacto', sender='tu_correo@gmail.com', recipients=['podcraftersacademy@gmail.com'])
+        msg = Message('Nuevo mensaje de contacto', sender='teest4geeks12@gmail.com', recipients=['podcraftersacademy@gmail.com'])
         msg.body = f"Nombre: {name}\nCorreo electrónico: {email}\nMensaje: {message}"
         mail.send(msg)
         return jsonify({ "message": "¡Gracias por tu mensaje! Nos pondremos en contacto contigo pronto." }), 200

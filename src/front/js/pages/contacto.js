@@ -16,7 +16,7 @@ const Contacto = () => {
             <h2 className="mt-5">Contacto</h2>
             <div className="row">
                 <div className="col-md-6">
-                    <form>
+                    <form onSubmit={enviarContacto}>
                         <div className="mb-3">
                             <label htmlFor="nombre" className="form-label">Nombre</label>
                             <input type="text" className="form-control" id="nombre" />
