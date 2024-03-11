@@ -158,7 +158,7 @@ const getState = ({ getStore, getActions, setStore }) => {
             },
             enviarContacto: async (formData) => {
                 try {
-                    const resp = await fetch(process.env.BACKEND_URL + "api/contact", {
+                    const resp = await fetch(process.env.BACKEND_URL + "/api/contact", {
                         method: 'POST',
                         headers: {
                             'Content-Type': 'application/json'

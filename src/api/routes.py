@@ -146,7 +146,6 @@ def contact():
     if not nombre or not email or not mensaje or not comoNosEncontraste:
         return jsonify({ "error": "Por favor, complete todos los campos del formulario de contacto" }), 400
     
-    # comment
     
     try:
         msg = Message('Nuevo mensaje de contacto', sender='teest4geeks12@gmail.com', recipients=['podcraftersacademy@gmail.com'])
