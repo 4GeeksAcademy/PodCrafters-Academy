@@ -2,6 +2,11 @@ import React, { useContext, useState, useEffect } from "react";
 import { Context } from "../store/appContext";
 import "../../styles/carrito.css";
 
+import PodCrafterIniciacion from "../../../../public/images/PodCrafterIniciacion.jpg";
+import PodCrafterIntermedio from "../../../../public/images/PodCrafterIntermedio.jpg";
+import PodCrafterExperimentado from "../../../../public/images/PodCrafterExperimentado.jpg";
+import PodCrafterMaster from "../../../../public/images/PodCrafterMaster.jpg";
+
 export const Carrito = () => {
     const { store } = useContext(Context);
     const [voucher, setVoucher] = useState("");
@@ -41,6 +46,10 @@ export const Carrito = () => {
             <div className="scrollable-container">
                 {store.carrito.map((curso, index) => (
                     <div key={index} className="curso-en-carrito">
+                        {index === 0 && <img src={PodCrafterIniciacion} alt="PodCrafter Iniciacion" style={{ height: '100px', width: '100px'}}/>}
+                        {index === 1 && <img src={PodCrafterIntermedio} alt="PodCrafter Intermedio" style={{ height: '100px', width: '100px'}}/>}
+                        {index === 2 && <img src={PodCrafterExperimentado} alt="PodCrafter Experimentado" style={{ height: '100px', width: '100px'}}/>}
+                        {index === 3 && <img src={PodCrafterMaster} alt="PodCrafter Master"style={{ height: '100px', width: '100px'}} />}
                         <p><strong>{curso.name}</strong></p>
                         <p>{curso.precio}</p>
                     </div>

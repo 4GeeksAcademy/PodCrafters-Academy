@@ -22,16 +22,21 @@ export const Navbar = () => {
                             <button className="btn btnLogout" onClick={actions.logout}>
                                 Cerrar sesión
                             </button>
-                           
+
                         </>
                     ) : (
                         <>
-                            
+
                             <Link to="/login">
                                 <button className="btn btnLogin">Iniciar sesión</button>
                             </Link>
-                           
+
                         </>
+                    )}
+                    {!store.user && (
+                        <Link to="/signup">
+                            <button className="btn btnCursos">Regístrate</button>
+                        </Link>
                     )}
                     <Link to="/cursos">
                         <button className="btn btnCursos">Cursos</button>
@@ -42,6 +47,14 @@ export const Navbar = () => {
                     <Link to="/contacto">
                         <button className="btn btnCursos">FAQ</button>
                     </Link>
+                    {store.user && (
+
+                        <Link to="/miperfil">
+                            <button className="btn btnLogout">
+                                Mi Perfil
+                            </button>
+                        </Link>
+                    )}
                     <Link to="/carrito">
                         <button className="btn btnCart">
                             <i className="fa-solid fa-cart-shopping"></i>
