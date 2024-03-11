@@ -6,19 +6,10 @@ from api.models import db, User, Curso, Compra, Desestimiento, Contenido_Curso, 
 from api.utils import generate_sitemap, APIException
 from flask_cors import CORS
 from flask_jwt_extended import create_access_token, jwt_required, get_jwt_identity
-from flask_mail import Mail, Message
+
 
 api = Blueprint('api', __name__)
-app = Flask(__name__)
 
-
-app.config['MAIL_SERVER'] = 'smtp.gmail.com'
-app.config['MAIL_PORT'] = 587
-app.config['MAIL_USE_TLS'] = True
-app.config['MAIL_USERNAME'] = 'teest4geeks12@gmail.com'  
-app.config['MAIL_PASSWORD'] = 'ahyz rgmy igtb yclg'  
-
-mail = Mail(app)
 # Allow CORS requests to this API
 CORS(api)
 
@@ -134,25 +125,6 @@ def change_password():
 def get_cursos():
     curso = Curso.query.all() 
     return jsonify([curso.serialize() for curso in curso])
-
-
-@api.route('/contact', methods=['POST'])
-def contact():
-    nombre = request.json.get("nombre", None)
-    email = request.json.get("email", None)
-    mensaje = request.json.get("mensaje", None)
-    comoNosEncontraste = request.json.get("comoNosEncontraste", None)
-
-    if not nombre or not email or not mensaje or not comoNosEncontraste:
-        return jsonify({ "error": "Por favor, complete todos los campos del formulario de contacto" }), 400
-    
-    
-    try:
-        msg = Message('Nuevo mensaje de contacto', sender='teest4geeks12@gmail.com', recipients=['podcraftersacademy@gmail.com'])
-        msg.body = f"Nombre: {nombre}\nCorreo electrónico: {email}\nMensaje: {mensaje}\nCómo nos encontraste: {comoNosEncontraste}"
-        return jsonify({ "message": "¡Gracias por tu mensaje! Nos pondremos en contacto contigo pronto." }), 200
-    except Exception as e:
-        return jsonify({ "error": str(e) }), 500
 
 
 @api.route('/update_profile', methods=['PUT'])

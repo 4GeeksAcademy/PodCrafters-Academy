@@ -1,5 +1,6 @@
 import React, { useState, useContext } from "react";
 import { Context } from "../store/appContext";
+import { Modal, Button } from "react-bootstrap";
 
 const Contacto = () => {
     const [faq1, setFaq1] = useState(false);
@@ -12,28 +13,29 @@ const Contacto = () => {
         mensaje: "",
         comoNosEncontraste: ""
     });
+    const [showAlert, setShowAlert] = useState(false);
+    const [alertMessage, setAlertMessage] = useState("");
+    const { actions } = useContext(Context);
 
     const toggleFaq1 = () => setFaq1(!faq1);
     const toggleFaq2 = () => setFaq2(!faq2);
     const toggleFaq3 = () => setFaq3(!faq3);
     const toggleFaq4 = () => setFaq4(!faq4);
 
-    const { actions } = useContext(Context);
-
     const handleSubmit = async (e) => {
         e.preventDefault();
         await actions.enviarContacto(formData);
-        // Limpiar los valores del formulario
         setFormData({
             nombre: "",
             email: "",
             mensaje: "",
             comoNosEncontraste: ""
         });
+        setShowAlert(true);
+        setAlertMessage("Tu mensaje ha sido enviado correctamente");
     }
 
     const handleChange = (e) => {
-        // Actualizar el estado del formulario cuando cambian los valores de los campos
         setFormData({
             ...formData,
             [e.target.id]: e.target.value
@@ -70,6 +72,22 @@ const Contacto = () => {
                         </div>
                         <button type="submit" className="btn btn-primary" style={{ backgroundColor: "#E2F4F4", color: "#000" }}>Enviar</button>
                     </form>
+                    <Modal show={showAlert} onHide={() => setShowAlert(false)} centered>
+                        <Modal.Header closeButton>
+                            <Modal.Title>¡Mensaje enviado!</Modal.Title>
+                        </Modal.Header>
+                        <Modal.Body>
+                            {alertMessage}
+                            <br />
+                            <p>Mientras te contactamos, dale un vistazo a nuestros cursos!</p>
+                            <Button variant="primary" href="/cursos">Ver cursos</Button>
+                        </Modal.Body>
+                        <Modal.Footer>
+                            <Button variant="secondary" onClick={() => setShowAlert(false)}>
+                                Cerrar
+                            </Button>
+                        </Modal.Footer>
+                    </Modal>
                 </div>
                 <div className="col-md-6">
                     <div className="card border-0" style={{ backgroundColor: "#E2F4F4" }}>
