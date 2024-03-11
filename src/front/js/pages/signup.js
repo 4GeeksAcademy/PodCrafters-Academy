@@ -15,9 +15,8 @@ export const SignUp = () => {
 
     function handleSignupSubmit(e) {
         e.preventDefault();
-        actions.signup(email, password, firstName, lastName, telephone, userName, navigate);
+        actions.signup(email, password, userName, firstName, lastName, telephone, navigate);
     }
-
     return (
         <div className="signup-container">
             <h1 className="signup-title">Registro</h1>
