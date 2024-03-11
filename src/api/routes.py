@@ -148,3 +148,6 @@ def update_profile():
         return jsonify({ "user": user.serialize(), "message": "Perfil actualizado con éxito" }), 200
     except Exception as e:
         return jsonify({ "error": str(e) }), 500
+    
+
+    

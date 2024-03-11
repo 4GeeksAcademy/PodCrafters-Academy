@@ -24,7 +24,7 @@ const getState = ({ getStore, getActions, setStore }) => {
 			
 		},
 		actions: {
-			// Use getActions to call a function within a fuction
+			// Use getActions to call a function within a function
 			exampleFunction: () => {
 				getActions().changeColor(0, "green");
 			},
@@ -73,7 +73,7 @@ const getState = ({ getStore, getActions, setStore }) => {
 				}
 			},
 			signup: (email, password, userName, firstName, lastName, telephone, navigate ) => {
-				fetch(process.env.BACKEND_URL + 'api/signup', {
+				fetch(process.env.BACKEND_URL + '/api/signup', {
 					method: 'POST',
 					body: JSON.stringify({ email, password, userName, firstName, lastName, telephone }),
 					mode: 'cors',
@@ -91,7 +91,7 @@ const getState = ({ getStore, getActions, setStore }) => {
 					})
 			},
 			login: (email, password, navigate) => {
-				fetch(process.env.BACKEND_URL + 'api/login', {
+				fetch(process.env.BACKEND_URL + '/api/login', {
 					method: 'POST',
 					body: JSON.stringify({ email, password }),
 					mode: 'cors',
@@ -173,7 +173,7 @@ const getState = ({ getStore, getActions, setStore }) => {
 					if (data.error) {
 						alert(data.error);
 					} else {
-						// Actualiza la información del usuario en el estado
+						
 						setStore({ user: data.user });
 						alert('Perfil actualizado con éxito');
 					}
@@ -193,11 +193,24 @@ const getState = ({ getStore, getActions, setStore }) => {
 				   console.log("Error loading modulos from backend", error);
 				   setStore({ modulo: [], moduloError: "Error al cargar modulos" });
 				}
-			 },
-			
-    }
-}
+			},
+			enviarContacto: async (formData) => {
+				try {
+					const resp = await fetch(process.env.BACKEND_URL + "/contact", {
+						method: 'POST',
+						headers: {
+							'Content-Type': 'application/json'
+						},
+						body: JSON.stringify(formData)
+					});
+					const data = await resp.json();
+					console.log(data);
+				} catch (error) {
+					console.log("Error sending contact form data", error);
+				}
+			}
+		}
+	};
+};
 
-}
-
-export default getState;
+export default getState;			
