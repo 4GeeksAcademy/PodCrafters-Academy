@@ -1,8 +1,8 @@
 """empty message
 
-Revision ID: 38e47dbd6b57
+Revision ID: 562433b4811f
 Revises: 
-Create Date: 2024-03-10 15:13:50.924849
+Create Date: 2024-03-11 19:26:03.509895
 
 """
 from alembic import op
@@ -10,7 +10,7 @@ import sqlalchemy as sa
 
 
 # revision identifiers, used by Alembic.
-revision = '38e47dbd6b57'
+revision = '562433b4811f'
 down_revision = None
 branch_labels = None
 depends_on = None
@@ -41,7 +41,7 @@ def upgrade():
     sa.Column('lastName', sa.String(length=80), nullable=False),
     sa.Column('birthDay', sa.String(length=80), nullable=True),
     sa.Column('gender', sa.Enum('masculino', 'femenino', 'no_binario', name='gender_enum'), nullable=True),
-    sa.Column('id_profile_picture', sa.Integer(), nullable=True),
+    sa.Column('profile_image', sa.LargeBinary(), nullable=True),
     sa.Column('profesor', sa.Boolean(), nullable=True),
     sa.Column('fecha_registro', sa.String(length=80), nullable=True),
     sa.Column('telephone', sa.String(length=20), nullable=True),
@@ -52,7 +52,6 @@ def upgrade():
     sa.Column('mentor', sa.Boolean(), nullable=True),
     sa.PrimaryKeyConstraint('id'),
     sa.UniqueConstraint('email'),
-    sa.UniqueConstraint('id_profile_picture'),
     sa.UniqueConstraint('userName')
     )
     op.create_table('compra',
