@@ -1,6 +1,7 @@
 import React, { useContext, useState, useEffect } from "react";
 import { Context } from "../store/appContext";
 import "../../styles/carrito.css";
+import PopupPay from "../component/popupPay";
 
 import PodCrafterIniciacion from "../../../../public/images/PodCrafterIniciacion.jpg";
 import PodCrafterIntermedio from "../../../../public/images/PodCrafterIntermedio.jpg";
@@ -13,6 +14,7 @@ export const Carrito = () => {
     const [total, setTotal] = useState(0);
     const [descuento, setDescuento] = useState(0);
     const [applyingVoucher, setApplyingVoucher] = useState(false);
+    const [showPopup, setShowPopup] = useState(false);
 
     useEffect(() => {
         calcularTotal();
@@ -38,6 +40,14 @@ export const Carrito = () => {
 
     const handleApplyVoucher = () => {
         setApplyingVoucher(true);
+    };
+
+    const handlePayButtonClick = () => {
+        setShowPopup(true);
+    };
+
+    const handleClosePopup = () => {
+        setShowPopup(false);
     };
 
     return (
@@ -78,11 +88,13 @@ export const Carrito = () => {
                 </div>
             </div>
             <div className="row justify-content-center mt-5">
-                <button className="btn btn-pagar">Pagar</button>
+                <button className="btn btn-pagar" onClick={handlePayButtonClick}>Pagar</button>
             </div>
             <div className="row mt-5">
                 {/* Contenido del footer */}
             </div>
+
+            {showPopup && <PopupPay handleClosePopup={handleClosePopup} />}
         </div>
     );
 };
