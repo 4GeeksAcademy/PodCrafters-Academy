@@ -85,3 +85,15 @@
 .signup-link:hover {
   color: #000;
 }
+
+.noTienesCuenta {
+  margin-top: 10px;
+  width: 100%;
+  padding: 12px;
+  border-radius: 4px;
+  border: none;
+  background-color: #081f2e;
+  color: #fff;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+}

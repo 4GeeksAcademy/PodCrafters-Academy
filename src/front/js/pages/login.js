@@ -1,13 +1,14 @@
 import React, { useState, useContext } from "react";
 import { Context } from "../store/appContext";
-import { useNavigate, Link } from "react-router-dom"; // Import Link
-import "../../styles/login.css"; // Updated CSS file import
+import { useNavigate, Link } from "react-router-dom";
+import "../../styles/login.css";
 
 export const Login = () => {
     const { store, actions } = useContext(Context);
-    const navigate = useNavigate()
-    const [email, setEmail] = useState('')
-    const [password, setPassword] = useState('')
+    const navigate = useNavigate();
+    const [email, setEmail] = useState('');
+    const [password, setPassword] = useState('');
+    const [showSignup, setShowSignup] = useState(false);
 
     function handleLoginSubmit(e) {
         e.preventDefault();
@@ -16,7 +17,7 @@ export const Login = () => {
 
     return (
         <div className="container">
-            <h1 className="login-title">Inicia Sesión</h1>
+            <h1 className="login-title">Iniciar Sesión</h1>
             <div className="login">
                 <div className="login-container">
                     <form onSubmit={handleLoginSubmit} className="login-form">
@@ -45,14 +46,19 @@ export const Login = () => {
                             />
                         </div>
                         <button type="submit" className="login-submit">Login</button>
+                        <button type="button" className="noTienesCuenta" onClick={() => setShowSignup(!showSignup)}>
+                            ¿No tienes una cuenta todavía?
+                        </button>
                         <a href="#" className="forgot-password">¿Has olvidado tu contraseña?</a>
-
                     </form>
-
-                </div>
-                <div className="signupContainer">
-                    <h1 className="signup-title">Regístrate</h1>
-                    <p>Si todavía no tienes una cuenta, puedes <Link to="/signup" className="signup-link">registrarte aquí</Link>.</p>
+                    <div>
+                        {showSignup && (
+                            <div className="signupContainer">
+                                <h1 className="signup-title">Regístrate</h1>
+                                <p>Si todavía no tienes una cuenta, puedes <Link to="/signup" className="signup-link">registrarte aquí</Link>.</p>
+                            </div>
+                        )}
+                    </div>
                 </div>
             </div>
         </div>
