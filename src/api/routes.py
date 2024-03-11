@@ -138,16 +138,19 @@ def get_cursos():
 
 @api.route('/contact', methods=['POST'])
 def contact():
-    name = request.json.get("name", None)
-    email = request.json.get("email", None)
-    message = request.json.get("message", None)
+    data = request.json
+    
+    nombre = data.get("nombre", None)
+    email = data.get("email", None)
+    mensaje = data.get("mensaje", None)
+    comoNosEncontraste = data.get("comoNosEncontraste", None)
 
-    if not name or not email or not message:
+    if not nombre or not email or not mensaje:
         return jsonify({ "error": "Por favor, complete todos los campos del formulario de contacto" }), 400
     
     try:
         msg = Message('Nuevo mensaje de contacto', sender='teest4geeks12@gmail.com', recipients=['podcraftersacademy@gmail.com'])
-        msg.body = f"Nombre: {name}\nCorreo electrónico: {email}\nMensaje: {message}"
+        msg.body = f"Nombre: {nombre}\nCorreo electrónico: {email}\nMensaje: {mensaje}\ncomoNosEncontraste: {comoNosEncontraste}"
         mail.send(msg)
         return jsonify({ "message": "¡Gracias por tu mensaje! Nos pondremos en contacto contigo pronto." }), 200
     except Exception as e:

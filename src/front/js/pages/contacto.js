@@ -19,7 +19,7 @@ const Contacto = () => {
         const nombre = e.target.nombre.value;
         const email = e.target.email.value;
         const mensaje = e.target.mensaje.value;
-        const comoNosEncontraste = e.target["como-nos-encontraste"].value;
+        const comoNosEncontraste = e.target["comoNosEncontraste"].value;
     
         await actions.enviarContacto({ nombre, email, mensaje, comoNosEncontraste });
     
@@ -46,7 +46,7 @@ const Contacto = () => {
                         </div>
                         <div className="mb-3">
                             <label htmlFor="como-nos-encontraste" className="form-label">¿Cómo nos encontraste?</label>
-                            <select className="form-select" id="como-nos-encontraste" required>
+                            <select className="form-select" id="comoNosEncontraste" required>
                                 <option value="">Selecciona una opción</option>
                                 <option value="redes-sociales">Redes Sociales</option>
                                 <option value="busqueda-web">Búsqueda en la web</option>
