@@ -1,4 +1,3 @@
-import FormData from 'form-data'
 const getState = ({ getStore, getActions, setStore }) => {
 	return {
 		store: {
@@ -32,7 +31,7 @@ const getState = ({ getStore, getActions, setStore }) => {
 
 			agregarAlCarrito: (curso) => {
                 const store = getStore();
-                const updatedCart = [...store.carrito, curso]; 
+                const updatedCart = [...store.carrito, curso];
                 setStore({ carrito: updatedCart });
             },
 
@@ -201,4 +200,4 @@ const getState = ({ getStore, getActions, setStore }) => {
 
 }
 
-export default getState
+export default getState;

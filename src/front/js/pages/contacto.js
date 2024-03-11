@@ -1,37 +1,68 @@
-import React, { useState } from "react";
+import React, { useState, useContext } from "react";
+import { Context } from "../store/appContext";
+import { Modal, Button } from "react-bootstrap";
 
 const Contacto = () => {
     const [faq1, setFaq1] = useState(false);
     const [faq2, setFaq2] = useState(false);
     const [faq3, setFaq3] = useState(false);
     const [faq4, setFaq4] = useState(false);
+    const [formData, setFormData] = useState({
+        nombre: "",
+        email: "",
+        mensaje: "",
+        comoNosEncontraste: ""
+    });
+    const [showAlert, setShowAlert] = useState(false);
+    const [alertMessage, setAlertMessage] = useState("");
+    const { actions } = useContext(Context);
 
     const toggleFaq1 = () => setFaq1(!faq1);
     const toggleFaq2 = () => setFaq2(!faq2);
     const toggleFaq3 = () => setFaq3(!faq3);
     const toggleFaq4 = () => setFaq4(!faq4);
 
+    const handleSubmit = async (e) => {
+        e.preventDefault();
+        await actions.enviarContacto(formData);
+        setFormData({
+            nombre: "",
+            email: "",
+            mensaje: "",
+            comoNosEncontraste: ""
+        });
+        setShowAlert(true);
+        setAlertMessage("Tu mensaje ha sido enviado correctamente");
+    }
+
+    const handleChange = (e) => {
+        setFormData({
+            ...formData,
+            [e.target.id]: e.target.value
+        });
+    }
+
     return (
         <div className="container-fluid p-3" style={{ backgroundColor: "#E2F4F4", paddingBottom: "50px" }}>
             <h2 className="mt-5">Contacto</h2>
             <div className="row">
                 <div className="col-md-6">
-                    <form>
+                    <form onSubmit={handleSubmit}>
                         <div className="mb-3">
                             <label htmlFor="nombre" className="form-label">Nombre</label>
-                            <input type="text" className="form-control" id="nombre" />
+                            <input type="text" className="form-control" id="nombre" value={formData.nombre} onChange={handleChange} required />
                         </div>
                         <div className="mb-3">
                             <label htmlFor="email" className="form-label">Email</label>
-                            <input type="email" className="form-control" id="email" />
+                            <input type="email" className="form-control" id="email" value={formData.email} onChange={handleChange} required />
                         </div>
                         <div className="mb-3">
                             <label htmlFor="mensaje" className="form-label">Mensaje</label>
-                            <textarea className="form-control" id="mensaje" rows="5" ></textarea>
+                            <textarea className="form-control" id="mensaje" value={formData.mensaje} onChange={handleChange} rows="5" required></textarea>
                         </div>
                         <div className="mb-3">
                             <label htmlFor="como-nos-encontraste" className="form-label">¿Cómo nos encontraste?</label>
-                            <select className="form-select" id="como-nos-encontraste">
+                            <select className="form-select" id="comoNosEncontraste" value={formData.comoNosEncontraste} onChange={handleChange} required>
                                 <option value="">Selecciona una opción</option>
                                 <option value="redes-sociales">Redes Sociales</option>
                                 <option value="busqueda-web">Búsqueda en la web</option>
@@ -41,6 +72,22 @@ const Contacto = () => {
                         </div>
                         <button type="submit" className="btn btn-primary" style={{ backgroundColor: "#E2F4F4", color: "#000" }}>Enviar</button>
                     </form>
+                    <Modal show={showAlert} onHide={() => setShowAlert(false)} centered>
+                        <Modal.Header closeButton>
+                            <Modal.Title>¡Mensaje enviado!</Modal.Title>
+                        </Modal.Header>
+                        <Modal.Body>
+                            {alertMessage}
+                            <br />
+                            <p>Mientras te contactamos, dale un vistazo a nuestros cursos!</p>
+                            <Button variant="primary" href="/cursos">Ver cursos</Button>
+                        </Modal.Body>
+                        <Modal.Footer>
+                            <Button variant="secondary" onClick={() => setShowAlert(false)}>
+                                Cerrar
+                            </Button>
+                        </Modal.Footer>
+                    </Modal>
                 </div>
                 <div className="col-md-6">
                     <div className="card border-0" style={{ backgroundColor: "#E2F4F4" }}>
