@@ -135,6 +135,7 @@ def get_cursos():
     curso = Curso.query.all() 
     return jsonify([curso.serialize() for curso in curso])
 
+
 @api.route('/contact', methods=['POST'])
 def contact():
     name = request.json.get("name", None)
@@ -151,6 +152,7 @@ def contact():
         return jsonify({ "message": "¡Gracias por tu mensaje! Nos pondremos en contacto contigo pronto." }), 200
     except Exception as e:
         return jsonify({ "error": str(e) }), 500
+
 
 @api.route('/update_profile', methods=['PUT'])
 @jwt_required()
