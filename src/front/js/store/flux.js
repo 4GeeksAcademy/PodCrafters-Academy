@@ -1,4 +1,4 @@
-import FormData from 'form-data'
+
 const getState = ({ getStore, getActions, setStore }) => {
 	return {
 		store: {
