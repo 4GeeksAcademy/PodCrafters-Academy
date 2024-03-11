@@ -20,6 +20,8 @@ const getState = ({ getStore, getActions, setStore }) => {
 			cursosError: null,
 			token: null,
 			user: null,
+			modulo: [],
+			moduloError: null,
 			
 		},
 		actions: {
@@ -181,8 +183,18 @@ const getState = ({ getStore, getActions, setStore }) => {
 					alert(error);
 				});
 			},
-			
-			
+			getModulos: async () => {
+				try {
+				   const resp = await fetch(process.env.BACKEND_URL + "/api/modulo");
+				   const data = await resp.json();
+				   console.log("Modulos:", data);
+				   setStore({ modulo: data, moduloError: null });
+				   return data;
+				} catch (error) {
+				   console.log("Error loading modulos from backend", error);
+				   setStore({ modulo: [], moduloError: "Error al cargar modulos" });
+				}
+			 },
 			
     }
 }
