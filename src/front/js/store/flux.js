@@ -23,7 +23,7 @@ const getState = ({ getStore, getActions, setStore }) => {
         actions: {
             agregarAlCarrito: (curso) => {
                 const store = getStore();
-                const updatedCart = [...store.carrito, curso]; 
+                const updatedCart = [...store.carrito, curso];
                 setStore({ carrito: updatedCart });
             },
             getMessage: async () => {
@@ -47,7 +47,7 @@ const getState = ({ getStore, getActions, setStore }) => {
                     setStore({ cursos: [], cursosError: "Error al cargar cursos" });
                 }
             },
-            signup: (email, password, userName, firstName, lastName, telephone, navigate ) => {
+            signup: (email, password, userName, firstName, lastName, telephone, navigate) => {
                 fetch(process.env.BACKEND_URL + 'api/signup', {
                     method: 'POST',
                     body: JSON.stringify({ email, password, userName, firstName, lastName, telephone }),
@@ -143,18 +143,18 @@ const getState = ({ getStore, getActions, setStore }) => {
                         'Authorization': 'Bearer ' + token
                     }
                 })
-                .then(response => response.json())
-                .then(data => {
-                    if (data.error) {
-                        alert(data.error);
-                    } else {
-                        setStore({ user: data.user });
-                        alert('Perfil actualizado con éxito');
-                    }
-                })
-                .catch(error => {
-                    alert(error);
-                });
+                    .then(response => response.json())
+                    .then(data => {
+                        if (data.error) {
+                            alert(data.error);
+                        } else {
+                            setStore({ user: data.user });
+                            alert('Perfil actualizado con éxito');
+                        }
+                    })
+                    .catch(error => {
+                        alert(error);
+                    });
             },
             enviarContacto: async (formData) => {
                 try {
@@ -166,7 +166,7 @@ const getState = ({ getStore, getActions, setStore }) => {
                         body: JSON.stringify(formData)
                     });
                     const data = await resp.json();
-                    console.log(data); 
+                    console.log(data);
                 } catch (error) {
                     console.log("Error sending contact form data", error);
                 }

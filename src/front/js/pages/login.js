@@ -1,36 +1,66 @@
 import React, { useState, useContext } from "react";
 import { Context } from "../store/appContext";
-import { useNavigate } from "react-router-dom";
+import { useNavigate, Link } from "react-router-dom";
+import "../../styles/login.css";
 
 export const Login = () => {
     const { store, actions } = useContext(Context);
-    const navigate = useNavigate()
-    const [email, setEmail] = useState()
-    const [password, setPassword] = useState()
+    const navigate = useNavigate();
+    const [email, setEmail] = useState('');
+    const [password, setPassword] = useState('');
+    const [showSignup, setShowSignup] = useState(false);
+
     function handleLoginSubmit(e) {
         e.preventDefault();
         actions.login(email, password, navigate);
     }
 
     return (
-        <div className="text-center mt-5">
-            <h1>Inicia Sesión</h1>
-            <form onSubmit={handleLoginSubmit}>
-                <div className="mb-3">
-                    <label for="exampleInputEmail1" className="form-label">Email address</label>
-                    <input type="email" onChange={(e) => setEmail(e.target.value)} className="form-control" id="exampleInputEmail1" aria-describedby="emailHelp" />
-                    <div id="emailHelp" className="form-text">We'll never share your email with anyone else.</div>
+        <div className="container">
+            <h1 className="login-title">Iniciar Sesión</h1>
+            <div className="login">
+                <div className="login-container">
+                    <form onSubmit={handleLoginSubmit} className="login-form">
+                        <div className="form-group">
+                            <input
+                                type="email"
+                                name="email"
+                                value={email}
+                                onChange={(e) => setEmail(e.target.value)}
+                                className="login-input"
+                                id="email"
+                                placeholder="Correo electronico"
+                                required
+                            />
+                        </div>
+                        <div className="form-group">
+                            <input
+                                type="password"
+                                name="password"
+                                value={password}
+                                onChange={(e) => setPassword(e.target.value)}
+                                className="login-input"
+                                id="password"
+                                placeholder="Contraseña"
+                                required
+                            />
+                        </div>
+                        <button type="submit" className="login-submit">Login</button>
+                        <button type="button" className="noTienesCuenta" onClick={() => setShowSignup(!showSignup)}>
+                            ¿No tienes una cuenta todavía?
+                        </button>
+                        <a href="#" className="forgot-password">¿Has olvidado tu contraseña?</a>
+                    </form>
+                    <div>
+                        {showSignup && (
+                            <div className="signupContainer">
+                                <h1 className="signup-title">Regístrate</h1>
+                                <p>Si todavía no tienes una cuenta, puedes <Link to="/signup" className="signup-link">registrarte aquí</Link>.</p>
+                            </div>
+                        )}
+                    </div>
                 </div>
-                <div className="mb-3">
-                    <label for="exampleInputPassword1" className="form-label">Password</label>
-                    <input type="password" onChange={(e) => setPassword(e.target.value)} className="form-control" id="exampleInputPassword1" />
-                </div>
-                <div className="mb-3 form-check">
-                    <input type="checkbox" className="form-check-input" id="exampleCheck1" />
-                    <label className="form-check-label" for="exampleCheck1">Check me out</label>
-                </div>
-                <button type="submit" className="btn btn-primary">Submit</button>
-            </form>
+            </div>
         </div>
     );
 };
