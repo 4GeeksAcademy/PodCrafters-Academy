@@ -1,4 +1,4 @@
-.login-container {
+.signup-container {
   display: flex;
   flex-direction: column;
   align-items: center;
@@ -6,7 +6,7 @@
   height: 100vh;
 }
 
-.login-form {
+.signup-form {
   width: 300px;
   padding: 30px;
   background-color: #f9f9f9;
@@ -14,13 +14,13 @@
   box-shadow: 0 0 20px rgba(0, 0, 0, 0.1);
 }
 
-.login-title {
+.signup-title {
   text-align: center;
   margin-bottom: 20px;
   color: #333;
 }
 
-.login-input {
+.signup-input {
   width: 100%;
   padding: 12px;
   margin-bottom: 20px;
@@ -30,11 +30,11 @@
   transition: border-bottom-color 0.3s ease;
 }
 
-.login-input:focus {
+.signup-input:focus {
   border-bottom-color: #081f2e;
 }
 
-.login-submit {
+.signup-submit {
   width: 100%;
   padding: 12px;
   border-radius: 4px;
@@ -45,19 +45,6 @@
   transition: background-color 0.3s ease;
 }
 
-.login-submit:hover {
+.signup-submit:hover {
   background-color: #000;
-}
-
-.forgot-password {
-  display: block;
-  margin-top: 20px;
-  text-align: center;
-  color: #333;
-  text-decoration: none;
-  transition: color 0.3s ease;
-}
-
-.forgot-password:hover {
-  color: #081f2e;
 }
