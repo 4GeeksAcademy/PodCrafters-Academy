@@ -6,6 +6,12 @@ const Contacto = () => {
     const [faq2, setFaq2] = useState(false);
     const [faq3, setFaq3] = useState(false);
     const [faq4, setFaq4] = useState(false);
+    const [formData, setFormData] = useState({
+        nombre: "",
+        email: "",
+        mensaje: "",
+        comoNosEncontraste: ""
+    });
 
     const toggleFaq1 = () => setFaq1(!faq1);
     const toggleFaq2 = () => setFaq2(!faq2);
@@ -16,14 +22,22 @@ const Contacto = () => {
 
     const handleSubmit = async (e) => {
         e.preventDefault();
-        const nombre = e.target.nombre.value;
-        const email = e.target.email.value;
-        const mensaje = e.target.mensaje.value;
-        const comoNosEncontraste = e.target["comoNosEncontraste"].value;
-    
-        await actions.enviarContacto({ nombre, email, mensaje, comoNosEncontraste });
-    
+        await actions.enviarContacto(formData);
+        // Limpiar los valores del formulario
+        setFormData({
+            nombre: "",
+            email: "",
+            mensaje: "",
+            comoNosEncontraste: ""
+        });
+    }
 
+    const handleChange = (e) => {
+        // Actualizar el estado del formulario cuando cambian los valores de los campos
+        setFormData({
+            ...formData,
+            [e.target.id]: e.target.value
+        });
     }
 
     return (
@@ -34,19 +48,19 @@ const Contacto = () => {
                     <form onSubmit={handleSubmit}>
                         <div className="mb-3">
                             <label htmlFor="nombre" className="form-label">Nombre</label>
-                            <input type="text" className="form-control" id="nombre" required />
+                            <input type="text" className="form-control" id="nombre" value={formData.nombre} onChange={handleChange} required />
                         </div>
                         <div className="mb-3">
                             <label htmlFor="email" className="form-label">Email</label>
-                            <input type="email" className="form-control" id="email" required />
+                            <input type="email" className="form-control" id="email" value={formData.email} onChange={handleChange} required />
                         </div>
                         <div className="mb-3">
                             <label htmlFor="mensaje" className="form-label">Mensaje</label>
-                            <textarea className="form-control" id="mensaje" rows="5" required></textarea>
+                            <textarea className="form-control" id="mensaje" value={formData.mensaje} onChange={handleChange} rows="5" required></textarea>
                         </div>
                         <div className="mb-3">
                             <label htmlFor="como-nos-encontraste" className="form-label">¿Cómo nos encontraste?</label>
-                            <select className="form-select" id="comoNosEncontraste" required>
+                            <select className="form-select" id="comoNosEncontraste" value={formData.comoNosEncontraste} onChange={handleChange} required>
                                 <option value="">Selecciona una opción</option>
                                 <option value="redes-sociales">Redes Sociales</option>
                                 <option value="busqueda-web">Búsqueda en la web</option>
