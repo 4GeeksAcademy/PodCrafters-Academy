@@ -6,12 +6,12 @@ from flask import Flask, request, jsonify, url_for, send_from_directory
 from flask_migrate import Migrate
 from flask_swagger import swagger
 from api.utils import APIException, generate_sitemap
-from api.models import db
+from api.models import db, User
 from api.routes import api
 from api.admin import setup_admin
 from api.commands import setup_commands
 from flask_cors import CORS
-from flask_jwt_extended import JWTManager
+from flask_jwt_extended import JWTManager, create_access_token
 from flask_mail import Mail, Message
 # from models import Person
 
@@ -97,6 +97,28 @@ def contact():
     except Exception as e:
         return jsonify({ "error": str(e) }), 500
 
+@app.route('/send-email', methods=['POST'])
+def send_email():
+    email = request.json.get("email", None)
+
+    user = User.query.filter_by(email=email).first()
+
+    if user is None:
+        return jsonify({ "error": "Este usuario no existe"}), 401
+   
+    token = create_access_token(identity=email)
+    link = 'https://vigilant-sniffle-ggg7wvgg7gvhpgw6-3000.app.github.dev/recover?token=' + token
+   
+    message = Message(
+        subject="Reset your password",
+        sender=app.config.get("MAIL_USERNAME"),
+        recipients=[email],
+        html='Reset your password in this link: <a href="' + link +'">Recuperar contraseña aqui</a>'
+    )
+
+    mail.send(message)
+
+    return jsonify({ "msg": "success" }), 200
 
 # this only runs if `$ python src/main.py` is executed
 if __name__ == '__main__':

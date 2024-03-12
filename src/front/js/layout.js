@@ -22,6 +22,8 @@ import { MiCurso } from "./pages/micurso";
 import { Modulo } from "./pages/modulo";
 import { Login } from "./pages/login";
 import { SignUp } from "./pages/signup";
+import { ForgotPassword } from "./pages/forgotPassword";
+import { Recover } from "./pages/recover";
 //create your first component
 const Layout = () => {
     //the basename is used when your project is published in a subdirectory and not in the root of the domain
@@ -49,6 +51,8 @@ const Layout = () => {
                         <Route element={<Modulo />} path="/modulo" />
                         <Route element={<Login />} path="/login" />
                         <Route element={<SignUp />} path="/signup" />
+                        <Route element={<ForgotPassword />} path="/forgotPassword" />
+                        <Route element={<Recover />} path="/recover" />
                         <Route element={<h1>Not found!</h1>} />
                     </Routes>
                     <Footer />

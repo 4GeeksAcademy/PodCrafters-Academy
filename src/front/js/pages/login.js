@@ -26,41 +26,38 @@ export const Login = () => {
             <h1 className="login-title">Iniciar Sesión</h1>
             <div className="login">
                 <div className="login-container">
-                    {showLogin && (
-                        <form onSubmit={handleLoginSubmit} className="login-form">
-                            <div className="form-group">
-                                <input
-                                    type="email"
-                                    name="email"
-                                    value={email}
-                                    onChange={(e) => setEmail(e.target.value)}
-                                    className="login-input"
-                                    id="email"
-                                    placeholder="Correo electronico"
-                                    required
-                                />
-                            </div>
-                            <div className="form-group">
-                                <input
-                                    type="password"
-                                    name="password"
-                                    value={password}
-                                    onChange={(e) => setPassword(e.target.value)}
-                                    className="login-input"
-                                    id="password"
-                                    placeholder="Contraseña"
-                                    required
-                                />
-                            </div>
-                            <button type="submit" className="login-submit">Login</button>
-                        </form>
-                    )}
-                    <button type="button" className="noTienesCuenta" onClick={handleSignupClick}>
-                        {showSignup ? '¿Tienes una cuenta?' : '¿No tienes una cuenta todavía?'}
-                    </button>
-                    {showLogin && (
-                        <a href="#" className="forgot-password">¿Has olvidado tu contraseña?</a>
-                    )}                    <div>
+                    <form onSubmit={handleLoginSubmit} className="login-form">
+                        <div className="form-group">
+                            <input
+                                type="email"
+                                name="email"
+                                value={email}
+                                onChange={(e) => setEmail(e.target.value)}
+                                className="login-input"
+                                id="email"
+                                placeholder="Correo electronico"
+                                required
+                            />
+                        </div>
+                        <div className="form-group">
+                            <input
+                                type="password"
+                                name="password"
+                                value={password}
+                                onChange={(e) => setPassword(e.target.value)}
+                                className="login-input"
+                                id="password"
+                                placeholder="Contraseña"
+                                required
+                            />
+                        </div>
+                        <button type="submit" className="login-submit">Login</button>
+                        <button type="button" className="noTienesCuenta" onClick={() => setShowSignup(!showSignup)}>
+                            ¿No tienes una cuenta todavía?
+                        </button>
+                        <Link to="/forgotPassword" className="forgot-password">¿Has olvidado tu contraseña?</Link>
+                    </form>
+                    <div>
                         {showSignup && (
                             <div className="signupContainer">
                                 <h1 className="signup-title">Regístrate</h1>
