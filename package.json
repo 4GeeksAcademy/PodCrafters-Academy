@@ -74,11 +74,13 @@
 	},
 	"dependencies": {
 		"14": "^3.1.6",
+		"bootstrap": "^5.3.3",
 		"cors": "^2.8.5",
 		"easy-peasy": "^6.0.4",
 		"form-data": "^4.0.0",
 		"prop-types": "^15.6.1",
 		"react": "^16.14.0",
+		"react-bootstrap": "^2.10.1",
 		"react-dom": "^16.14.0",
 		"react-player": "^2.15.1",
 		"react-polyfills": "0.0.1",

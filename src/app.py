@@ -12,6 +12,7 @@ from api.admin import setup_admin
 from api.commands import setup_commands
 from flask_cors import CORS
 from flask_jwt_extended import JWTManager
+from flask_mail import Mail, Message
 # from models import Person
 
 ENV = "development" if os.getenv("FLASK_DEBUG") == "1" else "production"
@@ -38,6 +39,14 @@ setup_admin(app)
 
 # add the admin
 setup_commands(app)
+
+app.config['MAIL_SERVER'] = 'smtp.gmail.com'
+app.config['MAIL_PORT'] = 587
+app.config['MAIL_USE_TLS'] = True
+app.config['MAIL_USERNAME'] = 'teest4geeks12@gmail.com'  
+app.config['MAIL_PASSWORD'] = 'ahyz rgmy igtb yclg'  
+
+mail = Mail(app)
 
 # Add all endpoints form the API with a "api" prefix
 app.register_blueprint(api, url_prefix='/api')
@@ -68,6 +77,25 @@ def serve_any_other_file(path):
     response = send_from_directory(static_file_dir, path)
     response.cache_control.max_age = 0  # avoid cache memory
     return response
+
+@app.route('/contact', methods=['POST'])
+def contact():
+    nombre = request.json.get("nombre", None)
+    email = request.json.get("email", None)
+    mensaje = request.json.get("mensaje", None)
+    comoNosEncontraste = request.json.get("comoNosEncontraste", None)
+
+    if not nombre or not email or not mensaje or not comoNosEncontraste:
+        return jsonify({ "error": "Por favor, complete todos los campos del formulario de contacto" }), 400
+    
+    
+    try:
+        msg = Message('Nuevo mensaje de contacto', sender='teest4geeks12@gmail.com', recipients=['podcraftersacademy@gmail.com'])
+        msg.body = f"Nombre: {nombre}\nCorreo electrónico: {email}\nMensaje: {mensaje}\nCómo nos encontraste: {comoNosEncontraste}"
+        mail.send(msg)
+        return jsonify({ "message": "¡Gracias por tu mensaje! Nos pondremos en contacto contigo pronto." }), 200
+    except Exception as e:
+        return jsonify({ "error": str(e) }), 500
 
 
 # this only runs if `$ python src/main.py` is executed
