@@ -1,20 +1,8 @@
 """empty message
 
-<<<<<<< HEAD:migrations/versions/acd99eea7936_.py
-Revision ID: acd99eea7936
+Revision ID: 284073d160b7
 Revises: 
-Create Date: 2024-03-11 17:48:11.361741
-=======
-<<<<<<<< HEAD:migrations/versions/61305d36d628_.py
-Revision ID: 61305d36d628
-Revises: 
-Create Date: 2024-03-11 16:36:38.914427
-========
-Revision ID: 16a5d4e9d3cc
-Revises: 
-Create Date: 2024-03-11 18:05:58.044002
->>>>>>>> b05bd004e5b02d27d0a945efc136be5763b2a8be:migrations/versions/16a5d4e9d3cc_.py
->>>>>>> 9bcb4757a07c3a3c06cfbc7368fdbbe295ad03dc:migrations/versions/61305d36d628_.py
+Create Date: 2024-03-12 19:06:32.892165
 
 """
 from alembic import op
@@ -22,15 +10,7 @@ import sqlalchemy as sa
 
 
 # revision identifiers, used by Alembic.
-<<<<<<< HEAD:migrations/versions/acd99eea7936_.py
-revision = 'acd99eea7936'
-=======
-<<<<<<<< HEAD:migrations/versions/61305d36d628_.py
-revision = '61305d36d628'
-========
-revision = '16a5d4e9d3cc'
->>>>>>>> b05bd004e5b02d27d0a945efc136be5763b2a8be:migrations/versions/16a5d4e9d3cc_.py
->>>>>>> 9bcb4757a07c3a3c06cfbc7368fdbbe295ad03dc:migrations/versions/61305d36d628_.py
+revision = '284073d160b7'
 down_revision = None
 branch_labels = None
 depends_on = None
@@ -122,7 +102,7 @@ def upgrade():
     sa.Column('id', sa.Integer(), nullable=False),
     sa.Column('nombre_modulo', sa.String(length=100), nullable=False),
     sa.Column('id_curso', sa.Integer(), nullable=False),
-    sa.Column('contenido_modulo', sa.String(length=1000), nullable=False),
+    sa.Column('contenido_modulo', sa.String(length=1500), nullable=False),
     sa.ForeignKeyConstraint(['id_curso'], ['curso.id'], ),
     sa.PrimaryKeyConstraint('id')
     )

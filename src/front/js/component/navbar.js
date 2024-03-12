@@ -33,11 +33,11 @@ export const Navbar = () => {
 
                         </>
                     )}
-                    {!store.user && (
+                    {/* {!store.user && (
                         <Link to="/signup">
                             <button className="btn btnCursos">Regístrate</button>
                         </Link>
-                    )}
+                    )} */}
                     <Link to="/cursos">
                         <button className="btn btnCursos">Cursos</button>
                     </Link>

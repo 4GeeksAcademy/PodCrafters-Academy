@@ -6,7 +6,7 @@ from flask import Flask, request, jsonify, url_for, send_from_directory
 from flask_migrate import Migrate
 from flask_swagger import swagger
 from api.utils import APIException, generate_sitemap
-from api.models import db, User
+from api.models import db, User, Subscribe
 from api.routes import api
 from api.admin import setup_admin
 from api.commands import setup_commands
@@ -120,7 +120,27 @@ def send_email():
 
     return jsonify({ "msg": "success" }), 200
 
-# this only runs if `$ python src/main.py` is executed
-if __name__ == '__main__':
-    PORT = int(os.environ.get('PORT', 3001))
-    app.run(host='0.0.0.0', port=PORT, debug=True)
+@app.route('/subscribe', methods=['POST'])
+def subscribe():
+    email = request.json.get("email", None)
+
+    if not email:
+        return jsonify({ "error": "No email provided" }), 400
+
+    try:
+        subscriber = Subscribe.query.filter_by(email=email).first()
+        if subscriber:
+            return jsonify({ "error": "This email is already subscribed" }), 400
+
+        new_subscriber = Subscribe(email=email)
+
+        db.session.add(new_subscriber)
+        db.session.commit()
+
+        msg = Message('Gracias por suscribirte!', sender='teest4geeks12@gmail.com', recipients=[email])
+        msg.body = 'Has suscrito a nuestro newsletter!'
+        mail.send(msg)
+
+        return jsonify({ "success": True, "message": "Subscription successful for email: {}".format(email)}), 200
+    except Exception as e:
+        return jsonify({ "error": str(e) }), 500

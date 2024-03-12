@@ -21,7 +21,7 @@ const getState = ({ getStore, getActions, setStore }) => {
 			user: null,
 			modulo: [],
 			moduloError: null,
-			
+
 		},
 		actions: {
 			// Use getActions to call a function within a function
@@ -30,10 +30,10 @@ const getState = ({ getStore, getActions, setStore }) => {
 			},
 
 			agregarAlCarrito: (curso) => {
-                const store = getStore();
-                const updatedCart = [...store.carrito, curso];
-                setStore({ carrito: updatedCart });
-            },
+				const store = getStore();
+				const updatedCart = [...store.carrito, curso];
+				setStore({ carrito: updatedCart });
+			},
 
 			getMessage: async () => {
 				try {
@@ -72,7 +72,7 @@ const getState = ({ getStore, getActions, setStore }) => {
 					setStore({ cursos: [], cursosError: "Error al cargar cursos" });
 				}
 			},
-			signup: (email, password, userName, firstName, lastName, telephone, navigate ) => {
+			signup: (email, password, userName, firstName, lastName, telephone, navigate) => {
 				fetch(process.env.BACKEND_URL + '/api/signup', {
 					method: 'POST',
 					body: JSON.stringify({ email, password, userName, firstName, lastName, telephone }),
@@ -168,30 +168,30 @@ const getState = ({ getStore, getActions, setStore }) => {
 						'Authorization': 'Bearer ' + token
 					}
 				})
-				.then(response => response.json())
-				.then(data => {
-					if (data.error) {
-						alert(data.error);
-					} else {
-						
-						setStore({ user: data.user });
-						alert('Perfil actualizado con éxito');
-					}
-				})
-				.catch(error => {
-					alert(error);
-				});
+					.then(response => response.json())
+					.then(data => {
+						if (data.error) {
+							alert(data.error);
+						} else {
+
+							setStore({ user: data.user });
+							alert('Perfil actualizado con éxito');
+						}
+					})
+					.catch(error => {
+						alert(error);
+					});
 			},
 			getModulos: async () => {
 				try {
-				   const resp = await fetch(process.env.BACKEND_URL + "/api/modulo");
-				   const data = await resp.json();
-				   console.log("Modulos:", data);
-				   setStore({ modulo: data, moduloError: null });
-				   return data;
+					const resp = await fetch(process.env.BACKEND_URL + "/api/modulo");
+					const data = await resp.json();
+					console.log("Modulos:", data);
+					setStore({ modulo: data, moduloError: null });
+					return data;
 				} catch (error) {
-				   console.log("Error loading modulos from backend", error);
-				   setStore({ modulo: [], moduloError: "Error al cargar modulos" });
+					console.log("Error loading modulos from backend", error);
+					setStore({ modulo: [], moduloError: "Error al cargar modulos" });
 				}
 			},
 			enviarContacto: async (formData) => {
@@ -212,7 +212,7 @@ const getState = ({ getStore, getActions, setStore }) => {
 			sendResetPasswordEmail: (email) => {
 				fetch(process.env.BACKEND_URL + '/send-email', {
 					method: 'POST',
-					body: JSON.stringify({ email}),
+					body: JSON.stringify({ email }),
 					mode: 'cors',
 					headers: {
 						'Content-Type': 'application/json'
@@ -224,7 +224,7 @@ const getState = ({ getStore, getActions, setStore }) => {
 						else {
 							alert("verifica tu bandeja de correo electronico")
 						}
-						})
+					})
 					.catch(error => {
 						alert(error)
 					})
@@ -232,7 +232,7 @@ const getState = ({ getStore, getActions, setStore }) => {
 			resetPassword: (token, password) => {
 				fetch(process.env.BACKEND_URL + 'api/reset-password', {
 					method: 'PUT',
-					body: JSON.stringify({ password}),
+					body: JSON.stringify({ password }),
 					mode: 'cors',
 					headers: {
 						'Content-Type': 'application/json',
@@ -244,15 +244,34 @@ const getState = ({ getStore, getActions, setStore }) => {
 						else alert("No se pudo cambiar la password")
 					})
 					.then(data => {
-						if(data.success){
+						if (data.success) {
 							alert("Password cambiado correctamente")
 						}
 						else alert(data.error)
-						})
+					})
 					.catch(error => {
 						alert(error)
 					})
 			},
+			subscribe: async (email) => {
+				try {
+					const response = await fetch(process.env.BACKEND_URL + '/subscribe', {
+						method: 'POST',
+						headers: {
+							'Content-Type': 'application/json'
+						},
+						body: JSON.stringify({ email })
+					});
+					const data = await response.json();
+					if (data.success) {
+						alert('Te has suscrito correctamente');
+					} else {
+						alert('Tienes una suscripción activa con este correo electrónico');
+					}
+				} catch (error) {
+					console.error('Error:', error);
+				}
+			}
 		}
 	};
 };

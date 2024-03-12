@@ -202,3 +202,18 @@ class Mas_Informacion(db.Model):
             "id_curso": self.id_curso,
             "email": self.email
         }
+        
+
+class Subscribe(db.Model):
+    __tablename__ = "subscribe"
+    id = db.Column(db.Integer, primary_key=True)
+    email = db.Column(db.String(80), unique=True, nullable=False)
+
+    def __repr__(self):
+        return f'<Subscribe {self.email}>'
+
+    def serialize(self):
+        return {
+            "id": self.id,
+            "email": self.email
+        }

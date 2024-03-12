@@ -1,7 +1,7 @@
   
 import os
 from flask_admin import Admin
-from .models import db, User, Curso, Compra, Desestimiento, Contenido_Curso, Modulo, Alumno_Modulo, Mentorias, Disponibilidad_Mentor, Mas_Informacion
+from .models import db, User, Curso, Compra, Desestimiento, Contenido_Curso, Modulo, Alumno_Modulo, Mentorias, Disponibilidad_Mentor, Mas_Informacion, Subscribe
 from flask_admin.contrib.sqla import ModelView
 
 def setup_admin(app):
@@ -21,6 +21,8 @@ def setup_admin(app):
     admin.add_view(ModelView(Mentorias, db.session))
     admin.add_view(ModelView(Disponibilidad_Mentor, db.session))
     admin.add_view(ModelView(Mas_Informacion, db.session))
+    admin.add_view(ModelView(Subscribe, db.session))
+    
 
 
 

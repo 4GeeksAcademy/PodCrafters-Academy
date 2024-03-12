@@ -5,7 +5,14 @@
 }
 
 .navItems {
-  display: flex;
+  display: inline-block;
+  pointer-events: none;
+}
+
+.navItems button {
+  display: inline-block;
+  margin-left: 1rem;
+  pointer-events: auto;
 }
 
 .btnCart {
@@ -35,6 +42,7 @@
   color: #e2f4f4;
   border-color: #081f2e;
 }
+
 .btnLogin {
   background-color: #e2f4f4;
   color: #081f2e;

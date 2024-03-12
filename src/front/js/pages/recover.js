@@ -19,11 +19,11 @@ export const Recover = () => {
 
     return (
         <div className="container">
-            <h1 className="login-title">Recupera contraseña</h1>
+            <h1 className="login-title">Recupera contraseña Prueba</h1>
             <div className="login">
                 <div className="login-container">
                     <form onSubmit={handleLoginSubmit} className="login-form">
-                        
+
                         <div className="form-group">
                             <label for="exampleInputPassword1" className="form-label">Password</label>
                             <input
@@ -37,7 +37,7 @@ export const Recover = () => {
                             />
                         </div>
                         <div className="form-group">
-                        <label for="exampleInputPassword1" className="form-label">Repite Password</label>
+                            <label for="exampleInputPassword1" className="form-label">Repite Password</label>
                             <input
                                 type="password"
                                 name="password"
@@ -50,7 +50,7 @@ export const Recover = () => {
                         </div>
                         <button type="submit" className="btn btn-primary">Enviar</button>
                     </form>
-                    
+
                 </div>
             </div>
         </div>
