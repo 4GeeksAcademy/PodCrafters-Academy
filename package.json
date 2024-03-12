@@ -87,6 +87,7 @@
 		"react-player": "^2.15.1",
 		"react-polyfills": "0.0.1",
 		"react-router-dom": "^6.3.0",
+		"stripe": "^14.20.0",
 		"video-react": "^0.16.0"
 	}
 }
