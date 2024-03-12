@@ -208,7 +208,51 @@ const getState = ({ getStore, getActions, setStore }) => {
 				} catch (error) {
 					console.log("Error sending contact form data", error);
 				}
-			}
+			},
+			sendResetPasswordEmail: (email) => {
+				fetch(process.env.BACKEND_URL + '/send-email', {
+					method: 'POST',
+					body: JSON.stringify({ email}),
+					mode: 'cors',
+					headers: {
+						'Content-Type': 'application/json'
+					}
+				})
+					.then(response => response.json())
+					.then(data => {
+						if (data.error) alert(data.error)
+						else {
+							alert("verifica tu bandeja de correo electronico")
+						}
+						})
+					.catch(error => {
+						alert(error)
+					})
+			},
+			resetPassword: (token, password) => {
+				fetch(process.env.BACKEND_URL + 'api/reset-password', {
+					method: 'PUT',
+					body: JSON.stringify({ password}),
+					mode: 'cors',
+					headers: {
+						'Content-Type': 'application/json',
+						'Authorization': 'Bearer ' + token
+					}
+				})
+					.then(response => {
+						if (response.status == 200) return response.json()
+						else alert("No se pudo cambiar la password")
+					})
+					.then(data => {
+						if(data.success){
+							alert("Password cambiado correctamente")
+						}
+						else alert(data.error)
+						})
+					.catch(error => {
+						alert(error)
+					})
+			},
 		}
 	};
 };

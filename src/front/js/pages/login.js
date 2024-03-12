@@ -49,7 +49,7 @@ export const Login = () => {
                         <button type="button" className="noTienesCuenta" onClick={() => setShowSignup(!showSignup)}>
                             ¿No tienes una cuenta todavía?
                         </button>
-                        <a href="#" className="forgot-password">¿Has olvidado tu contraseña?</a>
+                        <Link to="/forgotPassword" className="forgot-password">¿Has olvidado tu contraseña?</Link>
                     </form>
                     <div>
                         {showSignup && (

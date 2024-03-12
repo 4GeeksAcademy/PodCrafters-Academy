@@ -150,4 +150,17 @@ def update_profile():
         return jsonify({ "error": str(e) }), 500
     
 
+@api.route('/reset-password', methods=['PUT'])
+@jwt_required()
+def reset_password():
+    password = request.json.get("password", None)
+    current_user_email = get_jwt_identity()
+    user = User.query.filter_by(email=current_user_email).first()
+
+    if user is None:
+        return jsonify({ "error": "Este usuario no existe" }), 401
     
+    user.password = password
+    db.session.commit()
+
+    return jsonify({ "success": True })  
