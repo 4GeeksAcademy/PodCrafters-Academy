@@ -1,12 +1,13 @@
 from flask_sqlalchemy import SQLAlchemy
 from sqlalchemy import LargeBinary
+
 db = SQLAlchemy()
 
 class User(db.Model):
     __tablename__ = "user"
     id = db.Column(db.Integer, primary_key=True)
     email = db.Column(db.String(80), unique=True, nullable=False)
-    password = db.Column(db.String(80), nullable=False)  # No es necesario que sea único
+    password = db.Column(db.String(80), nullable=False)
     userName = db.Column(db.String(80), unique=True, nullable=False)
     firstName = db.Column(db.String(80), nullable=False)
     lastName = db.Column(db.String(80), nullable=False)
@@ -55,13 +56,14 @@ class Curso(db.Model):
 class Compra(db.Model):
     __tablename__ = "compra"
     id = db.Column(db.Integer, primary_key=True)
-    id_curso = db.Column(db.Integer, db.ForeignKey ("curso.id"), nullable=False)
-    id_usuario = db.Column(db.Integer, db.ForeignKey ("user.id"), nullable=False)
+    id_curso = db.Column(db.Integer, db.ForeignKey("curso.id"), nullable=False)
+    id_usuario = db.Column(db.Integer, db.ForeignKey("user.id"), nullable=False)
     metodo_pago = db.Column(db.Enum("tarjeta_credito", "transferencia", "financiacion", name="pago_enum"), nullable=False)
     fecha_pago = db.Column(db.String(40), nullable=False)
     estado = db.Column(db.String(20), nullable=False)
     descuento = db.Column(db.Boolean, nullable=True)
     cupon = db.Column(db.String(20), nullable=True)
+    stripe_transaction_id = db.Column(db.String(255), nullable=True)
 
     def __repr__(self):
         return f'<Compra {self.id}>'

@@ -2,11 +2,15 @@ import React, { useContext, useState, useEffect } from "react";
 import { Context } from "../store/appContext";
 import "../../styles/carrito.css";
 import PopupPay from "../component/popupPay";
+import { loadStripe } from "@stripe/stripe-js";
+import { Elements } from "@stripe/react-stripe-js";
 
 import PodCrafterIniciacion from "../../../../public/images/PodCrafterIniciacion.jpg";
 import PodCrafterIntermedio from "../../../../public/images/PodCrafterIntermedio.jpg";
 import PodCrafterExperimentado from "../../../../public/images/PodCrafterExperimentado.jpg";
 import PodCrafterMaster from "../../../../public/images/PodCrafterMaster.jpg";
+
+const stripePromise = loadStripe("pk_test_51OtD4EFFwdFDHeIPtBKPxYZ3pwXDVzhW6EtRLlOR9pooJ5B9qCdKXPJNYqwNBWCSsGIlr9MFOmsUZMbJgHiIB41u00fKmv0hKV");
 
 export const Carrito = () => {
     const { store } = useContext(Context);
@@ -94,7 +98,11 @@ export const Carrito = () => {
                 {/* Contenido del footer */}
             </div>
 
-            {showPopup && <PopupPay handleClosePopup={handleClosePopup} />}
+            {showPopup && (
+                <Elements stripe={stripePromise}>
+                    <PopupPay handleClosePopup={handleClosePopup} />
+                </Elements>
+            )}
         </div>
     );
 };

@@ -1,8 +1,8 @@
 """empty message
 
-Revision ID: 284073d160b7
+Revision ID: eec04943fec0
 Revises: 
-Create Date: 2024-03-12 19:06:32.892165
+Create Date: 2024-03-12 20:54:49.292709
 
 """
 from alembic import op
@@ -10,7 +10,7 @@ import sqlalchemy as sa
 
 
 # revision identifiers, used by Alembic.
-revision = '284073d160b7'
+revision = 'eec04943fec0'
 down_revision = None
 branch_labels = None
 depends_on = None
@@ -31,6 +31,12 @@ def upgrade():
     sa.Column('last_Name', sa.String(length=40), nullable=False),
     sa.Column('email', sa.String(length=40), nullable=False),
     sa.PrimaryKeyConstraint('id')
+    )
+    op.create_table('subscribe',
+    sa.Column('id', sa.Integer(), nullable=False),
+    sa.Column('email', sa.String(length=80), nullable=False),
+    sa.PrimaryKeyConstraint('id'),
+    sa.UniqueConstraint('email')
     )
     op.create_table('user',
     sa.Column('id', sa.Integer(), nullable=False),
@@ -63,6 +69,7 @@ def upgrade():
     sa.Column('estado', sa.String(length=20), nullable=False),
     sa.Column('descuento', sa.Boolean(), nullable=True),
     sa.Column('cupon', sa.String(length=20), nullable=True),
+    sa.Column('stripe_transaction_id', sa.String(length=255), nullable=True),
     sa.ForeignKeyConstraint(['id_curso'], ['curso.id'], ),
     sa.ForeignKeyConstraint(['id_usuario'], ['user.id'], ),
     sa.PrimaryKeyConstraint('id')
@@ -139,6 +146,7 @@ def downgrade():
     op.drop_table('contenido_curso')
     op.drop_table('compra')
     op.drop_table('user')
+    op.drop_table('subscribe')
     op.drop_table('mas_informacion')
     op.drop_table('curso')
     # ### end Alembic commands ###

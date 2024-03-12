@@ -13,7 +13,11 @@ from api.commands import setup_commands
 from flask_cors import CORS
 from flask_jwt_extended import JWTManager, create_access_token
 from flask_mail import Mail, Message
+import stripe
 # from models import Person
+
+stripe.api_key = "sk_test_51OtD4EFFwdFDHeIPh2VYkzCi9okYE4ndaNHSP3OSpP8SfLyAJwoQJ1RSXpW48z1kdqtP15Xf2nAxZuVHrbYr1krK00Djf2cSDh"
+
 
 ENV = "development" if os.getenv("FLASK_DEBUG") == "1" else "production"
 static_file_dir = os.path.join(os.path.dirname(
@@ -96,6 +100,22 @@ def contact():
         return jsonify({ "message": "¡Gracias por tu mensaje! Nos pondremos en contacto contigo pronto." }), 200
     except Exception as e:
         return jsonify({ "error": str(e) }), 500
+    
+    
+
+@app.route('/create-payment', methods=['POST'])
+def create_payment():
+    total_amount = 10000 
+    try:
+        payment_intent = stripe.PaymentIntent.create(
+            amount=total_amount,
+            currency='usd',
+            payment_method_types=['card'],
+            description='Compra de cursos en MyApp'
+        )
+        return jsonify({'clientSecret': payment_intent.client_secret}), 200
+    except Exception as e:
+        return jsonify({'error': str(e)}), 500
 
 @app.route('/send-email', methods=['POST'])
 def send_email():
