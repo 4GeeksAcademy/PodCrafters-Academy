@@ -32,10 +32,10 @@ const PopupPay = ({ handleClosePopup }) => {
         });
 
         if (error) {
-            console.error("[error]", error);
+            console.error(error);
             setErrorMessage(error.message);
         } else {
-            console.log("[PaymentMethod]", paymentMethod);
+            console.log(paymentMethod);
             if (isMounted) { 
                 handleClosePopup();
                 setShowSuccessMessage(true); 
@@ -46,7 +46,6 @@ const PopupPay = ({ handleClosePopup }) => {
     return (
         <div className="popup-container">
             <div className="popup-pay">
-                <button className="close-btn" onClick={handleClosePopup}></button>
                 <div className="close-icon" onClick={handleClosePopup}></div>
                 <h2>Completa tu pago</h2>
                 <form onSubmit={handleSubmit}>
