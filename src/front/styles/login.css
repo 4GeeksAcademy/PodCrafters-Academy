@@ -1,9 +1,11 @@
 .cardContainer {
   background-color: #e2f4f4;
 }
+
 .card {
   border: none;
 }
+
 .btnIniciarSesion {
   background-color: #ff7f0e;
   color: white;

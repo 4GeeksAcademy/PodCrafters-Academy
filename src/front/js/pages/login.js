@@ -32,8 +32,9 @@ export const Login = () => {
                                         <h1 className="text-center mt-5">¡Bienvenido de nuevo!</h1>
                                     </div>
                                     <form onSubmit={handleLoginSubmit}>
-                                        <div className="col">
-                                            <div className="form-floating mb-3">
+                                        <div className="d-flex flex-row align-items-center mb-2">
+                                            <i className="fas fa-envelope fa-lg me-3 fa-fw"></i>
+                                            <div className="form-floating flex-fill mb-0">
                                                 <input
                                                     type="email"
                                                     className="form-control"
@@ -47,20 +48,23 @@ export const Login = () => {
                                             </div>
                                         </div>
                                         <div className="col">
-                                            <div className="form-floating mb-3">
-                                                <input
-                                                    type="password"
-                                                    className="form-control"
-                                                    name="password"
-                                                    value={password}
-                                                    onChange={(e) => setPassword(e.target.value)}
-                                                    placeholder="Contraseña"
-                                                    required
-                                                />
-                                                <label htmlFor="password" className="form-label">Tu contraseña</label>
+                                            <div className="d-flex flex-row align-items-center mb-2">
+                                                <i className="fas fa-lock fa-lg me-3 fa-fw"></i>
+                                                <div className="form-floating flex-fill mb-0">
+                                                    <input
+                                                        type="password"
+                                                        className="form-control"
+                                                        name="password"
+                                                        value={password}
+                                                        onChange={(e) => setPassword(e.target.value)}
+                                                        placeholder="Contraseña"
+                                                        required
+                                                    />
+                                                    <label htmlFor="password" className="form-label">Tu contraseña</label>
+                                                </div>
                                             </div>
                                         </div>
-                                        <div className="col mt-3">
+                                        <div className="col mt-3 ms-2">
                                             <div className="form-check">
                                                 <input className="form-check-input" type="checkbox" value="" name="remember_me" />
                                                 <label className="form-check-label text-secondary" htmlFor="remember_me">
