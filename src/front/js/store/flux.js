@@ -259,9 +259,25 @@ const getState = ({ getStore, getActions, setStore }) => {
 				} catch (error) {
 					console.error('Error:', error);
 				}
-			}
+			},
+
+			createPayment: async () => {
+                try {
+                    const response = await fetch(process.env.BACKEND_URL + '/create-payment', {
+                        method: 'POST',
+                        headers: {
+                            'Content-Type': 'application/json'
+                        }
+                    });
+                    const data = await response.json();
+                    return data;
+                } catch (error) {
+                    console.error('Error:', error);
+                    throw new Error('Error al crear el pago');
+                }
+            }
 		}
 	};
 };
 
-export default getState;			
+export default getState;

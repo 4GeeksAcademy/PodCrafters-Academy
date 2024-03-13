@@ -6,7 +6,7 @@ import "../../styles/popupPay.css";
 const PopupPay = ({ handleClosePopup }) => {
     const stripe = useStripe();
     const elements = useElements();
-    const { store } = useContext(Context);
+    const { actions } = useContext(Context);
     const [errorMessage, setErrorMessage] = useState(null);
     const [showSuccessMessage, setShowSuccessMessage] = useState(false); 
     const [isMounted, setIsMounted] = useState(true); 
@@ -16,6 +16,18 @@ const PopupPay = ({ handleClosePopup }) => {
             setIsMounted(false); 
         };
     }, []);
+
+    const handlePagar = async () => {
+        try {
+            const { sessionId } = await actions.createPayment();
+            stripe.redirectToCheckout({
+                sessionId: sessionId
+            });
+        } catch (error) {
+            console.error('Error:', error);
+            setErrorMessage('Error al procesar el pago');
+        }
+    };
 
     const handleSubmit = async (event) => {
         event.preventDefault();
@@ -53,7 +65,7 @@ const PopupPay = ({ handleClosePopup }) => {
                         <CardElement className="card-element" />
                     </div>
                     {errorMessage && <div className="error-message">{errorMessage}</div>}
-                    <button type="submit" className="btn-pay" disabled={!stripe}>Pagar</button>
+                    <button className="btn-pay" onClick={handlePagar}>Pagar</button>
                 </form>
             </div>
             {showSuccessMessage && ( 
@@ -67,3 +79,4 @@ const PopupPay = ({ handleClosePopup }) => {
 };
 
 export default PopupPay;
+
