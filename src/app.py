@@ -17,6 +17,7 @@ import stripe
 # from models import Person
 
 stripe.api_key = "sk_test_51OtD4EFFwdFDHeIPh2VYkzCi9okYE4ndaNHSP3OSpP8SfLyAJwoQJ1RSXpW48z1kdqtP15Xf2nAxZuVHrbYr1krK00Djf2cSDh"
+endpoint_secret = 'whsec_7a7bc3f6132885a58280405b5de172828a55c494a09c1a37d79eab8ff58e8541' #NUEVO
 
 
 ENV = "development" if os.getenv("FLASK_DEBUG") == "1" else "production"
@@ -164,3 +165,29 @@ def subscribe():
         return jsonify({ "success": True, "message": "Subscription successful for email: {}".format(email)}), 200
     except Exception as e:
         return jsonify({ "error": str(e) }), 500
+
+@app.route('/webhook', methods=['POST'])
+def webhook():
+    event = None
+    payload = request.data
+    sig_header = request.headers['STRIPE_SIGNATURE']
+
+    try:
+        event = stripe.Webhook.construct_event(
+            payload, sig_header, endpoint_secret
+        )
+    except ValueError as e:
+        # Invalid payload
+        raise e
+    except stripe.error.SignatureVerificationError as e:
+        # Invalid signature
+        raise e
+
+    # Handle the event
+    if event['type'] == 'payment_intent.succeeded':
+      payment_intent = event['data']['object']
+    # ... handle other event types
+    else:
+      print('Unhandled event type {}'.format(event['type']))
+
+    return jsonify(success=True)
