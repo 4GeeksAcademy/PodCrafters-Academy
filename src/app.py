@@ -122,7 +122,7 @@ def create_payment():
                 'quantity': 1,
             }],
             mode='payment',
-            success_url='https://ubiquitous-dollop-69gv5v4r6x6wc5jr5-3000.app.github.dev/',  
+            success_url='https://ubiquitous-dollop-69gv5v4r6x6wc5jr5-3000.app.github.dev/conteoregresivo',  
             cancel_url='https://ubiquitous-dollop-69gv5v4r6x6wc5jr5-3000.app.github.dev/',   
         )
 
