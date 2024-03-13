@@ -21,6 +21,7 @@ import { Login } from "./pages/login";
 import { SignUp } from "./pages/signup";
 import { ForgotPassword } from "./pages/forgotPassword";
 import { Recover } from "./pages/recover";
+import ConteoRegresivo from "./pages/conteoRegresivo";
 import FAQ from "./pages/faq";
 //create your first component
 const Layout = () => {
@@ -47,6 +48,7 @@ const Layout = () => {
                     <Route element={<Login />} path="/login" />
                     <Route element={<SignUp />} path="/signup" />
                     <Route element={<ForgotPassword />} path="/forgotPassword" />
+                    <Route element={<ConteoRegresivo />} path="/conteoRegresivo" />
                     <Route element={<Recover />} path="/recover" />
                     <Route element={<FAQ />} path="/faq" />
                     <Route element={<h1>Not found!</h1>} />
