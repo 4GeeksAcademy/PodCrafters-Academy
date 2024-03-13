@@ -14,6 +14,7 @@ from flask_cors import CORS
 from flask_jwt_extended import JWTManager, create_access_token
 from flask_mail import Mail, Message
 import stripe
+# from models import Person
 
 stripe.api_key = "sk_test_51OtD4EFFwdFDHeIPh2VYkzCi9okYE4ndaNHSP3OSpP8SfLyAJwoQJ1RSXpW48z1kdqtP15Xf2nAxZuVHrbYr1krK00Djf2cSDh"
 endpoint_secret = 'whsec_7a7bc3f6132885a58280405b5de172828a55c494a09c1a37d79eab8ff58e8541' #NUEVO
@@ -71,7 +72,7 @@ def sitemap():
         return generate_sitemap(app)
     return send_from_directory(static_file_dir, 'index.html')
 
-
+# any other endpoint will try to serve it like a static file
 
 
 @app.route('/<path:path>', methods=['GET'])
@@ -79,7 +80,7 @@ def serve_any_other_file(path):
     if not os.path.isfile(os.path.join(static_file_dir, path)):
         path = 'index.html'
     response = send_from_directory(static_file_dir, path)
-    response.cache_control.max_age = 0  
+    response.cache_control.max_age = 0  # avoid cache memory
     return response
 
 @app.route('/contact', methods=['POST'])
@@ -102,35 +103,20 @@ def contact():
         return jsonify({ "error": str(e) }), 500
     
     
-from flask import request
-from flask_jwt_extended import create_access_token
-from api.models import User, Subscribe
 
 @app.route('/create-payment', methods=['POST'])
 def create_payment():
+    total_amount = 10000 
     try:
-        total_amount = 10000 
-        session = stripe.checkout.Session.create(
+        payment_intent = stripe.PaymentIntent.create(
+            amount=total_amount,
+            currency='usd',
             payment_method_types=['card'],
-            line_items=[{
-                'price_data': {
-                    'currency': 'usd',
-                    'unit_amount': total_amount,
-                    'product_data': {
-                        'name': 'Example Product',
-                    },
-                },
-                'quantity': 1,
-            }],
-            mode='payment',
-            success_url='https://ubiquitous-dollop-69gv5v4r6x6wc5jr5-3000.app.github.dev/',  
-            cancel_url='https://ubiquitous-dollop-69gv5v4r6x6wc5jr5-3000.app.github.dev/',   
+            description='Compra de cursos en MyApp'
         )
-
-        return jsonify({'sessionId': session['id']}), 200
+        return jsonify({'clientSecret': payment_intent.client_secret}), 200
     except Exception as e:
         return jsonify({'error': str(e)}), 500
-
 
 @app.route('/send-email', methods=['POST'])
 def send_email():
