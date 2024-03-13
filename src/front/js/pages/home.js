@@ -23,13 +23,13 @@ export const Home = () => {
 				if (entries[0].isIntersecting) {
 					setTimeout(() => {
 						videoRef.current.play();
-					}, 1000);// 1000ms = 1s - segundos de espera antes de reproducir el video
+					}, 1000);
 				} else {
 					videoRef.current.pause();
 				}
 			},
 			{
-				threshold: 0.5, // 50% de visibilidad para reproducir el video
+				threshold: 0.5, 
 			}
 		);
 

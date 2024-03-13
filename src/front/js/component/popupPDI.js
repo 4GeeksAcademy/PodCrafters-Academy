@@ -8,7 +8,7 @@ const PopupPDI = ({ curso, handleClosePopup }) => {
     const [cantidad, setCantidad] = useState(1);
 
     const handleAgregarCarrito = () => {
-        actions.agregarAlCarrito(curso); // Solo pasa el curso, la cantidad es manejada por el estado local
+        actions.agregarAlCarrito(curso); 
     };
 
     const handleIncrementarCantidad = () => {

@@ -36,10 +36,10 @@
 
 
 .scrollable-container {
-    max-height: 300px; /* ajusta esta altura según tus necesidades */
-    overflow-y: auto; /* activa la barra de desplazamiento vertical cuando sea necesario */
+    max-height: 300px; 
+    overflow-y: auto; 
 }
 
 .footer {
-    margin-top: 50px; /* ajusta el valor según sea necesario para separar el footer del botón "Pagar" */
+    margin-top: 50px; 
 }
