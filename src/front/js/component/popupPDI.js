@@ -9,6 +9,7 @@ const PopupPDI = ({ curso, handleClosePopup }) => {
 
     const handleAgregarCarrito = () => {
         actions.agregarAlCarrito(curso); 
+
     };
 
     const handleIncrementarCantidad = () => {
