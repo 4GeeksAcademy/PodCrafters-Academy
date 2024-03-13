@@ -60,7 +60,7 @@
 
 .subscribe button {
   width: 100px;
-  background-color: #ffaa00;
+  background-color: #ff7f0e;
   color: #e2f4f4;
   border: none;
   cursor: pointer;
@@ -69,5 +69,5 @@
 }
 
 .subscribe button:hover {
-  background-color: #cca300;
+  background-color: #ff9e4a;
 }
