@@ -218,7 +218,7 @@ const getState = ({ getStore, getActions, setStore }) => {
 					})
 			},
 			resetPassword: (token, password) => {
-				fetch(process.env.BACKEND_URL + 'api/reset-password', {
+				fetch(process.env.BACKEND_URL + '/api/reset-password', {
 					method: 'PUT',
 					body: JSON.stringify({ password }),
 					mode: 'cors',

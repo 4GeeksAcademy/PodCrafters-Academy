@@ -8,7 +8,7 @@ export const Modulo = () => {
         actions.getModulos();
     }, []);
 
-    // Supongamos que quieres mostrar el módulo con id_modulo igual a 1
+    
     const moduloToShow = store.modulo.find(modulo => modulo.id=== 1);
 
     return (
