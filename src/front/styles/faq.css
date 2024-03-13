@@ -1,0 +1,39 @@
+.faq {
+  background-color: transparent;
+}
+
+.faqHead {
+  padding-top: 50px;
+  padding-bottom: 50px;
+  text-align: center;
+  font-size: 3rem;
+  font-weight: 900;
+  color: #081f2e;
+}
+
+.faqContenido {
+  position: relative;
+  z-index: 1;
+}
+
+.faqContenido .card {
+  position: relative;
+  margin-bottom: 0.5rem;
+  border-radius: 10px;
+  background-color: transparent;
+}
+
+.faqContenido .card .card-header-faq {
+  background-color: #081f2e;
+  padding: 1rem;
+  cursor: pointer;
+  border-radius: 10px;
+  color: #e2f4f4;
+}
+
+.card-body-faq {
+  padding: 10px;
+  border-radius: 10px;
+  background-color: #e2f4f4;
+  border: 2px solid #081f2e;
+}

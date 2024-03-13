@@ -44,7 +44,7 @@ export const Navbar = () => {
                     <Link to="/sobreNosotros">
                         <button className="btn btnCursos">Sobre nosotros</button>
                     </Link>
-                    <Link to="/contacto">
+                    <Link to="/faq">
                         <button className="btn btnCursos">FAQ</button>
                     </Link>
                     {store.user && (

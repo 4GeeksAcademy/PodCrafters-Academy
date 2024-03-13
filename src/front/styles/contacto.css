@@ -1,0 +1,50 @@
+/* Styles for the contact form */
+.form-control {
+  border-color: #081f2e;
+}
+.btnContact {
+  width: 200px;
+  height: 50px;
+  background-color: #ff7f0e;
+  color: #e2f4f4;
+  border: none;
+  cursor: pointer;
+  margin-top: 20px;
+  border-radius: 4px;
+}
+
+.alert-success {
+  background-color: #b0e57c;
+  border-color: #b0e57c;
+  color: #081f2e;
+}
+
+.contactHead {
+  padding-top: 50px;
+  padding-bottom: 50px;
+  text-align: center;
+  font-size: 3rem;
+  font-weight: 900;
+  color: #081f2e;
+}
+
+#mensaje {
+  height: 200px;
+}
+
+.tituloInfo {
+  font-size: 2rem;
+  font-weight: 900;
+  color: #081f2e;
+}
+
+.cuerpoInfo {
+  font-size: 1.2rem;
+  color: #081f2e;
+}
+
+.cardInfo {
+  border: 1px solid #081f2e;
+  border-radius: 5px;
+  padding: 20px;
+}

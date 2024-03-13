@@ -1,6 +1,9 @@
-/* 
-    General Styles used on every website (Don't Repeat Yourself)
-*/
+@import url("https://fonts.googleapis.com/css2?family=Comfortaa:wght@300..700&display=swap");
+
+* {
+  font-family: "Comfortaa", sans-serif;
+}
+
 .main {
   background-color: #e2f4f4;
 }

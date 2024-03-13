@@ -91,13 +91,12 @@ export const Home = () => {
 								Inscríbete ahora en nuestra formación en vivo, probada y especializada en podcasting.
 								<p>Únete a la industria del podcasting y alcanza tus metas profesionales.</p>
 								<br />
-								<p className="Pod">¡Tu futuro comienza aquí!</p>
+								<a href="/signup" className="sobreNosotrosBtn">¡Tu futuro comienza aquí!</a>
 							</div>
 						</div>
 						<div className="col-6 ">
 							<video
 								ref={videoRef}
-								loop
 								muted
 								controls
 								autoPlay
@@ -119,7 +118,7 @@ export const Home = () => {
 								<img
 									src={podcasterSobreNosotrosMain}
 									alt="Sobre Nosotros"
-									style={{ width: '416px', height: '400px' }}
+									style={{ width: '400px', height: '400px' }}
 									className="sobreNosotrosImg"
 								/>
 							</div>
@@ -190,7 +189,7 @@ export const Home = () => {
 							<div className="card col-4 cardBody" >
 								<img src={PodCrafterMaster} className="card-img-top" alt="..." />
 								<div className="cardText">
-									<h5 className="cardTitle">PodCrafter Master</h5>
+									<h5 className="cardTitle">PodCrafter <br /> Master</h5>
 									<p className="cardSubTitle">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
 								</div>
 								<a href="#" className="btn btnMainCurso">Saber más</a>

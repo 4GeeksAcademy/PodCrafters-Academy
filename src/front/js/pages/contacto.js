@@ -1,26 +1,19 @@
 import React, { useState, useContext } from "react";
 import { Context } from "../store/appContext";
 import { Modal, Button } from "react-bootstrap";
+import { Link } from "react-router-dom";
+import "../../styles/contacto.css";
 
 const Contacto = () => {
-    const [faq1, setFaq1] = useState(false);
-    const [faq2, setFaq2] = useState(false);
-    const [faq3, setFaq3] = useState(false);
-    const [faq4, setFaq4] = useState(false);
     const [formData, setFormData] = useState({
         nombre: "",
         email: "",
         mensaje: "",
-        comoNosEncontraste: ""
+        comoNosEncontraste: "",
     });
     const [showAlert, setShowAlert] = useState(false);
     const [alertMessage, setAlertMessage] = useState("");
     const { actions } = useContext(Context);
-
-    const toggleFaq1 = () => setFaq1(!faq1);
-    const toggleFaq2 = () => setFaq2(!faq2);
-    const toggleFaq3 = () => setFaq3(!faq3);
-    const toggleFaq4 = () => setFaq4(!faq4);
 
     const handleSubmit = async (e) => {
         e.preventDefault();
@@ -29,7 +22,7 @@ const Contacto = () => {
             nombre: "",
             email: "",
             mensaje: "",
-            comoNosEncontraste: ""
+            comoNosEncontraste: "",
         });
         setShowAlert(true);
         setAlertMessage("Tu mensaje ha sido enviado correctamente");
@@ -43,97 +36,96 @@ const Contacto = () => {
     }
 
     return (
-        <div className="container-fluid p-3" style={{ backgroundColor: "#E2F4F4", paddingBottom: "50px" }}>
-            <h2 className="mt-5">Contacto</h2>
+        <div className="container">
+            <div className="contactHead">Contacta con nosotros</div>
             <div className="row">
-                <div className="col-md-6">
-                    <form onSubmit={handleSubmit}>
-                        <div className="mb-3">
-                            <label htmlFor="nombre" className="form-label">Nombre</label>
-                            <input type="text" className="form-control" id="nombre" value={formData.nombre} onChange={handleChange} required />
+                <div className="col-6">
+                    <form className="formContact" onSubmit={handleSubmit}>
+                        <div className="d-flex flex-row align-items-center mb-2">
+                            <i className="fas fa-user fa-lg me-3 fa-fw"></i>
+                            <div className="form-floating flex-fill mb-0">
+                                <input
+                                    type="text"
+                                    className="form-control"
+                                    name="nombre"
+                                    id="nombre"
+                                    placeholder="Tu nombre"
+                                    onChange={handleChange}
+                                    value={formData.nombre}
+                                    required
+                                />
+                                <label htmlFor="nombre" className="form-label">Tu nombre</label>
+                            </div>
                         </div>
-                        <div className="mb-3">
-                            <label htmlFor="email" className="form-label">Email</label>
-                            <input type="email" className="form-control" id="email" value={formData.email} onChange={handleChange} required />
+                        <div className="d-flex flex-row align-items-center mb-2">
+                            <i className="fas fa-envelope fa-lg me-3 fa-fw"></i>
+                            <div className="form-floating flex-fill mb-0">
+                                <input
+                                    type="email"
+                                    className="form-control"
+                                    name="email"
+                                    id="email"
+                                    placeholder="Tu correo electrónico"
+                                    onChange={handleChange}
+                                    value={formData.email}
+                                    required
+                                />
+                                <label htmlFor="email" className="form-label">Tu correo electrónico</label>
+                            </div>
                         </div>
-                        <div className="mb-3">
-                            <label htmlFor="mensaje" className="form-label">Mensaje</label>
-                            <textarea className="form-control" id="mensaje" value={formData.mensaje} onChange={handleChange} rows="5" required></textarea>
+                        <div className="d-flex flex-row align-items-center mb-2">
+                            <i className="fas fa-tag fa-lg me-3 fa-fw"></i>
+                            <div className="form-floating flex-fill mb-0">
+                                <select
+                                    className="form-select"
+                                    name="comoNosEncontraste"
+                                    id="comoNosEncontraste"
+                                    value={formData.comoNosEncontraste}
+                                    onChange={handleChange}
+                                    required
+                                >
+                                    <option value="">Selecciona una opción</option>
+                                    <option value="redes-sociales">Redes Sociales</option>
+                                    <option value="busqueda-web">Búsqueda en la web</option>
+                                    <option value="referencia">Referencia de un amigo</option>
+                                    <option value="otro">Otro</option>
+                                </select>
+                                <label htmlFor="comoNosEncontraste" className="form-label">¿Cómo nos encontraste?</label>
+                            </div>
                         </div>
-                        <div className="mb-3">
-                            <label htmlFor="como-nos-encontraste" className="form-label">¿Cómo nos encontraste?</label>
-                            <select className="form-select" id="comoNosEncontraste" value={formData.comoNosEncontraste} onChange={handleChange} required>
-                                <option value="">Selecciona una opción</option>
-                                <option value="redes-sociales">Redes Sociales</option>
-                                <option value="busqueda-web">Búsqueda en la web</option>
-                                <option value="referencia">Referencia de un amigo</option>
-                                <option value="otro">Otro</option>
-                            </select>
+                        <div className="d-flex flex-row align-items-center mb-2">
+                            <i className="fas fa-pencil-alt fa-lg me-3 fa-fw"></i>
+                            <div className="form-floating flex-fill mb-0">
+                                <textarea
+                                    className="form-control"
+                                    name="mensaje"
+                                    id="mensaje"
+                                    placeholder="Escribe tu mensaje"
+                                    onChange={handleChange}
+                                    value={formData.mensaje}
+                                    required
+                                ></textarea>
+                                <label htmlFor="mensaje" className="form-label">Escribe tu mensaje</label>
+                                <div className="col-12">
+                                    <button type="submit" className="btn btnContact">Enviar mensaje</button>
+                                </div>
+                                {showAlert && <div className="alert alert-success mt-4" role="alert">{alertMessage}</div>}
+                            </div>
                         </div>
-                        <button type="submit" className="btn btn-primary" style={{ backgroundColor: "#E2F4F4", color: "#000" }}>Enviar</button>
+
                     </form>
-                    <Modal show={showAlert} onHide={() => setShowAlert(false)} centered>
-                        <Modal.Header closeButton>
-                            <Modal.Title>¡Mensaje enviado!</Modal.Title>
-                        </Modal.Header>
-                        <Modal.Body>
-                            {alertMessage}
-                            <br />
-                            <p>Mientras te contactamos, dale un vistazo a nuestros cursos!</p>
-                            <Button variant="primary" href="/cursos">Ver cursos</Button>
-                        </Modal.Body>
-                        <Modal.Footer>
-                            <Button variant="secondary" onClick={() => setShowAlert(false)}>
-                                Cerrar
-                            </Button>
-                        </Modal.Footer>
-                    </Modal>
+
                 </div>
-                <div className="col-md-6">
-                    <div className="card border-0" style={{ backgroundColor: "#E2F4F4" }}>
-                        <div className="card-body">
-                            <h5 className="card-title">Información de contacto</h5>
-                            <p className="card-text">Puedes contactarnos a través de los siguientes medios:</p>
-                            <ul className="list-group list-group-flush">
-                                <li className="list-group-item" style={{ backgroundColor: "#E2F4F4" }}><strong>Teléfono:</strong> 697-410-543 </li>
-                                <li className="list-group-item" style={{ backgroundColor: "#E2F4F4" }}><strong>Email:</strong> podcraftersacademy@gmail.com </li>
-                                <li className="list-group-item" style={{ backgroundColor: "#E2F4F4" }}><strong>Dirección:</strong> Calle Salamanca 34, 28014. Madrid. España</li>
-                            </ul>
+                <div className="col-6">
+                    <div className="card">
+                        <div className="cardInfo">
+                            <div className="tituloInfo">Información de contacto</div>
+                            <p className="cuerpoInfo">Puedes contactarnos a través de los siguientes medios:</p>
+                            <li className="list-group-item"><strong>Teléfono:</strong> +34 697 41 05 43 </li>
+                            <li className="list-group-item"><strong>Email:</strong> podcraftersacademy@gmail.com </li>
+                            <li className="list-group-item"><strong>Dirección:</strong> Calle Salamanca 34, 28014. Madrid. España</li>
                         </div>
                     </div>
-                </div>
-            </div>
-            <div className="container mt-5" style={{ backgroundColor: "#E2F4F4", paddingBottom: "50px" }}>
-                <h2>Preguntas frecuentes</h2>
-                <div className="list-group">
-                    <div className="list-group-item d-flex justify-content-between align-items-center" style={{ backgroundColor: "#E2F4F4" }}>
-                        ¿Cómo puedo contactar con soporte técnico?
-                        <span className="badge bg-dark rounded-pill" onClick={toggleFaq1}>{faq1 ? "-" : "+"}</span>
-                    </div>
-                    {faq1 && <div className="list-group-item" style={{ backgroundColor: "#E2F4F4" }}>
-                        Puedes contactar con nuestro equipo de soporte técnico enviando un correo electrónico a podcraftersacademy@gmail.com o llamando al 697-410-543.
-                    </div>}
-                    <div className="list-group-item d-flex justify-content-between align-items-center" style={{ backgroundColor: "#E2F4F4" }}>
-                        ¿Cuál es el horario de atención al cliente?
-                        <span className="badge bg-dark rounded-pill" onClick={toggleFaq2}>{faq2 ? "-" : "+"}</span>
-                    </div>
-                    {faq2 && <div className="list-group-item" style={{ backgroundColor: "#E2F4F4" }}>
-                        Nuestro horario de atención al cliente es de lunes a viernes de 9:00 a.m. a 5:00 p.m. (hora local).
-                    </div>}
-                    <div className="list-group-item d-flex justify-content-between align-items-center" style={{ backgroundColor: "#E2F4F4" }}>
-                        ¿Cómo puedo realizar un seguimiento de mi pedido?
-                        <span className="badge bg-dark rounded-pill" onClick={toggleFaq3}>{faq3 ? "-" : "+"}</span>
-                    </div>
-                    {faq3 && <div className="list-group-item" style={{ backgroundColor: "#E2F4F4" }}>
-                        Puedes realizar un seguimiento de tu pedido iniciando sesión en tu cuenta en nuestro sitio web y accediendo a la sección "Mis cursos".
-                    </div>}
-                    <div className="list-group-item d-flex justify-content-between align-items-center" style={{ backgroundColor: "#E2F4F4" }}>
-                        ¿Cuál es la política de devolución?
-                        <span className="badge bg-dark rounded-pill" onClick={toggleFaq4}>{faq4 ? "-" : "+"}</span>
-                    </div>
-                    {faq4 && <div className="list-group-item" style={{ backgroundColor: "#E2F4F4" }}>
-                        Nuestra política de devolución permite devoluciones dentro de los 30 días siguientes a la compra. Por favor, contactanos para obtener más información.
-                    </div>}
                 </div>
             </div>
         </div>
