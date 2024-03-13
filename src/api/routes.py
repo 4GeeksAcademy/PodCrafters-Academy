@@ -131,6 +131,36 @@ def get_modulos():
     modulo = Modulo.query.all() 
     return jsonify([modulo.serialize() for modulo in modulo])
 
+@api.route('/compra', methods=['POST'])
+def buy_course():
+    try:
+        id_curso = request.json.get('id_curso')
+        id_usuario = request.json.get('id_usuario')
+        metodo_pago = request.json.get('metodo_pago')
+        fecha_pago = request.json.get('fecha_pago')
+        estado = request.json.get('estado')
+        descuento = request.json.get('descuento')
+        cupon = request.json.get('cupon')
+        stripe_transaction_id = request.json.get('stripe_transaction_id')
+        curso = Curso.query.get(id_curso)
+        usuario = User.query.get(id_usuario)
+        if curso is None or usuario is None:
+            return jsonify({'error': 'Curso or Usuario does not exist'}), 400
+        compra = Compra(
+            id_curso=id_curso,
+            id_usuario=id_usuario,
+            metodo_pago=metodo_pago,
+            fecha_pago=fecha_pago,
+            estado=estado,
+            descuento=descuento,
+            cupon=cupon,
+            stripe_transaction_id=stripe_transaction_id
+        )
+        db.session.add(compra)
+        db.session.commit()
+        return jsonify({'message': 'Course purchased successfully'}), 200
+    except Exception as e:
+        return jsonify({'error': str(e)}), 500
 
 @api.route('/update_profile', methods=['PUT'])
 @jwt_required()

@@ -261,13 +261,14 @@ const getState = ({ getStore, getActions, setStore }) => {
 				}
 			},
 
-			createPayment: async () => {
+			createPayment: async (total) => {
                 try {
                     const response = await fetch(process.env.BACKEND_URL + '/create-payment', {
                         method: 'POST',
                         headers: {
                             'Content-Type': 'application/json'
-                        }
+                        },
+						body: JSON.stringify({ total })
                     });
                     const data = await response.json();
                     return data;

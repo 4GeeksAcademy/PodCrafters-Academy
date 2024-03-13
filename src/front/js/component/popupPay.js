@@ -3,7 +3,7 @@ import { Context } from "../store/appContext";
 import { CardElement, useStripe, useElements } from "@stripe/react-stripe-js";
 import "../../styles/popupPay.css";
 
-const PopupPay = ({ handleClosePopup }) => {
+const PopupPay = ({ handleClosePopup, total }) => {
     const stripe = useStripe();
     const elements = useElements();
     const { actions } = useContext(Context);
@@ -19,7 +19,7 @@ const PopupPay = ({ handleClosePopup }) => {
 
     const handlePagar = async () => {
         try {
-            const { sessionId } = await actions.createPayment();
+            const { sessionId } = await actions.createPayment(total);
             stripe.redirectToCheckout({
                 sessionId: sessionId
             });

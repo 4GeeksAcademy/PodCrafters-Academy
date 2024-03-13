@@ -72,7 +72,7 @@ class Compra(db.Model):
         return {
             "id": self.id,
             "id_curso": self.id_curso,
-            "id_usuario": self.id_usuario
+            "id_usuario": self.id_usuariopipe
         }
 
 class Desestimiento(db.Model):

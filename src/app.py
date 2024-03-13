@@ -17,7 +17,7 @@ import stripe
 # from models import Person
 
 stripe.api_key = "sk_test_51OtD4EFFwdFDHeIPh2VYkzCi9okYE4ndaNHSP3OSpP8SfLyAJwoQJ1RSXpW48z1kdqtP15Xf2nAxZuVHrbYr1krK00Djf2cSDh"
-endpoint_secret = 'whsec_7a7bc3f6132885a58280405b5de172828a55c494a09c1a37d79eab8ff58e8541' #NUEVO
+endpoint_secret = 'whsec_XtrepXaxTXc5XsIsyctTHSqCt2ymbGbD' #NUEVO
 
 
 ENV = "development" if os.getenv("FLASK_DEBUG") == "1" else "production"
@@ -106,15 +106,39 @@ def contact():
 
 @app.route('/create-payment', methods=['POST'])
 def create_payment():
-    total_amount = 10000 
     try:
-        payment_intent = stripe.PaymentIntent.create(
-            amount=total_amount,
-            currency='usd',
+        total_amount = request.json()["total"] 
+        user_id = 1
+        ("""  session = stripe.checkout.Session.create(
             payment_method_types=['card'],
-            description='Compra de cursos en MyApp'
+            line_items=[{
+                'price_data': {
+                    'currency': 'eur',
+                    'unit_amount': total_amount,
+                    'product_data': {
+                        'name': 'Curso',
+                    },
+                },
+                'quantity': 1,
+            }],
+            mode='payment',
+            metadata = {},
+            success_url='https://ubiquitous-dollop-69gv5v4r6x6wc5jr5-3000.app.github.dev/',  
+            cancel_url='https://ubiquitous-dollop-69gv5v4r6x6wc5jr5-3000.app.github.dev/',   
+        )""")
+        session = stripe.checkout.Session.create(
+            payment_method_types=['card'],
+            line_items=[{
+                'price': 'price_id',  # Reemplaza 'price_id' con el ID real del precio
+                'quantity': 1,
+            }],
+            mode='payment',
+            metadata={},
+            success_url='https://ubiquitous-dollop-69gv5v4r6x6wc5jr5-3000.app.github.dev/',  
+            cancel_url='https://ubiquitous-dollop-69gv5v4r6x6wc5jr5-3000.app.github.dev/',   
         )
-        return jsonify({'clientSecret': payment_intent.client_secret}), 200
+
+        return jsonify({'sessionId': session['id']}), 200
     except Exception as e:
         return jsonify({'error': str(e)}), 500
 
@@ -184,8 +208,9 @@ def webhook():
         raise e
 
     # Handle the event
-    if event['type'] == 'payment_intent.succeeded':
-      payment_intent = event['data']['object']
+    if event['type'] == 'checkout.session.completed':
+      checkout = event['data']['object']
+      print(checkout)
     # ... handle other event types
     else:
       print('Unhandled event type {}'.format(event['type']))

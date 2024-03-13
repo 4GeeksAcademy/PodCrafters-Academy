@@ -100,7 +100,7 @@ export const Carrito = () => {
 
             {showPopup && (
                 <Elements stripe={stripePromise}>
-                    <PopupPay handleClosePopup={handleClosePopup} />
+                    <PopupPay total= {total} handleClosePopup={handleClosePopup} />
                 </Elements>
             )}
         </div>
