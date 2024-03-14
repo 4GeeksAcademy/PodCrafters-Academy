@@ -1,3 +1,4 @@
+
 """
 This module takes care of starting the API Server, Loading the DB and Adding the endpoints
 """
@@ -14,10 +15,8 @@ from flask_cors import CORS
 from flask_jwt_extended import JWTManager, create_access_token
 from flask_mail import Mail, Message
 import stripe
-# from models import Person
 
 stripe.api_key = "sk_test_51OtD4EFFwdFDHeIPh2VYkzCi9okYE4ndaNHSP3OSpP8SfLyAJwoQJ1RSXpW48z1kdqtP15Xf2nAxZuVHrbYr1krK00Djf2cSDh"
-endpoint_secret = 'whsec_XtrepXaxTXc5XsIsyctTHSqCt2ymbGbD' #NUEVO
 
 
 ENV = "development" if os.getenv("FLASK_DEBUG") == "1" else "production"
@@ -72,7 +71,7 @@ def sitemap():
         return generate_sitemap(app)
     return send_from_directory(static_file_dir, 'index.html')
 
-# any other endpoint will try to serve it like a static file
+
 
 
 @app.route('/<path:path>', methods=['GET'])
@@ -80,7 +79,7 @@ def serve_any_other_file(path):
     if not os.path.isfile(os.path.join(static_file_dir, path)):
         path = 'index.html'
     response = send_from_directory(static_file_dir, path)
-    response.cache_control.max_age = 0  # avoid cache memory
+    response.cache_control.max_age = 0  
     return response
 
 @app.route('/contact', methods=['POST'])
@@ -107,36 +106,20 @@ def contact():
 @app.route('/create-payment', methods=['POST'])
 def create_payment():
     try:
-        total_amount = request.json()["total"] 
-        user_id = 1
-        ("""  session = stripe.checkout.Session.create(
-            payment_method_types=['card'],
-            line_items=[{
-                'price_data': {
-                    'currency': 'eur',
-                    'unit_amount': total_amount,
-                    'product_data': {
-                        'name': 'Curso',
-                    },
-                },
-                'quantity': 1,
-            }],
-            mode='payment',
-            metadata = {},
-            success_url='https://ubiquitous-dollop-69gv5v4r6x6wc5jr5-3000.app.github.dev/',  
-            cancel_url='https://ubiquitous-dollop-69gv5v4r6x6wc5jr5-3000.app.github.dev/',   
-        )""")
         session = stripe.checkout.Session.create(
             payment_method_types=['card'],
             line_items=[{
-                'price': 'price_id',  # Reemplaza 'price_id' con el ID real del precio
+                'price': 'price_1OuJgWFFwdFDHeIPHEZI7ARZ', # Reemplaza 'price_id_de_tu_producto_en_stripe' con el ID de tu producto en Stripe
                 'quantity': 1,
             }],
             mode='payment',
-            metadata={},
-            success_url='https://ubiquitous-dollop-69gv5v4r6x6wc5jr5-3000.app.github.dev/',  
+            success_url='https://ubiquitous-dollop-69gv5v4r6x6wc5jr5-3000.app.github.dev/conteoregresivo',  
             cancel_url='https://ubiquitous-dollop-69gv5v4r6x6wc5jr5-3000.app.github.dev/',   
         )
+
+        return jsonify({'sessionId': session['id']}), 200
+    except Exception as e:
+        return jsonify({'error': str(e)}), 500
 
         return jsonify({'sessionId': session['id']}), 200
     except Exception as e:
@@ -189,30 +172,3 @@ def subscribe():
         return jsonify({ "success": True, "message": "Subscription successful for email: {}".format(email)}), 200
     except Exception as e:
         return jsonify({ "error": str(e) }), 500
-
-@app.route('/webhook', methods=['POST'])
-def webhook():
-    event = None
-    payload = request.data
-    sig_header = request.headers['STRIPE_SIGNATURE']
-
-    try:
-        event = stripe.Webhook.construct_event(
-            payload, sig_header, endpoint_secret
-        )
-    except ValueError as e:
-        # Invalid payload
-        raise e
-    except stripe.error.SignatureVerificationError as e:
-        # Invalid signature
-        raise e
-
-    # Handle the event
-    if event['type'] == 'checkout.session.completed':
-      checkout = event['data']['object']
-      print(checkout)
-    # ... handle other event types
-    else:
-      print('Unhandled event type {}'.format(event['type']))
-
-    return jsonify(success=True)
