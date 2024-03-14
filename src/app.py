@@ -109,7 +109,7 @@ def create_payment():
         session = stripe.checkout.Session.create(
             payment_method_types=['card'],
             line_items=[{
-                'price': 'price_1OuJgWFFwdFDHeIPHEZI7ARZ', # Reemplaza 'price_id_de_tu_producto_en_stripe' con el ID de tu producto en Stripe
+                'price': 'price_1OuJgWFFwdFDHeIPHEZI7ARZ', 
                 'quantity': 1,
             }],
             mode='payment',
