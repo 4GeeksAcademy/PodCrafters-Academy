@@ -1,0 +1,19 @@
+/* Estilos para la clase module-card */
+.module-card {
+    background-color: #9AC0CD;
+    transition: transform 0.3s, box-shadow 0.3s; /* Agrega una transición suave para transformaciones y sombras */
+    border-radius: 10px;
+}
+
+/* Estilos cuando el cursor está sobre el módulo */
+.module-card:hover {
+    transform: scale(1.05); /* Aumenta ligeramente el tamaño del módulo */
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.5); /* Agrega una sombra al módulo */
+    border: 2px solid #4682b4; /* Agrega un borde resaltado */
+}
+
+/* Estilos cuando el módulo es clickeado */
+.module-card:active {
+    box-shadow: none; /* Elimina la sombra al hacer clic */
+    transform: scale(0.98); /* Reduce ligeramente el tamaño del módulo */
+}

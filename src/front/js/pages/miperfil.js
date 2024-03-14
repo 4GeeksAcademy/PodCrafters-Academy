@@ -1,5 +1,7 @@
 import React, { useContext, useEffect, useState } from "react";
 import { Context } from "../store/appContext";
+import PodCrafterIniciacion from "../../../../public/images/PodCrafterIniciacion.jpg";
+import { Link } from "react-router-dom";
 
 export const MiPerfil = () => {
     const { store, actions } = useContext(Context);
@@ -27,6 +29,7 @@ export const MiPerfil = () => {
 
     useEffect(() => {
         actions.verifyIdentity();
+        actions.getCursos();
     }, []);
 
     if (!store.user) {
@@ -113,20 +116,26 @@ export const MiPerfil = () => {
                 <div className="ms-auto mb-3 text-center d-flex flex-column align-items-center">
                     <p className="mb-0">Foto de perfil</p>
                     <img src="https://upload.wikimedia.org/wikipedia/commons/9/99/Sample_User_Icon.png" alt="User Icon" style={{ width: '150px', height: '150px', borderRadius: '50%' }} />
-                    
+
                 </div>
             </div>
             <div className="jumbotron rounded mt-5 mb-5" style={{ backgroundColor: '#9AC0CD', display: 'flex', flexDirection: 'column' }}>
                 <p className="display-4 m-4 ">Mis Cursos</p>
                 <div className="card m-4" style={{ width: '25%', height: '100%', backgroundColor: '#081F2E', color: 'white' }}>
-                    <img src="https://picsum.photos/id/237/20/20" className="card-img-top p-2" alt="..." />
+                    <img src= {PodCrafterIniciacion} className="card-img-top p-2" alt="..." />
                     <div className="card-body">
-                        <h5 className="card-title">Card title</h5>
-                        <p className="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
-                        <a href="#" className="btn btn-outline-light">Go somewhere</a>
+                        {/* Solo mostramos información del primer curso */}
+                        {store.cursos.length > 0 && (
+                            <>
+                                <h5 className="card-title">{store.cursos[0].name}</h5>
+                                <p className="card-text">¡Entra para empezar con tu curso!</p>
+                                <Link to="/micurso" className="btn btn-outline-light">Ir al curso</Link>
+                            </>
+                        )}
                     </div>
                 </div>
             </div>
         </div>
     );
 };
+

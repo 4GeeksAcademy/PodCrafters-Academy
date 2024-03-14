@@ -94,7 +94,7 @@ const getState = ({ getStore, getActions, setStore }) => {
 							localStorage.setItem('token', data.token)
 							setStore({ token: data.token })
 							getActions().verifyIdentity()
-							navigate('/miperfil')
+							navigate('/cursos')
 						}
 					})
 					.catch(error => {
@@ -104,6 +104,7 @@ const getState = ({ getStore, getActions, setStore }) => {
 			logout: () => {
 				setStore({ token: null, user: null })
 				localStorage.removeItem('token')
+				
 			},
 			verifyIdentity: () => {
 				let token = localStorage.getItem('token');
