@@ -61,9 +61,6 @@ const PopupPay = ({ handleClosePopup }) => {
                 <div className="close-icon" onClick={handleClosePopup}></div>
                 <h2>Completa tu pago</h2>
                 <form onSubmit={handleSubmit}>
-                    <div className="card-element-container">
-                        <CardElement className="card-element" />
-                    </div>
                     {errorMessage && <div className="error-message">{errorMessage}</div>}
                     <button className="btn-pay" onClick={handlePagar}>Pagar</button>
                 </form>
