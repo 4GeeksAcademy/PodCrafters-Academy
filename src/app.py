@@ -113,8 +113,8 @@ def create_payment():
                 'quantity': 1,
             }],
             mode='payment',
-            success_url='https://sample-service-name-u19s.onrender.com/conteoregresivo',  
-            cancel_url='https://sample-service-name-u19s.onrender.com/',   
+            success_url='https://sample-service-name-tcm8.onrender.com/conteoregresivo',  
+            cancel_url='https://sample-service-name-tcm8.onrender.com/',   
         )
 
         return jsonify({'sessionId': session['id']}), 200
@@ -135,7 +135,7 @@ def send_email():
         return jsonify({ "error": "Este usuario no existe"}), 401
    
     token = create_access_token(identity=email)
-    link = 'https://sample-service-name-u19s.onrender.com/recover?token=' + token
+    link = 'https://sample-service-name-tcm8.onrender.com/recover?token=' + token
    
     message = Message(
         subject="Reset your password",
