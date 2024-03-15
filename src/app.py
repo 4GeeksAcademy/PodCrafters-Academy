@@ -113,8 +113,8 @@ def create_payment():
                 'quantity': 1,
             }],
             mode='payment',
-            success_url='https://ubiquitous-dollop-69gv5v4r6x6wc5jr5-3000.app.github.dev/conteoregresivo',  
-            cancel_url='https://ubiquitous-dollop-69gv5v4r6x6wc5jr5-3000.app.github.dev/',   
+            success_url='https://sample-service-name-u19s.onrender.com/conteoregresivo',  
+            cancel_url='https://sample-service-name-u19s.onrender.com/',   
         )
 
         return jsonify({'sessionId': session['id']}), 200
@@ -135,7 +135,7 @@ def send_email():
         return jsonify({ "error": "Este usuario no existe"}), 401
    
     token = create_access_token(identity=email)
-    link = 'https://vigilant-sniffle-ggg7wvgg7gvhpgw6-3000.app.github.dev/recover?token=' + token
+    link = 'https://sample-service-name-u19s.onrender.com/recover?token=' + token
    
     message = Message(
         subject="Reset your password",
