@@ -203,8 +203,8 @@ def reset_password():
 @api.route('/añadir_test_cursos', methods=['GET'])
 def test_cursos():
     cursos_info = [
-            {"id": 1,"name": "Maestría en Podcasting: Desde la Introducción hasta la Excelencia Continua", "precio":5000},
-            {"id": 2,"name": "Dominando el Arte del Contenido Visual en Redes Sociales", "precio":5000},
+            {"id": 1,"name": "Maestría en Podcasting: Desde la Introducción hasta la Excelencia Continua", "precio":5000 },
+            {"id": 2,"name": "Dominando el Arte del Contenido Visual en Redes Sociales", "precio":5000 },
             {"id": 3,"name": "Podcasting Pro Mastery", "precio":5000},
             {"id": 4,"name": "Elevando tu Podcast a Nuevos Niveles", "precio":5000}
             

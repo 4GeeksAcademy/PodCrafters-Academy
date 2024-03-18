@@ -51,6 +51,7 @@ export const SignUp = () => {
                                     <label htmlFor="email" className="form-label">Tu correo electronico</label>
                                 </div>
                             </div>
+                            {/* 
                             <div className="d-flex flex-row align-items-center mb-2">
                                 <i class="fas fa-user fa-lg me-3 fa-fw"></i>
                                 <div className="form-floating flex-fill mb-0">
@@ -106,7 +107,7 @@ export const SignUp = () => {
                                     />
                                     <label htmlFor="telephone" className="form-label">Teléfono</label>
                                 </div>
-                            </div>
+                            </div>*/}
                             <div className="d-flex flex-row align-items-center mb-2">
                                 <i className="fas fa-lock fa-lg me-3 fa-fw"></i>
                                 <div className="form-floating flex-fill mb-0">

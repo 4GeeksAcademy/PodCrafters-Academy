@@ -45,7 +45,7 @@ export const Cursos = () => {
                                 <div className="card-body d-flex flex-column justify-content-between">
                                     <div>
                                         <h5 className="card-title">{curso.name}</h5>
-                                        <p className="card-text">{curso.precio}</p>
+                                        <p className="card-text">{curso.precio} €</p>
                                     </div>
                                     <button className="btn btn-primary mt-auto" onClick={() => handleSaberMasClick(curso)}>Saber más</button>
                                 </div>

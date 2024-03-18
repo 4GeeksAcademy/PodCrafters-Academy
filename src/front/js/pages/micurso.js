@@ -8,7 +8,7 @@ import "../../styles/micurso.css";
 
 export const MiCurso = () => {
     const { store, actions } = useContext(Context);
-
+  
     useEffect(() => {
         actions.getModulos();
         actions.getCursos();

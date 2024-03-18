@@ -65,16 +65,16 @@ export const Carrito = () => {
                         {index === 2 && <img src={PodCrafterExperimentado} alt="PodCrafter Experimentado" style={{ height: '100px', width: '100px'}}/>}
                         {index === 3 && <img src={PodCrafterMaster} alt="PodCrafter Master"style={{ height: '100px', width: '100px'}} />}
                         <p><strong>{curso.name}</strong></p>
-                        <p>{curso.precio}</p>
+                        <p>{curso.precio}€</p>
                     </div>
                 ))}
             </div>
             <div className="row justify-content-end mt-3">
                 <div className="col-md-3">
                     <p><strong>TOTAL</strong></p>
-                    <p>Total: {total}</p>
+                    <p>Total: {total}€</p>
                     {applyingVoucher && voucher === "STUDENT" && (
-                        <p>Total descontado: {total} ({descuento} de descuento)</p>
+                        <p>Total descontado: {total}€ ({descuento}€ de descuento)</p>
                     )}
                 </div>
             </div>
