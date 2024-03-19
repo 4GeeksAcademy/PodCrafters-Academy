@@ -14,7 +14,7 @@ export const MiPerfil = () => {
     const [editedFirstName, setEditedFirstName] = useState(store.user?.firstName || '');
     const [editedLastName, setEditedLastName] = useState(store.user?.lastName || '');
     const [editedTelephone, setEditedTelephone] = useState(store.user?.telephone || '');
-
+    
     // Función para manejar la actualización del perfil
     const handleUpdateProfile = () => {
         actions.updateProfile(editedUserName, editedFirstName, editedLastName, editedTelephone);
@@ -27,6 +27,8 @@ export const MiPerfil = () => {
         setNewPassword('');
     };
 
+  
+    
     useEffect(() => {
         actions.verifyIdentity();
         actions.getCursos();
@@ -116,7 +118,7 @@ export const MiPerfil = () => {
                 <div className="ms-auto mb-3 text-center d-flex flex-column align-items-center">
                     <p className="mb-0">Foto de perfil</p>
                     <img src="https://upload.wikimedia.org/wikipedia/commons/9/99/Sample_User_Icon.png" alt="User Icon" style={{ width: '150px', height: '150px', borderRadius: '50%' }} />
-
+                    <button> Cambiar foto de perfil</button>
                 </div>
             </div>
             <div className="jumbotron rounded mt-5 mb-5" style={{ backgroundColor: '#9AC0CD', display: 'flex', flexDirection: 'column' }}>

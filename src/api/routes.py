@@ -177,7 +177,7 @@ def update_profile():
         user.firstName = data.get("firstName", user.firstName)
         user.lastName = data.get("lastName", user.lastName)
         user.telephone = data.get("telephone", user.telephone)
-        
+      
         db.session.commit()
 
         return jsonify({ "user": user.serialize(), "message": "Perfil actualizado con éxito" }), 200
@@ -225,3 +225,4 @@ def test_cursos():
     }
 
     return jsonify(response_body), 200
+

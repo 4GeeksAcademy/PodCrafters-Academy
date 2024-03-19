@@ -104,7 +104,7 @@ const getState = ({ getStore, getActions, setStore }) => {
 			logout: () => {
 				setStore({ token: null, user: null })
 				localStorage.removeItem('token')
-				
+
 			},
 			verifyIdentity: () => {
 				let token = localStorage.getItem('token');
@@ -146,11 +146,11 @@ const getState = ({ getStore, getActions, setStore }) => {
 						alert(error);
 					});
 			},
-			updateProfile: (userName, firstName, lastName, telephone) => {
+			updateProfile: (userName, firstName, lastName, telephone,) => {
 				const token = localStorage.getItem('token');
 				fetch(process.env.BACKEND_URL + '/api/update_profile', {
 					method: 'PUT',
-					body: JSON.stringify({ userName, firstName, lastName, telephone }),
+					body: JSON.stringify({ userName, firstName, lastName, telephone, }),
 					mode: 'cors',
 					headers: {
 						'Content-Type': 'application/json',
@@ -263,23 +263,25 @@ const getState = ({ getStore, getActions, setStore }) => {
 			},
 
 			createPayment: async (total) => {
-                try {
-                    const response = await fetch(process.env.BACKEND_URL + '/create-payment', {
-                        method: 'POST',
-                        headers: {
-                            'Content-Type': 'application/json'
-                        },
+				try {
+					const response = await fetch(process.env.BACKEND_URL + '/create-payment', {
+						method: 'POST',
+						headers: {
+							'Content-Type': 'application/json'
+						},
 						body: JSON.stringify({ total })
-                    });
-                    const data = await response.json();
-                    return data;
-                } catch (error) {
-                    console.error('Error:', error);
-                    throw new Error('Error al crear el pago');
-                }
-            }
+					});
+					const data = await response.json();
+					return data;
+				} catch (error) {
+					console.error('Error:', error);
+					throw new Error('Error al crear el pago');
+				}
+			},
+			
 		}
-	};
-};
+	}
+}
+	
 
 export default getState;
